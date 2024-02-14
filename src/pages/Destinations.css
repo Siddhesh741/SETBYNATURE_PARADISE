@@ -1,0 +1,108 @@
+
+.destinations-container {
+    padding: 20px;
+    background-image: url('../assets/img/22.jpg'); /* Add the URL of your background image */
+    background-size: cover; /* Cover the entire container */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat; /* Do not repeat the background image */
+  }
+  
+
+.destination-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Center content horizontally and vertically */
+    text-align: center; /* Align text content center */
+    height: 100%; /* Ensure each item takes full height */
+
+  }
+  
+  .destination-image {
+    max-width: 100%;
+    max-height: 250px;
+    width: auto;
+    height: auto;
+    border-radius: 10px;
+  }
+  
+
+  
+  .destination-info {
+    flex: 1;
+  }
+  
+  .destinations-title {
+    font-weight: bold;
+    font-size: 2rem;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    text-align: center;
+    color: #0a0a0a; /* Add your desired text color */
+    font-family:Verdana, Geneva, Tahoma, sans-serif; /* Add your desired font family */
+  }
+  
+  .destination-description {
+    font-size: 1.3rem;
+    margin-bottom: 30px;
+    opacity: 0; /* Initially hide the description */
+    transform: translateY(-10px); /* Move the description up */
+    animation: dropIn 0.9s forwards; 
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    /* Apply the dropIn animation */
+    color: #fff6f6;
+}
+
+@keyframes dropIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px); /* Start position above */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0); /* End position normal */
+  }
+}
+.destination-button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #106e94b9;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    animation: pulsate 2s infinite alternate; /* Adjust the animation duration */
+  }
+  
+  @keyframes pulsate {
+    0% {
+      transform: scale(1); /* Initial size */
+    }
+    50% {
+      transform: scale(1.1); /* Slightly larger size */
+    }
+    100% {
+      transform: scale(1); /* Back to original size */
+    }
+  }
+  
+  .destination-button:hover {
+    background-color: #c944b1;
+    animation:none;
+  }
+  
+  /* Media queries for tablet devices */
+  @media (max-width: 768px) {
+    .destination-item {
+      width: calc(50% - 20px); /* Adjust width as per your requirement */
+    }
+  }
+  
+  /* Media queries for mobile devices */
+  @media (max-width: 480px) {
+    .destination-item {
+      width: 100%; /* Display items in a single column */
+    }
+  }
+  

@@ -1,0 +1,110 @@
+/* Footer.css */
+
+.footer {
+  background-color: black;
+  color: white;
+  padding: 10px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+.footer-content {
+  display: flex;
+  flex-wrap: wrap; /* Allow items to wrap to new line on smaller screens */
+  justify-content: space-between;
+  align-items: flex-start;
+ 
+}
+
+.footer-links,
+.footer-links1 {
+  flex-basis: 100%; /* Take up full width initially */
+  text-align: center; /* Center links on mobile devices */
+}
+
+.footer-links a,
+.footer-links1 a {
+  color: white;
+  margin: 5px; /* Adjust margin for better spacing */
+}
+
+.footer-info {
+  flex-basis: 100%; /* Take up full width initially */
+  text-align: center; /* Center text on mobile devices */
+}
+
+.footer-info p {
+  margin: 10px 0; /* Adjust margin for better spacing */
+  max-width: 100%; /* Ensure text does not overflow */
+}
+
+.footer-social {
+  flex-basis: 100%; /* Take up full width initially */
+  text-align: center; /* Center icons on mobile devices */
+}
+
+.footer-social a {
+  color: white;
+  margin: 0 10px; 
+  
+}
+
+.footer-copyright {
+  text-align: center;
+}
+.footer-social {
+  flex-basis: 15.33%; /* Adjust as needed */
+  text-align: right;
+  margin-top: -10px; /* Adjust the negative margin as needed to move the icons closer to the blocks above */
+}
+@media screen and (min-width: 768px) {
+  .footer-content {
+    flex-wrap: nowrap; /* Reset wrapping for larger screens */
+  }
+
+  .footer-links,
+  .footer-links1,
+  .footer-info,
+  .footer-social{
+  
+    flex-basis: left;
+   } /* Reset flex-basis for larger screens */
+    .footer-copyright {
+    text-align: center; /* Align content to the left on larger screens */
+  }
+}
+.hover-effect:hover {
+  /* Your hover effect styles go here */
+  color: rgb(249, 249, 36); /* For example, changes text color to red */
+  /* Add any other styles you want for the hover effect */
+}
+/* Media query for mobile and tablet views */
+@media only screen and (min-width: 768px) {
+  .footer-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .footer-links {
+    order: 0; /* Make this block appear second */
+    margin-left:auto; 
+    
+    
+  }
+
+  .footer-social {
+    order: 3; 
+  
+/* Make this block appear third */
+  }
+  .footer-social .icon {
+  
+    margin: 0 5px;
+    /* Add some spacing between icons */
+  }
+}
+ 
+   
+

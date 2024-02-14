@@ -1,0 +1,164 @@
+/* ContactForm.css */
+
+.contact-container {
+    display: flex;
+    flex-direction: column;
+    margin:2%;
+    
+  }
+  
+  .form-container {
+    order: 1;
+    padding: 20px;
+    background: linear-gradient(to bottom right, #58cfcd, #fe7bd0); /* Example gradient colors */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Example shadow effect */
+  }
+  
+  .form-title {
+    font-size: 24px; /* Adjust the font size as needed */
+    text-align: left; /* Align the text to the left */
+    color: #bf0606; /* Set your desired color */
+    margin-bottom: 10px; /* Add space below the title */
+    white-space: nowrap; /* Prevent the text from wrapping */
+    overflow: hidden; /* Hide the overflow */
+    position: relative; /* Make the text position relative */
+    animation: scrollLeftToRight 10s linear infinite; /* Apply the animation */
+  }
+  
+  @keyframes scrollLeftToRight {
+    0% {
+      transform: translateX(-25%);
+    }
+    50% {
+      transform: translateX(25%);
+    }
+    100% {
+      transform: translateX(-25%);
+    }
+  }
+  
+  @keyframes scrollRightToLeft {
+    0% {
+      transform: translateX(25%);
+    }
+    50% {
+      transform: translateX(-25%);
+    }
+    100% {
+      transform: translateX(25%);
+    }
+  }
+  
+  .form-title::after {
+    content: attr(data-title);
+    position: absolute;
+    top: 0;
+    left: 50%;
+    white-space: nowrap;
+    animation: scrollRightToLeft 10s linear infinite;
+  }
+  
+  .form-group {
+    margin-bottom: 1rem;
+  }
+  
+  .form-group label {
+    display: block;
+    font-weight: bold;
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .error {
+    color: red;
+    font-size: 0.8rem;
+    margin-top: 0.2rem;
+  }
+  
+  .image-container {
+    order: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 200px 0; /* Adjust top and bottom padding as needed */
+     position: relative; /* Added */
+  }
+  
+  /* Apply shadow by default and change color on hover */
+  .image-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    background: rgba(255, 0, 0, 0.1); /* Initial shadow color */
+    z-index: -1;
+    transition: background-color 0.3s ease; /* Added */
+
+  }
+  
+  .image-container:hover::before {
+    background: linear-gradient(to bottom right, #88ea9c, #f09292);  /* Shadow color on hover */
+  }
+  
+  .image-container img {
+    max-width: 60%;
+    max-height: 400px;
+    height: auto;
+  }
+  
+
+  .text-red-500 {
+    color: #dc3545; /* Red color */
+  }
+@media screen and (min-width: 600px) {
+    .contact-container {
+      flex-direction: row;
+    }
+  
+    .form-container {
+      order: 0;
+      flex: 1;
+      margin-right: 20px; /* Add some spacing between the containers */
+    }
+  
+    .image-container {
+      order: 1;
+      flex: 1;
+    }
+  }
+  @media (min-width: 768px) {
+    /* Adjust the width for tablets and larger screens */
+    #package {
+      width: 315px; /* Adjust this width as needed */
+    }
+  }
+  
+  @media (max-width: 767px) {
+    /* Adjust the width for mobile devices */
+    #package {
+      width: 100%; /* Set to 100% width for mobile devices */
+    }
+  }
+  @keyframes waterEffect {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
+
+    .text-container {
+      animation: waterEffect 3s infinite; 
+      text-align: center;
+      margin:5% ;
+      font-family:Georgia, 'Times New Roman', Times, serif;
+                    /* Adjust animation duration and timing */
+    }
