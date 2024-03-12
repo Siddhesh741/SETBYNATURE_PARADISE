@@ -1,0 +1,98 @@
+.about-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 2%;
+    font-size: larger;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    height: 100vh; /* Set the height to the full viewport height */
+    opacity: 0; /* Initial opacity */
+    transform: translateY(-50px); /* Initial transform */
+    animation: waterfall 1.5s ease forwards; /* Apply animation */
+    background-color: rgba(231, 231, 231, 0.7); 
+}
+
+.about-content {
+    width: 50%; /* Adjust the width of the text content */
+    padding: 0 20px; /* Add some padding for spacing */
+    display: flex; /* Add display flex */
+    flex-direction: column; /* Arrange content vertically */
+    align-items: center; /* Center horizontally */
+}
+
+.contact-button {
+    display: inline-block;
+    background-color: #32bbf6;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.3s;
+    margin-top: 20px; /* Add margin to separate from text */
+}
+.about-text{
+    color: #000000;
+}
+.contact-button:hover {
+    background-color: #5745a0;
+    transform: scale(1.1);
+}
+
+.about-image {
+    width: 30%; /* Adjust the width of the image */
+    box-shadow: 0px 0px 100px 8px rgb(254, 21, 21); 
+    border-radius: 50%; /* Optional: Add border-radius for rounded corners */
+    margin-right: 5%;
+    animation: zoomInOut 5s infinite alternate; /* Apply animation */
+}
+
+@keyframes zoomInOut {
+    0% {
+        transform: scale(1); /* Initial scale */
+    }
+    50% {
+        transform: scale(1.2); /* Zoom in */
+    }
+    100% {
+        transform: scale(1); /* Zoom out */
+    }
+}
+
+.about-img {
+    width: 100%; /* Ensure the image fills its container */
+    height: auto;
+    border-radius: 20px;
+}
+
+/* Waterfall Animation */
+@keyframes waterfall {
+    0% {
+        opacity: 0; /* Start with opacity 0 */
+        transform: translateY(-50px); /* Move content up */
+    }
+    100% {
+        opacity: 1; /* End with opacity 1 */
+        transform: translateY(0); /* Reset to original position */
+    }
+}
+
+/* Media Queries for Responsive Design */
+@media only screen and (max-width: 576px) {
+    .about-container {
+        flex-direction: column; /* Stack items vertically */
+        justify-content: center; /* Center items vertically */
+        align-items: center; /* Center items horizontally */
+    }
+    .about-content {
+        width: 90%; /* Adjust width for small devices like phones */
+    }
+    .contact-button {
+        margin-top: 10px; /* Reduce margin for smaller screens */
+        margin-bottom: 15%;
+    }
+    .about-image {
+        width: 80%; /* Increase image size on small devices */
+    }
+}

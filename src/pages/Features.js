@@ -5,10 +5,8 @@ import pic1 from "../assets/img/service.png";
 import pic2 from "../assets/img/user.png";
 import pic3 from "../assets/img/wallet.png";
 import pic4 from "../assets/img/user1.png";
+
 import Footer from "./Footer";
-import "./Footer.css"
-
-
 const Features = () => {
 
 
@@ -94,7 +92,8 @@ const Features = () => {
           </div>
         </div>
       </div>
-    
+      <br></br>
+    <Footer />
     </div>
     
   );

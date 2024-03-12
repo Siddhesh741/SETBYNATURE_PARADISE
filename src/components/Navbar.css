@@ -4,12 +4,15 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 22px 30px;
+  padding: 22px 10px;
+  
+  /* width: 100%;  */
 }
 
 .navbar-left {
   display: flex;
   align-items: center;
+  margin-left: 2%;
 }
 
 .brand h1 {
@@ -25,12 +28,12 @@
   margin-left: 1rem;/* Adjust the spacing between h1 and h3 */
 }
 
-
 .menu {
   list-style-type: none;
   margin: 0;
   padding: 0;
   display: flex;
+  
 }
 
 .menu-item {
@@ -67,10 +70,9 @@
   .menu {
     position: absolute;
     top:12.2%; 
-    
     right: 0;
-    background-color: rgba(67, 66, 66, 0.845);
-    width: 30%;
+    background-color: rgba(63, 56, 56, 0.349);
+    width: 35%;
     display: none;
     flex-direction: column;
     align-items: flex-end;

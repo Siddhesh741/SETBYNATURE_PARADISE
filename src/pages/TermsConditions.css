@@ -1,0 +1,110 @@
+/* TermsConditions.css */
+
+.features-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+  min-height: 100vh;
+  background-image: url('../assets/img/47.jpg'); /* Replace 'your-background-image.jpg' with your image path */
+  background-size: cover; /* Ensure the background image covers the entire container */
+
+}
+
+.features-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 800px;
+  flex-grow: 1;
+}
+
+.centered-image {
+  text-align: center;
+}
+
+.centered-img {
+  max-width: 60%;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 5%;
+  box-shadow: 0 30px 100px rgba(100, 205, 212, 0.947); /* Add border shadow */
+}
+
+.features-text {
+  text-align: center;
+  margin-bottom: 20px;
+  
+}
+
+.features-title1 {
+  color: #ae3232; /* Change the color to red */
+}
+
+.features-details {
+  margin-top: 20px;
+}
+
+.feature {
+  display: flex;
+  gap: 15px;
+}
+
+.feature-description p {
+  color: #333; /* Darken the text color */
+  font-size: 20px; /* Increase the font size */
+  font-family: Arial, sans-serif;
+  
+}
+
+.feature-title2 {
+  font-size: x-large; /* Increase the font size */
+  text-align: center; /* Move the title to the center */
+}
+
+/* Water drop animation */
+@keyframes waterDrop {
+  0% {
+    transform: translateY(-50%);
+    opacity: 0;
+  }
+  25% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  75% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+
+/* Apply water drop animation to all paragraphs */
+.feature-description p {
+  animation: waterDrop 4s ease infinite; /* Adjust animation duration */
+}
+
+/* Media query for mobile view */
+@media screen and (max-width: 768px) {
+  .features-content {
+    padding: 0 20px;
+    text-align: center; /* Center text */
+  }
+
+  .centered-img {
+    max-width: 80%; /* Adjust image size for mobile view */
+  }
+
+  .feature-description p {
+    margin-left: 2%;
+    margin-right: 2%;
+    font-size: 18px; /* Decrease font size for mobile view */
+  }
+
+  .features-title1 {
+    font-size: 1.5rem; /* Adjust title font size for mobile view */
+  }
+}

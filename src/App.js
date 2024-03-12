@@ -11,7 +11,7 @@ import Admin from '../src/pages/Admin';
 //import Footer from "../src/pages/Footer"
 //import '../src/components/Style.css'
 import 'tailwindcss/tailwind.css';
-//import ItemPage from '../src/pages/ItemPage';
+
 
 
 const App = () => {
@@ -22,7 +22,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/features" element={<Features />} />
-        {/* <Route path="/feature" element={<Features />} /> Redirect /feature to /features */}
+        
         <Route path="/destinations" element={<Destinations />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
@@ -36,8 +36,5 @@ const App = () => {
     
   );
 };
-{/* <div> 
 
-<Footer />
-</div>*/}
 export default App;

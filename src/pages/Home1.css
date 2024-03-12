@@ -1,0 +1,107 @@
+/* Home1.css */
+
+/* General styling for all screen sizes */
+.home-container {
+  min-height: 100vh;
+  display: flex;
+  margin-top: 0%;
+  justify-content: center;
+  align-items: center;
+  margin: 0 32px;
+  background-color: rgba(242, 242, 242, 0.66);
+}
+
+.book-now-button {
+  background-color: #929229;
+  color: #fff;
+  padding: 15px 30px; /* Increased padding for larger size */
+  border: none;
+  border-radius: 8px; /* Slightly increased border radius for smoother edges */
+  font-size: 18px; /* Increased font size for larger text */
+  text-decoration: none;
+  margin-left: 4%;
+  margin-right: 10%;
+  margin-bottom: 10%;
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.book-now-button:hover {
+  background-color: #a268bd; /* Darker shade on hover */
+}
+
+.button-container {
+  text-align: center;
+  margin-bottom: 20px; /* Adjust spacing between button and title */
+}
+
+.content-container {
+  display: flex;
+  align-items: center;
+  text-align: left;
+  gap: 20px; /* Add spacing between text and image */
+}
+
+.title {
+  font-weight: bold;
+  font-size: 2.8rem; /* Change the font size as needed */
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; /* Change the font family */
+  margin-top: 1%;
+  margin-bottom: 10%;
+  margin-left: 4%;
+}
+
+@keyframes waterdropAnimation {
+  0% {
+    transform: translateY(-50px) scaleY(0);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0) scaleY(1);
+    opacity: 1;
+  }
+}
+
+.paragraph {
+  font-size: 1.5rem;
+  
+  white-space: nowrap; /* Prevent text from wrapping */
+  overflow: hidden; /* Hide overflowed text */
+  animation: waterdropAnimation 6s cubic-bezier(0.3, 0, 0.5, 1) infinite alternate; /* Added infinite and alternate */
+  opacity: 0;
+  margin-left: 4%;
+}
+
+.image {
+  max-width: 40%;
+  border-radius: 10px;
+  box-shadow: 0 30px 100px rgba(8, 112, 184, 0.7);
+  margin-right: 1%;
+}
+
+/* Media query for mobile devices */
+@media only screen and (max-width: 768px) {
+  .content-container {
+    flex-direction: column; /* Stack items vertically on smaller screens */
+    text-align: center; /* Center align text on smaller screens */
+    margin-left: 0%;
+  }
+
+  .image {
+    max-width: 80%; /* Make the image take up more width on smaller screens */
+    margin: 3% 3% 3% 3%; /* Center the image and add margin below it */
+  }
+
+  .title {
+    margin-left: 2%;
+    margin-top: 1%; /* Remove left margin on title for center alignment */
+  }
+
+  .book-now-button {
+    margin: 2% 2% 2% 2%; /* Center align the button */
+    margin-bottom: 20px; /* Add some space below the button */
+  }
+  .paragraph{
+    margin-left: 2%;
+    font-size: 0.7rem;
+  }
+}

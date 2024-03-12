@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./Contact.css"; // Import your CSS file for styling
-import img from "../assets/img/9.jpg"
+import img from "../assets/img/9.jpg";
+import Footer from "./Footer";
+
 const Contact = () => {
   const initialFormData = {
     clientName: "",
@@ -30,6 +32,8 @@ const Contact = () => {
     visitorsCount: "",
     carCount: "",
   });
+  const [errorMessage, setErrorMessage] = useState(""); // State variable for error message
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -127,7 +131,6 @@ const Contact = () => {
       setErrors({ ...errors, selectedOption: "Please select a package." });
     } else {
       setFormData({ ...formData, selectedOption: value });
-     
     }
   };
 
@@ -213,286 +216,366 @@ const Contact = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Add your submit logic here
-    console.log("Form submitted!");
+
+    // Check if all required fields are filled
+    const requiredFields = [
+      "clientName",
+      "phoneNumber",
+      "photographerName",
+      "photographerPhoneNo",
+      "selectDate",
+      "selectedOption",
+      "advanceAmount",
+      "pendingAmount",
+      "visitorsCount",
+      "carCount",
+    ];
+
+    const missingFields = requiredFields.filter((field) => !formData[field]);
+
+    if (missingFields.length > 0) {
+      setErrorMessage("Please fill in all required fields.");
+      return;
+    }
+
+    const url = "http://localhost:8080/api/clients/createClient";
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    };
+    try {
+      const response = await fetch(url, options);
+      if (!response.ok) {
+        throw new Error("Failed to submit data");
+      }
+      setIsSubmitted(true);
+      setFormData(initialFormData); // Reset form data to initial state
+      setErrorMessage("Successfully submitted your data"); // Set success message
+      setTimeout(() => {
+        setErrorMessage(""); // Clear success message after 3 seconds
+      }, 4000);
+      console.log("Form submitted!");
+    } catch (error) {
+      console.error("Error:", error.message);
+      setErrorMessage("Failed to submit data");
+    }
   };
 
   const handleCancel = () => {
     setFormData(initialFormData);
+    setErrors({}); // Clear any error messages
+    setErrorMessage(""); // Clear any success or error messages
     console.log("Form canceled!");
   };
-
   return (
-    <div className="contact-container">
-      <div className="form-container">
-        <h2 className="form-title">
-          {" "}
-          <strong>Book your photoshoot slot now</strong>{" "}
-        </h2>
-        <div className="form-group mb-4">
-          <label htmlFor="clientName">
-            Customer Name
-            <span className="text-red-500" style={{ fontSize: "1.2em" }}>
-              *
-            </span>
-          </label>
-          <input
-            type="text"
-            name="clientName"
-            id="clientName"
-            placeholder="Enter your name"
-            value={formData.clientName}
-            onChange={handleInputChange}
-            required
-            style={{ height: "30px" }}
-          />
-          {errors.clientName && (
-            <span className="text-red-500">{errors.clientName}</span>
-          )}
-        </div>
+    <div>
+      <div className="contact-container">
+        <div className="form-container">
+          <h2 className="form-title">
+            Book your photoshoot slot now
+          </h2>
+          <div className="form-group mb-4">
+            <label htmlFor="clientName">
+              Customer Name
+              <span className="text-red-500" style={{ fontSize: "1.2em" }}>
+                *
+              </span>
+            </label>
+            <input
+              type="text"
+              name="clientName"
+              id="clientName"
+              placeholder="Enter your name"
+              value={formData.clientName}
+              onChange={handleInputChange}
+              required
+              style={{ height: "20px", width: "calc(100% - 20px)" }}
+            />
+            {errors.clientName && (
+              <span className="text-red-500">{errors.clientName}</span>
+            )}
+          </div>
 
-        <div className="form-group mb-4">
-          <label htmlFor="phoneNumber">
-            Phone Number
-            <span className="text-red-500" style={{ fontSize: "1.2em" }}>
-              *
-            </span>
-          </label>
-          <input
-            type="text"
-            name="phoneNumber"
-            id="phoneNumber"
-            placeholder="Enter your phone number"
-            value={formData.phoneNumber}
-            onChange={handleNumberChange}
-            required
-            style={{ height: "30px" }}
-          />
-          {errors.phoneNumber && (
-            <span className="text-red-500">{errors.phoneNumber}</span>
-          )}
-        </div>
+          <div className="form-group mb-4">
+            <label htmlFor="phoneNumber">
+              Phone Number
+              <span className="text-red-500" style={{ fontSize: "1.2em" }}>
+                *
+              </span>
+            </label>
+            <input
+              type="text"
+              name="phoneNumber"
+              id="phoneNumber"
+              placeholder="Enter your phone number"
+              value={formData.phoneNumber}
+              onChange={handleNumberChange}
+              required
+              style={{ height: "20px", width: "calc(100% - 20px)" }}
+            />
+            {errors.phoneNumber && (
+              <span className="text-red-500">{errors.phoneNumber}</span>
+            )}
+          </div>
 
-        <div className="form-group mb-4">
-          <label htmlFor="photographerName">
-            Photographer Name<span className="text-red-500">*</span>
-          </label>
-          <input
-            type="text"
-            name="photographerName"
-            id="photographerName"
-            placeholder="Enter photographer name"
-            value={formData.photographerName}
-            onChange={handleInputChange1}
-            required
-            style={{ height: "30px" }}
-          />
-          {errors.photographerName && (
-            <span className="text-red-500">{errors.photographerName}</span>
-          )}
-        </div>
+          <div className="form-group mb-4">
+            <label htmlFor="photographerName">
+              Photographer Name<span className="text-red-500">*</span>
+            </label>
+            <input
+              type="text"
+              name="photographerName"
+              id="photographerName"
+              placeholder="Enter photographer name"
+              value={formData.photographerName}
+              onChange={handleInputChange1}
+              required
+              style={{ height: "20px", width: "calc(100% - 20px)" }}
+            />
+            {errors.photographerName && (
+              <span className="text-red-500">{errors.photographerName}</span>
+            )}
+          </div>
 
-        <div className="form-group mb-4">
-          <label htmlFor="photographerPhoneNo">
-            Photographer Phone Number
-            <span className="text-red-500" style={{ fontSize: "1.2em" }}>
-              *
-            </span>
-          </label>
-          <input
-            type="text"
-            name="photographerPhoneNo"
-            id="photographerPhoneNo"
-            placeholder="Enter Photographer phone number"
-            value={formData.photographerPhoneNo}
-            onChange={handleNumberChange2}
-            required
-            style={{ height: "30px" }}
-          />
-          {errors.photographerPhoneNo && (
-            <span className="text-red-500">{errors.photographerPhoneNo}</span>
-          )}
-        </div>
+          <div className="form-group mb-4">
+            <label htmlFor="photographerPhoneNo">
+              Photographer Phone Number
+              <span className="text-red-500" style={{ fontSize: "1.2em" }}>
+                *
+              </span>
+            </label>
+            <input
+              type="text"
+              name="photographerPhoneNo"
+              id="photographerPhoneNo"
+              placeholder="Enter Photographer phone number"
+              value={formData.photographerPhoneNo}
+              onChange={handleNumberChange2}
+              required
+              style={{ height: "20px", width: "calc(100% - 20px)" }}
+            />
+            {errors.photographerPhoneNo && (
+              <span className="text-red-500">{errors.photographerPhoneNo}</span>
+            )}
+          </div>
 
-        <div className="form-group mb-4">
-          <label htmlFor="datePicker">
-            Select Date
-            <span className="text-red-500" style={{ fontSize: "1.2em" }}>
-              *
-            </span>
-          </label>
-          <input
-            // className="py-1 px-1 rounded-lg hover:shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] transition-all"
-            type="date"
-            id="datePicker"
-            name="selectDate"
-            onChange={handleDateChange}
-            min={new Date().toISOString().split("T")[0]} // Set min attribute to today
-            required
-            style={{ height: "30px" }}
-          />
-        </div>
+          <div className="form-group mb-4">
+            <label htmlFor="datePicker">
+              Select Date
+              <span className="text-red-500" style={{ fontSize: "1.2em" }}>
+                *
+              </span>
+            </label>
+            <input
+              // className="py-1 px-1 rounded-lg hover:shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] transition-all"
+              type="date"
+              id="datePicker"
+              name="selectDate"
+              onChange={handleDateChange}
+              min={new Date().toISOString().split("T")[0]} // Set min attribute to today
+              required
+              style={{ height: "20px", width: "calc(100% - 20px)" }}
+            />
+          </div>
 
-        <div className="form-group mb-4">
-          <label htmlFor="cityName">City Name</label>
-          <input
-            type="text"
-            name="cityName"
-            id="cityName"
-            placeholder="Enter city name"
-            value={formData.cityName}
-            onChange={handleCityChange}
-            style={{ height: "30px" }}
-          />
-          {errors.cityName && (
-            <span className="text-red-500">{errors.cityName}</span>
-          )}
-        </div>
-        <div className="form-group mb-4">
-          <label htmlFor="selectOption">
-            Package{" "}
-            <span className="text-red-500" style={{ fontSize: "1.2em" }}>
-              *
-            </span>
-          </label>
-          <select
-            id="selectOption"
-            name="selectOption"
-            onChange={handlepackage}
-            value={formData.selectOption}
-            required
-            style={{ height: "30px", width: "100%" }} // Set initial width to 100%
-          >
-            <option value="">Select a Package</option>
-            <option value="option1">Full Package - 4000 </option>
-            <option value="option2">Sunset Package - 2500</option>
-            <option value="option3">Night Package - 2500</option>
-          </select>
-          {/* Add more options as needed */}
-          {errors.package && (
-            <span className="text-red-500">{errors.selectOption}</span>
-          )}
-        </div>
+          <div className="form-group mb-4">
+            <label htmlFor="cityName">City Name</label>
+            <input
+              type="text"
+              name="cityName"
+              id="cityName"
+              placeholder="Enter city name"
+              value={formData.cityName}
+              onChange={handleCityChange}
+              style={{ height: "20px", width: "calc(100% - 20px)" }}
+            />
+            {errors.cityName && (
+              <span className="text-red-500">{errors.cityName}</span>
+            )}
+          </div>
 
-        <div className="form-group mb-4">
-          <label htmlFor="advanceAmount">
-            Advance Amount
-            <span className="text-red-500" style={{ fontSize: "1.2em" }}>
-              *
-            </span>
-          </label>
-          <input
-            type="text"
-            name="advanceAmount"
-            id="advanceAmount"
-            placeholder="Enter advance Amount"
-            value={formData.advanceAmount}
-            onChange={handleAdvanceAmount}
-            required
-            style={{ height: "30px" }}
-          />
-          {errors.advanceAmount && (
-            <span className="text-red-500">{errors.advanceAmount}</span>
-          )}
-        </div>
+          <div className="form-group mb-4">
+            <label htmlFor="selectOption">
+              Package{" "}
+              <span className="text-red-500" style={{ fontSize: "1.2em" }}>
+                *
+              </span>
+            </label>
+            <select
+              id="selectOption"
+              name="selectOption"
+              onChange={handlepackage}
+              value={formData.selectOption}
+              required
+              style={{ height: "35px", width: "100%" }} // Set initial width to 100%
+            >
+              <option value="" disabled selected>
+                Select a Package
+              </option>
+              <option value="option1">Full Package - 4000 </option>
+              <option value="option2">Sunset Package - 2500</option>
+              <option value="option3">Night Package - 2500</option>
+            </select>
+            {/* Add more options as needed */}
+            {errors.package && (
+              <span className="text-red-500">{errors.selectOption}</span>
+            )}
+          </div>
 
-        <div className="form-group mb-4">
-          <label htmlFor="pendingAmount">
-            Pending Amount
-            <span className="text-red-500" style={{ fontSize: "1.2em" }}>
-              *
-            </span>
-          </label>
-          <input
-            type="text"
-            name="pendingAmount"
-            id="pendingAmount"
-            placeholder="Enter pending Amount"
-            value={formData.pendingAmount}
-            onChange={handlePendingAmount}
-            style={{ height: "30px" }}
-            readOnly
-            required
-          />
-        </div>
+          <div className="form-group mb-4">
+            <label htmlFor="advanceAmount">
+              Advance Amount
+              <span className="text-red-500" style={{ fontSize: "1.2em" }}>
+                *
+              </span>
+            </label>
+            <input
+              type="text"
+              name="advanceAmount"
+              id="advanceAmount"
+              placeholder="Enter advance Amount"
+              value={formData.advanceAmount}
+              onChange={handleAdvanceAmount}
+              required
+              style={{ height: "20px", width: "calc(100% - 20px)" }}
+            />
+            {errors.advanceAmount && (
+              <span className="text-red-500">{errors.advanceAmount}</span>
+            )}
+          </div>
 
-        <div className="form-group mb-4">
-          <label htmlFor="visitorsCount">Number of Visitors</label>
-          <input
-            type="text"
-            name="visitorsCount"
-            id="visitorsCount"
-            placeholder="Enter Visitors Count"
-            value={formData.visitorsCount}
-            onChange={handleNumberChange3}
-            style={{ height: "30px" }}
-          />
-          {errors.visitorsCount && (
-            <span className="text-red-500">{errors.visitorsCount}</span>
-          )}
-        </div>
+          <div className="form-group mb-4">
+            <label htmlFor="pendingAmount">
+              Pending Amount
+              <span className="text-red-500" style={{ fontSize: "1.2em" }}>
+                *
+              </span>
+            </label>
+            <input
+              type="text"
+              name="pendingAmount"
+              id="pendingAmount"
+              placeholder="Enter pending Amount"
+              value={formData.pendingAmount}
+              onChange={handlePendingAmount}
+              style={{ height: "20px", width: "calc(100% - 20px)" }}
+              readOnly
+              required
+            />
+          </div>
 
-        <div className="form-group mb-4">
-          <label htmlFor="carCount">Car Count</label>
-          <input
-            type="text"
-            name="carCount"
-            id="carCount"
-            placeholder="Enter Car Count"
-            value={formData.carCount}
-            onChange={handleNumberChange4}
-            style={{ height: "30px" }}
-          />
-          {errors.carCount && (
-            <span className="text-red-500">{errors.carCount}</span>
+          <div className="form-group mb-4">
+            <label htmlFor="visitorsCount">Number of Visitors</label>
+            <input
+              type="text"
+              name="visitorsCount"
+              id="visitorsCount"
+              placeholder="Enter Visitors Count"
+              value={formData.visitorsCount}
+              onChange={handleNumberChange3}
+              style={{ height: "20px", width: "calc(100% - 20px)" }}
+            />
+            {errors.visitorsCount && (
+              <span className="text-red-500">{errors.visitorsCount}</span>
+            )}
+          </div>
+
+          <div className="form-group mb-4">
+            <label htmlFor="carCount">Car Count</label>
+            <input
+              type="text"
+              name="carCount"
+              id="carCount"
+              placeholder="Enter Car Count"
+              value={formData.carCount}
+              onChange={handleNumberChange4}
+              style={{ height: "20px", width: "calc(100% - 20px)" }}
+            />
+            {errors.carCount && (
+              <span className="text-red-500">{errors.carCount}</span>
+            )}
+          </div>
+
+          {errorMessage && (
+            <div
+              className={`${
+                errorMessage.includes("Successfully") ? "success" : "error"
+              }-message`}
+            >
+              {errorMessage}
+            </div>
           )}
-        </div>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            marginTop: "20px",
-          }}
-        >
-          <button
-            type="submit"
+          <div
             style={{
-              backgroundColor: "blue",
-              color: "white",
-              borderRadius: "10px",
-              padding: "10px 20px",
-              border: "none",
+              display: "flex",
+              justifyContent: "space-between",
+              marginTop: "20px",
             }}
           >
-            Submit
-          </button>
-          <button
-            type="button"
-            onClick={handleCancel}
-            style={{
-              backgroundColor: "blue",
-              color: "white",
-              borderRadius: "10px",
-              padding: "10px 20px",
-              border: "none",
-            }}
-          >
-            Cancel
-          </button>
+            <button
+              type="submit"
+              onClick={handleSubmit}
+              style={{
+                backgroundColor: "blue",
+                color: "white",
+                borderRadius: "10px",
+                padding: "10px 20px",
+                border: "none",
+              }}
+            >
+              Submit
+            </button>
+            <button
+              type="button"
+              onClick={handleCancel}
+              style={{
+                backgroundColor: "blue",
+                color: "white",
+                borderRadius: "10px",
+                padding: "10px 20px",
+                border: "none",
+              }}
+            >
+              Clear
+            </button>
+          </div>
+          {isSubmitted && (
+            <div
+              className="success-message"
+              style={{
+                backgroundColor: "lightgreen",
+                color: "black",
+                padding: "20px",
+                borderRadius: "10px",
+                textAlign: "center",
+                marginTop: "20px",
+              }}
+            >
+              ✅ Successfully submitted your data Your application ID is 1501
+            </div>
+          )}
+        </div>
+
+        <div className="image-container">
+          <img className=" rounded-lg " src={img} alt="" />
+          <br></br>
+          <p className="text-container">
+            We'd love to hear from you! Whether you have questions, feedback, or
+            need assistance with your shoot, please don't hesitate to reach out.
+            Our team is here to assist you every step of the way. Simply fill
+            out the form below and we'll be in touch shortly 🤝.
+          </p>
         </div>
       </div>
-
-      <div className="image-container">
-      
-        <img className=" rounded-lg " src={img} alt="" /><br></br>
-        <p className="text-container">We'd love to hear from you! Whether you have questions, feedback, or
-              need assistance with your shoot, please don't hesitate to
-              reach out. Our team is here to assist you every step of the way.
-              Simply fill out the form below and we'll be in touch shortly.</p>
-      </div>
+      <br></br>
+      <Footer />
     </div>
+   
   );
 };
 

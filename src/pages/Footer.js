@@ -1,8 +1,8 @@
-// Footer.js
+
 import React from "react";
 import "./Footer.css";
 import { fab } from "@fortawesome/free-brands-svg-icons";
-import { BsInstagram, Bs1SquareFill, BsWhatsapp } from "react-icons/bs";
+import { BsInstagram, BsFacebook, BsWhatsapp } from "react-icons/bs";
 //import styled from 'styled-components';
 
 
@@ -12,11 +12,11 @@ const Footer = () => {
     <footer className="footer">
       <div className="footer-content">
         <div className="footer-info">
-          <p> With Sets by nature Paradise you can experience new sets </p>
+          <p> With Sets by nature Paradise you can experience new  </p><p>sets
            
-          <p> around you We  provide the best prewedding destinations</p>
-          <p>
-            that we have to offer physically managed by{" "}
+           around you We  provide the best prewedding </p>destinations
+          
+            that we have to offer physically managed by {" "}
             <a
               href="https://www.instagram.com/samgirrahul?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
               target="_blank"
@@ -24,20 +24,21 @@ const Footer = () => {
             >
               Rahul Samgir
             </a>
-          </p>
+        
         </div>
         <div className="footer-links1">
-          <a href="/BackwaterSet">Backwater Set</a>
+          <a href="/Destinations">Backwater Set</a>
           <br />
-          <a href="/Night-Light Sets">Night-Light Sets</a>
+          <a href="/Destinations">Night-Light Sets</a>
           <br />
-          <a href="/All Sets Package">All Sets Package</a>
+          <a href="/Destinations">All Sets Package</a>
         </div>
+        
         <div className="footer-links">
           <a href="/about">About</a>
-          <br></br>
+          <br />
           <a href="/contact">Contact</a>
-          <br></br>
+          <br />
           <a href="/destination">Destination</a>
         </div>
        
@@ -58,7 +59,13 @@ const Footer = () => {
           >
             <BsWhatsapp icon={fab.faWhatsapp} class="hover-effect" className="icon" />
           </a>
-          <Bs1SquareFill class="hover-effect" className="icon"></Bs1SquareFill>
+          <a
+          href="https://www.instagram.com/taranginiiagrofarms?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+          >
+            <BsFacebook class="hover-effect" className="icon" />
+            
+          </a>
+         
         </div>
       </div>
 

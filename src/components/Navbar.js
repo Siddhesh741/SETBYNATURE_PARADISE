@@ -21,22 +21,22 @@ const Navbar = () => {
       <div className="navbar-right">
         <FaBars className="menu-icon" onClick={toggleMenu} />
         <ul className={`menu ${showMenu ? "show" : ""}`}>
-          <NavItem to="/">Home</NavItem>
-          <NavItem to="/about">About</NavItem>
-          <NavItem to="/features">Features</NavItem>
-          <NavItem to="/contact">Contact</NavItem>
-          <NavItem to="/destinations">Destinations</NavItem>
-          <NavItem to="/admin">Admin</NavItem>
+          <NavItem to="/" onClick={toggleMenu}>Home</NavItem>
+          <NavItem to="/about" onClick={toggleMenu}>About</NavItem>
+          <NavItem to="/features" onClick={toggleMenu}>Features</NavItem>
+          <NavItem to="/contact" onClick={toggleMenu}>Contact</NavItem>
+          <NavItem to="/destinations" onClick={toggleMenu}>Destinations</NavItem>
+          <NavItem to="/admin" onClick={toggleMenu}>Admin</NavItem>
         </ul>
       </div>
     </nav>
   );
 };
 
-const NavItem = ({ to, children }) => {
+const NavItem = ({ to, children, onClick }) => {
   return (
     <li>
-      <NavLink to={to} className="menu-item" activeClassName="active" exact>
+      <NavLink to={to} className="menu-item" activeClassName="active" exact onClick={onClick}>
         {children}
       </NavLink>
     </li>

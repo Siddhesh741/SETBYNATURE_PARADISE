@@ -4,6 +4,7 @@ import "./Destinations.css"; // Import your CSS file
 import img1 from "../assets/img/dest11.jpg";
 import img2 from "../assets/img/dest22.jpg";
 import img3 from "../assets/img/dest3333.jpg";
+import Footer from "./Footer";
 
 const Destinations = () => {
   return (
@@ -35,6 +36,8 @@ const Destinations = () => {
         />
         <br></br>
       </div>
+      <br></br>
+      <Footer />
     </div>
   );
 };
