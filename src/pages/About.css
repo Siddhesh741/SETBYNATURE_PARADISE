@@ -42,8 +42,9 @@
 
 .about-image {
     width: 30%; /* Adjust the width of the image */
-    box-shadow: 0px 0px 100px 8px #0fff07; /* Adding box shadow with red color */
-    border-radius: 0%; /* Make the image a circle */
+    border-radius: 10px;
+    box-shadow: 0 20px 100px rgb(43, 239, 13);
+
     margin-right: 5%; /* Add some margin to the right */
     animation: zoomInOut 5s infinite alternate; /* Apply animation */
 }
