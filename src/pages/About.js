@@ -25,9 +25,10 @@ const About = () => {
           </RouterLink>
         </div>
         <br></br>
-        <div className="about-image">
-          <img src={img} alt="img" className="about-img" />
-        </div>
+        <div className="about-image about-image-normal">
+  <img src={img} alt="img" className="about-img" />
+</div>
+
         <br></br>
       </div>
       <Footer />

@@ -10,7 +10,7 @@
     opacity: 0; /* Initial opacity */
     transform: translateY(-50px); /* Initial transform */
     animation: waterfall 1.5s ease forwards; /* Apply animation */
-    background-color: rgba(231, 231, 231, 0.7); 
+    background-color: rgba(231, 231, 231, 0.7);
 }
 
 .about-content {
@@ -36,18 +36,20 @@
     color: #000000;
 }
 .contact-button:hover {
-    background-color: #5745a0;
+    background-color: #bd2e67;
     transform: scale(1.1);
 }
 
 .about-image {
     width: 30%; /* Adjust the width of the image */
-    box-shadow: 0px 0px 100px 8px rgb(254, 21, 21); 
-    border-radius: 50%; /* Optional: Add border-radius for rounded corners */
-    margin-right: 5%;
+    box-shadow: 0px 0px 100px 8px #0fff07; /* Adding box shadow with red color */
+    border-radius: 0%; /* Make the image a circle */
+    margin-right: 5%; /* Add some margin to the right */
     animation: zoomInOut 5s infinite alternate; /* Apply animation */
 }
-
+.about-image-normal {
+    border-radius: 80px; /* Adjust the radius as needed */
+}
 @keyframes zoomInOut {
     0% {
         transform: scale(1); /* Initial scale */
