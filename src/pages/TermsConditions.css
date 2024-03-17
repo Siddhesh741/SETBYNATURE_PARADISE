@@ -1,6 +1,6 @@
 /* TermsConditions.css */
 
-.features-container {
+.terms-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -37,11 +37,25 @@
   
 }
 
-.features-title1 {
-  color: #ae3232; /* Change the color to red */
+@keyframes wave {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
 
-.features-details {
+/* Apply the wave animation to the .about-title */
+.features-title1 {
+  color: #ae3232; 
+  animation: wave 2s ease-in-out infinite; /* Adjust the animation duration and timing function as needed */
+}
+
+.terms-details {
   margin-top: 20px;
 }
 

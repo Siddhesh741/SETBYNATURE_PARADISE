@@ -17,7 +17,7 @@ const Home1 = () => {
             </Link>
             <div style={{ width: "10px" }}></div>
             <Link to="/customer-id" className="book-now-button">
-              Customer ID
+              Booking ID
             </Link>
           </div>
           <p className="paragraph">

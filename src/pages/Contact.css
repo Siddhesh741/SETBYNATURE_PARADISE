@@ -3,12 +3,12 @@
 .contact-container {
   display: flex;
   flex-direction: column;
-  margin: 2%;
+  /* margin: 2%; */
 }
 
 .form-container {
   order: 1;
-  padding: 20px;
+  /* padding: 20px; */
   background: linear-gradient(
     to bottom right,
     #74c5c3,
@@ -86,11 +86,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 200px 0; /* Adjust top and bottom padding as needed */
+  padding: 20px 0; /* Adjust top and bottom padding as needed */
   position: relative; /* Added */
   margin-right: 2%;
   margin-top: 2%;
   border-radius: 10px !important; /* Adjust the border-radius value as needed */
+  background-image: url('../assets/img/49.jpg'); /* Replace 'your-background-image.jpg' with your image path */
+  background-size: cover; /* Ensure the background image covers the entire container */
+
 }
 
 
@@ -102,9 +105,9 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(164, 53, 53, 0.1); /* Initial shadow color */
+  background-color: rgba(158, 200, 53, 0.236);  
   z-index: -1;
-  transition: background-color 0.3s ease; /* Added */
+  transition: background-color 0.3s ease; 
 }
 
 .image-container:hover::before {
@@ -128,12 +131,14 @@
 @media screen and (min-width: 600px) {
   .contact-container {
     flex-direction: row;
-    margin: 0;
+    /* margin: 0; */
+    margin-left: 10px;
   }
 
   .form-container {
     order: 0;
     flex: 1;
+
     margin-right: 20px; /* Add some spacing between the containers */
     margin-bottom: 20px; /* Add bottom margin */
   }
@@ -160,7 +165,7 @@
 
   .form-container,
   .image-container {
-    margin: 2% 2% 2% 6%; /* Add margin for all sides, with more margin on the left side */
+    margin: 2% 2% 2% 2%; /* Add margin for all sides, with more margin on the left side */
   }
 }
 
@@ -181,7 +186,9 @@
   text-align: center;
   font-size: larger;
   line-height: 2;
-  margin: 5%;
+  margin-top: 5%;
+  margin-left: 10px;
+  margin-right:10px;
   font-family: Georgia, "Times New Roman", Times, serif;
   /* Adjust animation duration and timing */
 }

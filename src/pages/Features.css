@@ -2,11 +2,27 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  margin: 0; /* Remove any default margin */
-  padding: 0; /* Remove any default padding */
-  width: 100%; 
+  margin: 0; 
+  padding: 0;
+  background-image: url('../assets/img/52.jpg'); /* Replace 'your-background-image.jpg' with your image path */
+  background-size: cover; /* Ensure the background image covers the entire container */
+
+  /* width: 100%; */
 }
 
+.features-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: inherit; /* Use the same background image as the container */
+  background-size: cover;
+  filter: blur(40px); /* Adjust the blur radius as needed */
+  opacity: 1; /* Adjust the opacity to control the visibility of the image */
+  z-index: -1; /* Ensure the pseudo-element is behind the content */
+}
 .features-content {
   
   flex-grow: 1;
@@ -14,9 +30,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  
   max-width: 800px;
-  margin: 0 auto; /* Center the content horizontally */
-  padding: 0 20px; /* Add padding to the sides for better mobile responsiveness */
+  margin: 0 auto; 
+  padding: 0 20px; 
 }
 
 .features-image {
@@ -48,18 +65,19 @@
 }
 @keyframes zoomInOut {
   0% {
-      transform: scale(1); /* Initial scale */
+      transform: scale(0.5); /* Initial scale */
   }
   50% {
-      transform: scale(1); /* Zoom in */
+      transform: scale(0.5); /* Zoom in */
   }
   100% {
-      transform: scale(1); /* Zoom out */
+      transform: scale(0.5); /* Zoom out */
   }
 }
 
 .features-details {
   margin-top: 20px;
+  margin-left: 30%;
 }
 
 .feature {
@@ -90,7 +108,8 @@
 }
 
 .feature-description {
-  color: #898888;
+  color: #746a6a;
+  font-size: large;
 }
 
 @media screen and (max-width: 768px) {

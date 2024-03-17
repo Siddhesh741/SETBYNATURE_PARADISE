@@ -1,6 +1,6 @@
 
 .destinations-container {
-    padding: 20px;
+    padding-top: 20px;
     background-image: url('../assets/img/22.jpg'); /* Add the URL of your background image */
     background-size: cover; /* Cover the entire container */
     background-position: center; /* Center the background image */
@@ -32,15 +32,29 @@
     flex: 1;
   }
   
-  .destinations-title {
-    font-weight: bold;
-    font-size: 2rem;
-    margin-bottom: 10px;
-    margin-top: 20px;
-    text-align: center;
-    color: #0a0a0a; /* Add your desired text color */
-    font-family:Verdana, Geneva, Tahoma, sans-serif; /* Add your desired font family */
+/* Define the flip animation */
+@keyframes flip {
+  0% {
+    transform: perspective(400px) rotateY(0);
   }
+  100% {
+    transform: perspective(400px) rotateY(360deg);
+  }
+}
+
+/* Apply the flip animation to the .destinations-title */
+.destinations-title {
+  font-weight: bold;
+  font-size: 2rem;
+  margin-bottom: 10px;
+  margin-top: 20px;
+  text-align: center;
+  color: #0a0a0a; /* Add your desired text color */
+  font-family: Verdana, Geneva, Tahoma, sans-serif; /* Add your desired font family */
+  animation: flip 10s linear infinite; /* Adjust the animation duration and timing function as needed */
+}
+
+
   
   .destination-description {
     font-size: 1.3rem;
@@ -98,7 +112,25 @@
       width: calc(50% - 20px); /* Adjust width as per your requirement */
     }
   }
-  
+  .destinations-title {
+    font-weight: bold;
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+  .destination-image {
+    max-width: 90%;
+    max-height: 250px;
+    margin-left: 25px;
+    margin-right: 25px;
+    border-radius: 10px;
+  }
+  .destination-description {
+    margin-left: 10px;
+    margin-right:10px;
+  }
   /* Media queries for mobile devices */
   @media (max-width: 480px) {
     .destination-item {

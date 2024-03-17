@@ -1,13 +1,16 @@
 .footer {
   background-color: black;
   color: white;
-  padding: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  width: 100%;
 }
 
 .footer-content {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  width:100%;
 }
 
 .footer-info
@@ -15,13 +18,14 @@
   flex: 1;
 }
 
-.footer-info p {
+.footer-info  {
   text-align: left;
-  margin-left: 0%;
+  margin-left: 30px;
   margin-bottom: 20px; /* Add space between paragraphs */
 }
 
 .footer-links1 {
+  /* padding-left: 2px; */
   display: flex;
   flex-direction: column;
   gap: 5px; /* Add vertical gap between links */
@@ -53,6 +57,7 @@
 
 .footer-social a {
   margin-bottom: 10px; /* Add space between icons */
+  margin-right:30px;
 }
 
 .footer-copyright {
@@ -86,26 +91,23 @@
     margin-bottom: 20px; /* Add space between sections */
   }
   .footer-info{
-    margin-bottom: 3px;
-  }
-  .footer-info p {
-    
-    margin-bottom: 5; /* Reduce space between paragraphs within footer info */
+    margin-bottom: 10px;
+    margin-left: 20px;
   }
 
   
   .footer-links1,
   .footer-links {
+    margin-left: 20px;
     margin-top: 5%;
     display: flex;
     flex-direction: column;
   }
 
-  .footer-links {
-    margin-left: 0; /* Remove horizontal gap between link containers */
-  }
-
+  
   .footer-social {
+    margin-top: 25px;
+    margin-left: 25px;
     display: flex;
     flex-direction: row; /* Align icons horizontally */
     justify-content: flex-end; /* Align icons to the right */

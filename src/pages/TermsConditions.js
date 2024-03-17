@@ -5,7 +5,7 @@ import img from "../assets/img/dest22.jpg";
 
 const TermsConditions = () => {
   return (
-    <div className="features-container">
+    <div className="terms-container">
       <div className="features-content">
         <div className="features-text">
           <h1 className="features-title1">Under the night sky, with a glass of wine in hand, our love sparkles like the constellations above💕</h1>
@@ -26,7 +26,7 @@ const TermsConditions = () => {
       
       <br></br>
       
-      <div className="features-details">
+      <div className="terms-details">
         <div className="feature">
           
           <div className="feature-text">

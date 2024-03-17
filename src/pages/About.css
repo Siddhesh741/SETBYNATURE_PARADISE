@@ -3,7 +3,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin-left: 2%;
+    /* margin-left: 2%; */
     font-size: larger;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     height: 100vh; /* Set the height to the full viewport height */
@@ -12,8 +12,28 @@
     animation: waterfall 1.5s ease forwards; /* Apply animation */
     background-color: rgba(231, 231, 231, 0.7);
 }
-
+/* Define the wave animation */
+@keyframes wave {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  
+  /* Apply the wave animation to the .about-title */
+  .about-title {
+    margin-left: 10%;
+    text-align: center;
+    animation: wave 3s ease-in-out infinite; /* Adjust the animation duration and timing function as needed */
+  }
+  
 .about-content {
+    margin-top: 10px;
     width: 50%; /* Adjust the width of the text content */
     padding: 0 20px; /* Add some padding for spacing */
     display: flex; /* Add display flex */

@@ -55,6 +55,7 @@ function Admin() {
     <div>
       {loggedIn ? (
         <div>
+          
           <div className="welcome-container">
             <div className="welcome-message">
               <h2>
@@ -112,6 +113,8 @@ function Admin() {
                 Calendar
               </button>
             </div>
+            <div style={{ height: "500px" }}></div>
+          {/* <Footer /> */}
           </div>
           {selectedCategory === "Expenses" && <ExpensesPage />}
           {selectedCategory === "Settlement" && <SettlementPage />}
@@ -120,7 +123,7 @@ function Admin() {
           {selectedCategory === "Calendar" && <CalendarPage />}
           {/* Add more conditions for other categories */}
         </div>
-      ) : (
+         ) : (
         <div className="admin-login-wrapper">
           {" "}
           {/* Wrapper for centering */}
@@ -142,7 +145,9 @@ function Admin() {
             {error && <div className="error-message">{error}</div>}
             <button onClick={handleLogin}>Login</button>
           </div>
+          
         </div>
+        
       )}
       <Footer />
     </div>

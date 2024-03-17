@@ -565,7 +565,7 @@ const Contact = () => {
           <img className=" rounded-lg " src={img} alt="" />
           <br></br>
           <p className="text-container">
-            We'd love to hear from you! Whether you have questions, feedback, or
+            We'd love to hear from you💗! Whether you have questions, feedback, or
             need assistance with your shoot, please don't hesitate to reach out.
             Our team is here to assist you every step of the way. Simply fill
             out the form below and we'll be in touch shortly 🤝.

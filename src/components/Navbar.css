@@ -4,9 +4,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 22px 10px;
+  /* padding: 22px 22px; */
   
-  /* width: 100%;  */
+  width: 100%;   
 }
 
 .navbar-left {
@@ -14,12 +14,17 @@
   align-items: center;
   margin-left: 2%;
 }
+.navbar-right{
+  display: flex;
+  align-items: center;
+  margin-right: 2%;
 
+}
 .brand h1 {
   font-weight: bold;
   font-family: 'Arial', sans-serif; /* Replace 'Arial' with your preferred font */
   font-size: 24px;
-  margin-left: 1rem; /* Optional: remove default margin */
+  margin-left: 1rem; 
 }
 
 .brand h3 {
