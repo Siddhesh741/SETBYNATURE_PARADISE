@@ -52,26 +52,15 @@
   margin-left: 4%;
 }
 
-@keyframes waterdropAnimation {
-  0% {
-    transform: translateY(-50px) scaleY(0);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0) scaleY(1);
-    opacity: 1;
-  }
-}
 
 .paragraph {
   font-size: 1.5rem;
-  
   white-space: nowrap; /* Prevent text from wrapping */
   overflow: hidden; /* Hide overflowed text */
-  animation: waterdropAnimation 6s cubic-bezier(0.3, 0, 0.5, 1) infinite alternate; /* Added infinite and alternate */
-  opacity: 0;
+  opacity: 1; /* Set opacity to 1 to make text fully visible */
   margin-left: 4%;
 }
+
 
 .image {
   max-width: 33%;

@@ -9,6 +9,14 @@
   width: 100%;   
 }
 
+.name,
+.subtitle{
+  margin-left: 5px;
+  font-family:cursive;
+  font-size: 20px;
+  line-height: 0.7;
+  font-weight: 100;
+}
 .navbar-left {
   display: flex;
   align-items: center;
@@ -20,18 +28,8 @@
   margin-right: 2%;
 
 }
-.brand h1 {
-  font-weight: bold;
-  font-family: 'Arial', sans-serif; /* Replace 'Arial' with your preferred font */
-  font-size: 24px;
-  margin-left: 1rem; 
-}
 
-.brand h3 {
-  margin-top: 0.2rem;
-  font-size: 20px; 
-  margin-left: 1rem;/* Adjust the spacing between h1 and h3 */
-}
+
 
 .menu {
   list-style-type: none;
@@ -44,9 +42,9 @@
 .menu-item {
   padding: 25px 20px; /* Increase padding to create a gap between menu items */
   font-size: 22px; 
-  color: white;
+  color: rgb(251, 251, 251);
   text-decoration: none;
-  padding: 0 20px;
+  /* padding: 0 20px; */
 }
 
 .menu-item:hover {
@@ -70,23 +68,38 @@
 @media (max-width: 768px) {
   .menu-icon {
     display: block;
+    margin-right: 8px;
   }
-
+  .navbar{
+    height: 110px;
+  }
+  .name,
+  .subtitle{
+    margin-left: 5px;
+    font-family:cursive;
+    font-size: 18px;
+    line-height: 0.7;
+    font-weight: 50;
+  }
   .menu {
     position: absolute;
-    top:12.2%; 
+    top:13%; 
     right: 0;
-    background-color: rgba(63, 56, 56, 0.349);
-    width: 35%;
+    background-color: rgb(14, 12, 12);
+    width: 100%;
+    height: 60%;
     display: none;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: center;
     transition: transform 0.3s ease-out;
     transform: translateY(-100);
   }
 
+
+
   .menu.show {
     display: flex;
+    /* width: 100px; */
     transform: translateY(0);
   }
   .menu-item:hover {
@@ -94,11 +107,22 @@
   }
   
   .menu-item {
-    padding: 10px 20px;
+    /* padding: 10px 20px; */
     border-bottom: 1px solid #333;
-    text-align: left;
+    text-align: center; /* Center the text */
+    line-height: 2.5em; /* Adjust line height for better spacing */
+    margin: 0 auto; /* Center the items */
+      position: relative;
   }
-
+  .menu-item::after {
+    content: '';
+    position: absolute;
+    bottom: 12px; /* Position the line at the bottom */
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: white; /* Set the color of the line */
+  }
   .menu-item:last-child {
     border-bottom: none;
   }

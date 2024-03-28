@@ -43,7 +43,7 @@ const Features = () => {
           <div className="feature-text">
             <h1 className="feature-title">🤝Friendly Service</h1>
             <p className="feature-description">
-              We will provide excellent and friendly service for the sake of our
+              We will provide excellent & friendly service for the sake of our
               customers also a couples.
             </p>
           </div>

@@ -8,8 +8,8 @@ function Location() {
     <div className="location-container" style={{ textAlign: "center" }}>
       <div className="location-details text-center">
         <br></br>
-        <h2 style={{ fontSize: "28px" }}>👇Location Address👇</h2>
-        <p style={{ fontSize: "22px" }}>
+        <h2 style={{ fontSize: "28px" }}>👇Location Details👇</h2>
+        <p style={{ fontSize: "20px" }}className="location-text">
           <strong>
             📍 At post Veer Samgirwadi, Taluka-Purandar, Dist-Pune, Taranginii
             Farms & Set by nature paradise, behind ZP school.{" "}

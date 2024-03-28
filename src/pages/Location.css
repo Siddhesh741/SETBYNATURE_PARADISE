@@ -1,4 +1,10 @@
 /* Location.css */
+.location-text {
+  color: rgb(118, 18, 55);
+  margin: 5px;
+  margin-bottom: 20px;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 
 /* Styles for video container */
 .video-container {
@@ -26,6 +32,13 @@
   
   /* Responsive adjustments */
   @media only screen and (max-width: 768px) {
+    .location-text {
+      color: rgb(118, 18, 55);
+      margin: 25px;
+      margin-bottom: 20px;
+      font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
     .video-container {
       flex-direction: column;
       align-items: center;

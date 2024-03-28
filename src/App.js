@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Navbar from "../src/components/Navbar";
 import Home from "../src/pages/Home";
 import Features from "../src/pages/Features";
+import Oursets from "../src/pages/Oursets";
 import Destinations from "../src/pages/Destinations";
 import About from "../src/pages/About";
 import Contact from "../src/pages/Contact";
@@ -19,6 +20,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/features" element={<Features />} />
+        <Route path="/Oursets" element={<Oursets />} />
         <Route path="/destinations" element={<Destinations />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />

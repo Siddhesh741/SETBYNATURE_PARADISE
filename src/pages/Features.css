@@ -116,4 +116,21 @@
   .features-content {
     padding: 0 20px;
   }
+  .features-title {
+    margin-top: 40px;
+  }
+  .features-img {
+    margin-top: 60px;
+    width:80%;
+  }
+  .features-details{
+    margin-top: 40px;
+    margin-bottom: 20px;
+    margin-left: 15px;
+  }
+  .feature-description {
+    justify-content: center;
+    font-size: 15px;
+    margin-right: 20px;
+  }
 }

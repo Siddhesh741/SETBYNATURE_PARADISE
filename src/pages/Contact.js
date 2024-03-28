@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./Contact.css"; // Import your CSS file for styling
 import img from "../assets/img/9.jpg";
 import Footer from "./Footer";
-
+import img1 from "../assets/img/pen.png";
 const Contact = () => {
   const initialFormData = {
     clientName: "",
@@ -14,6 +14,11 @@ const Contact = () => {
     selectedOption: "",
     advanceAmount: "",
     pendingAmount: "",
+    cashcollectedby: "",
+    paymentMode: "",
+    paidamount: "",
+    knowaboutlocation: "",
+    agreeTerms: "",
     visitorsCount: "",
     carCount: "",
   };
@@ -29,9 +34,16 @@ const Contact = () => {
     selectedOption: "",
     advanceAmount: "",
     pendingAmount: "",
+    cashcollectedby: "",
+    paymentMode: "",
+    paidamount: "",
+    knowaboutlocation: "",
+    agreeTerms: "",
     visitorsCount: "",
     carCount: "",
   });
+
+  const [responseData, setResponseData] = useState(null); // Initialize responseData state
   const [errorMessage, setErrorMessage] = useState(""); // State variable for error message
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -110,6 +122,21 @@ const Contact = () => {
     }
   };
 
+  const handleDropdownChange = (e) => {
+    const value = e.target.value;
+    console.log("Selected value:", value);
+
+    if (value !== "") {
+      setErrors({ ...errors, knowaboutlocation: "" });
+      setFormData({ ...formData, knowaboutlocation: value });
+    } else {
+      setErrors({
+        ...errors,
+        knowaboutlocation: "Please select ",
+      });
+    }
+  };
+
   const handleCityChange = (e) => {
     const { name, value } = e.target;
 
@@ -137,9 +164,9 @@ const Contact = () => {
   const handleAdvanceAmount = (e) => {
     const value = e.target.value;
     const selectedPackagePrice = {
-      option1: 4000,
+      option1: 2500,
       option2: 2500,
-      option3: 2500,
+      option3: 4000,
       // Add more options as needed
     };
 
@@ -187,6 +214,29 @@ const Contact = () => {
     }
   };
 
+  const handleNumber = (e) => {
+    const value = e.target.value;
+    console.log("Input value:", value);
+
+    if (/^\d*$/.test(value) && value.length <= 10) {
+      setErrors({ ...errors, paidamount: "" });
+      setFormData({ ...formData, paidamount: value });
+    } else {
+      setErrors({
+        ...errors,
+        paidamount: "Amount Paid should not negative & not contain Character.",
+      });
+    }
+  };
+
+  const handleCheckboxChange = (e) => {
+    const checked = e.target.checked;
+    console.log("Checkbox checked:", checked);
+
+    setErrors({ ...errors, agreeTerms: "" });
+    setFormData({ ...formData, agreeTerms: checked });
+  };
+
   const handleNumberChange3 = (e) => {
     const value = e.target.value;
 
@@ -216,55 +266,176 @@ const Contact = () => {
     }
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const [errors1, setErrors1] = useState({});
+  const [showCashCollectedByField, setShowCashCollectedByField] = useState(false);
 
-    // Check if all required fields are filled
-    const requiredFields = [
-      "clientName",
-      "phoneNumber",
-      "photographerName",
-      "photographerPhoneNo",
-      "selectDate",
-      "selectedOption",
-      "advanceAmount",
-      "pendingAmount",
-      "visitorsCount",
-      "carCount",
-    ];
-
-    const missingFields = requiredFields.filter((field) => !formData[field]);
-
-    if (missingFields.length > 0) {
-      setErrorMessage("Please fill in all required fields.");
-      return;
-    }
-
-    const url = "http://localhost:8080/api/clients/createClient";
-    const options = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    };
-    try {
-      const response = await fetch(url, options);
-      if (!response.ok) {
-        throw new Error("Failed to submit data");
-      }
-      setIsSubmitted(true);
-      setFormData(initialFormData); // Reset form data to initial state
-      setErrorMessage("Successfully submitted your data"); // Set success message
-      setTimeout(() => {
-        setErrorMessage(""); // Clear success message after 3 seconds
-      }, 4000);
-      console.log("Form submitted!");
-    } catch (error) {
-      console.error("Error:", error.message);
-      setErrorMessage("Failed to submit data");
+  const handlePaymentModeChange = (e) => {
+    const { value } = e.target;
+    if (value === 'cash') {
+      setFormData({ ...formData, paymentMode: value, cashcollectedby: '' });
+      setShowCashCollectedByField(true);
+    } else {
+      setFormData({ ...formData, paymentMode: value });
+      setShowCashCollectedByField(false);
     }
   };
+
+  const handleDropdownChange12 = (e) => {
+    const value = e.target.value;
+    console.log("Selected value:", value);
+
+    if (value !== "") {
+      setErrors1({ ...errors1, cashcollectedby: "" });
+      setFormData({ ...formData, cashcollectedby: value });
+    } else {
+      setErrors1({
+        ...errors1,
+        cashcollectedby: "Please select",
+      });
+    }
+  };
+
+
+
+
+
+
+
+  
+  const [isDrawing, setIsDrawing] = useState(false);
+  const [signatureData, setSignatureData] = useState("");
+  const canvasRef = useRef(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext("2d");
+    ctx.fillStyle = "white";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.lineWidth = 2;
+    ctx.lineCap = "round";
+    ctx.strokeStyle = "black";
+
+    const handleTouchStart = (event) => {
+      setIsDrawing(true);
+      const rect = canvas.getBoundingClientRect();
+      const touch = event.touches[0];
+      const offsetX = touch.clientX - rect.left;
+      const offsetY = touch.clientY - rect.top;
+      ctx.beginPath();
+      ctx.moveTo(offsetX, offsetY);
+    };
+
+    const handleTouchMove = (event) => {
+      if (!isDrawing) return;
+      const rect = canvas.getBoundingClientRect();
+      const touch = event.touches[0];
+      const offsetX = touch.clientX - rect.left;
+      const offsetY = touch.clientY - rect.top;
+      ctx.lineTo(offsetX, offsetY);
+      ctx.stroke();
+    };
+
+    const handleTouchEnd = () => {
+      setIsDrawing(false);
+    };
+
+    canvas.addEventListener("touchstart", handleTouchStart);
+    canvas.addEventListener("touchmove", handleTouchMove);
+    canvas.addEventListener("touchend", handleTouchEnd);
+
+    return () => {
+      canvas.removeEventListener("touchstart", handleTouchStart);
+      canvas.removeEventListener("touchmove", handleTouchMove);
+      canvas.removeEventListener("touchend", handleTouchEnd);
+    };
+  }, [isDrawing]);
+
+  const clearSignature = () => {
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext("2d");
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    setSignatureData("");
+  };
+
+  const saveSignature = () => {
+    const canvas = canvasRef.current;
+    setSignatureData(canvas.toDataURL()); // Convert canvas to data URL
+  };
+ 
+
+  /*const [searchedbookingId, setSearchedbookingId] = useState('');
+  const [searchedClient, setSearchedClient] = useState(null);
+
+  const handleSearch = async () => {
+    try {
+      const response = await fetch(`http://localhost:8080/api/clients/byUniqueId/${searchedbookingId}`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch data');
+      }
+      const data = await response.json();
+      setSearchedClient(data);
+    } catch (error) {
+      console.error('Error:', error.message);
+    }
+  };
+*/
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  const requiredFields = [
+    "clientName",
+    "phoneNumber",
+    "photographerName",
+    "photographerPhoneNo",
+    "selectDate",
+    "selectedOption",
+    "advanceAmount",
+    "pendingAmount",
+    "visitorsCount",
+    "carCount",
+  ];
+
+  const missingFields = requiredFields.filter((field) => !formData[field]);
+
+  if (missingFields.length > 0) {
+    setErrorMessage("Please fill all data in required fields.");
+    return;
+  }
+
+  const url = "http://localhost:8080/api/clients/createClient";
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(formData),
+  };
+  try {
+    const response = await fetch(url, options);
+    if (!response.ok) {
+      throw new Error("Failed to submit data");
+    }
+    const responseData = await response.json();
+    if (responseData && responseData.bookingId) {
+      setIsSubmitted(true);
+      setFormData(initialFormData);
+      setErrorMessage(`✅ Congratulations! Successfully submitted your data. Your Booking ID is SBNP - ${responseData.bookingId}`);
+      setTimeout(() => {
+        setErrorMessage("");
+      }, 10000);
+      console.log("Congratulations! Form submitted!");
+    } else {
+      throw new Error("Booking ID not found in response");
+    }
+  } catch (error) {
+    console.error("Error:", error.message);
+    setErrorMessage("Failed to submit data. Please try again.");
+  }
+};
+
+
+  
 
   const handleCancel = () => {
     setFormData(initialFormData);
@@ -276,11 +447,32 @@ const Contact = () => {
     <div>
       <div className="contact-container">
         <div className="form-container">
-          <h2 className="form-title">
-            Book your photoshoot slot now
-          </h2>
+          <h2 className="form-title">Book your photoshoot slot now</h2>
+
+
+
+    {/* <div>
+      <input
+        type="text"
+        value={searchedbookingId}
+        onChange={(e) => setSearchedbookingId(e.target.value)}
+      />
+      <button onClick={handleSearch}>Search</button>
+      {searchedClient && (
+        <div>
+          <h2>Searched Client Details</h2>
+          <p>ID: {searchedClient.id}</p>
+          <p>Client Name: {searchedClient.clientName}</p>
+          <p>Client Phonenumber: {searchedClient.phoneNumber}</p>
+          <p>cityName: {searchedClient.cityName}</p>
+          
+        </div>
+      )}
+    </div> */}
+
+
           <div className="form-group mb-4">
-            <label htmlFor="clientName">
+            <label htmlFor="clientName" className="field-label">
               Customer Name
               <span className="text-red-500" style={{ fontSize: "1.2em" }}>
                 *
@@ -301,9 +493,12 @@ const Contact = () => {
             )}
           </div>
 
+
+
+
           <div className="form-group mb-4">
-            <label htmlFor="phoneNumber">
-              Phone Number
+            <label htmlFor="phoneNumber" className="field-label">
+              Customer Contact Number
               <span className="text-red-500" style={{ fontSize: "1.2em" }}>
                 *
               </span>
@@ -324,7 +519,7 @@ const Contact = () => {
           </div>
 
           <div className="form-group mb-4">
-            <label htmlFor="photographerName">
+            <label htmlFor="photographerName" className="field-label">
               Photographer Name<span className="text-red-500">*</span>
             </label>
             <input
@@ -343,8 +538,8 @@ const Contact = () => {
           </div>
 
           <div className="form-group mb-4">
-            <label htmlFor="photographerPhoneNo">
-              Photographer Phone Number
+            <label htmlFor="photographerPhoneNo" className="field-label">
+              Photographer Contact Number
               <span className="text-red-500" style={{ fontSize: "1.2em" }}>
                 *
               </span>
@@ -365,8 +560,8 @@ const Contact = () => {
           </div>
 
           <div className="form-group mb-4">
-            <label htmlFor="datePicker">
-              Select Date
+            <label htmlFor="datePicker" className="field-label">
+              Photo shoot Date
               <span className="text-red-500" style={{ fontSize: "1.2em" }}>
                 *
               </span>
@@ -384,7 +579,34 @@ const Contact = () => {
           </div>
 
           <div className="form-group mb-4">
-            <label htmlFor="cityName">City Name</label>
+            <label htmlFor="knowaboutlocation" className="field-label">
+              How do you know about "The Natural Paradise Photo shoot" location?
+            </label>
+            <select
+              name="knowaboutlocation"
+              id="knowaboutlocation"
+              value={formData.knowaboutlocation}
+              onChange={handleDropdownChange}
+              style={{ height: "30px", width: "calc(100% - 20px)" }}
+            >
+              <option value="" disabled selected>
+                please Select
+              </option>
+              <option value="Instagram">🔶 Instagram</option>
+              <option value="Photographer">🔶 Photographer</option>
+              <option value="Whatsapp">🔶 Whatsapp</option>
+              <option value="Relatives or friends">
+                🔶 Relatives or Friends
+              </option>
+              <option value="Other">🔶 Other</option>
+            </select>
+            {errors.knowaboutlocation && (
+              <span className="text-red-500">{errors.knowaboutlocation}</span>
+            )}
+          </div>
+
+          <div className="form-group mb-4">
+            <label htmlFor="cityName" className="field-label">City Name</label>
             <input
               type="text"
               name="cityName"
@@ -400,8 +622,8 @@ const Contact = () => {
           </div>
 
           <div className="form-group mb-4">
-            <label htmlFor="selectOption">
-              Package{" "}
+            <label htmlFor="selectOption" className="field-label">
+              Please select photo shoot Package{" "}
               <span className="text-red-500" style={{ fontSize: "1.2em" }}>
                 *
               </span>
@@ -415,11 +637,13 @@ const Contact = () => {
               style={{ height: "35px", width: "100%" }} // Set initial width to 100%
             >
               <option value="" disabled selected>
-                Select a Package
+                Please Select
               </option>
-              <option value="option1">Full Package - 4000 </option>
-              <option value="option2">Sunset Package - 2500</option>
-              <option value="option3">Night Package - 2500</option>
+              <option value="option1">Riverside Sets - 2500 RS </option>
+              <option value="option2">Night Sets - 2500 RS</option>
+              <option value="option3">
+                Combo Package(Riverside Sets + Night Sets) - 4000 RS
+              </option>
             </select>
             {/* Add more options as needed */}
             {errors.package && (
@@ -428,7 +652,7 @@ const Contact = () => {
           </div>
 
           <div className="form-group mb-4">
-            <label htmlFor="advanceAmount">
+            <label htmlFor="advanceAmount" className="field-label">
               Advance Amount
               <span className="text-red-500" style={{ fontSize: "1.2em" }}>
                 *
@@ -450,7 +674,7 @@ const Contact = () => {
           </div>
 
           <div className="form-group mb-4">
-            <label htmlFor="pendingAmount">
+            <label htmlFor="pendingAmount" className="field-label">
               Pending Amount
               <span className="text-red-500" style={{ fontSize: "1.2em" }}>
                 *
@@ -470,7 +694,24 @@ const Contact = () => {
           </div>
 
           <div className="form-group mb-4">
-            <label htmlFor="visitorsCount">Number of Visitors</label>
+            <label htmlFor="paidamount" className="field-label">Payment Amount Paid</label>
+            <input
+              type="text"
+              name="paidamount"
+              id="paidamount"
+              placeholder="Enter Payment Amount "
+              value={formData.paidamount}
+              onChange={handleNumber}
+              style={{ height: "20px", width: "calc(100% - 20px)" }}
+            />
+            {errors.carCount && (
+              <span className="text-red-500">{errors.paidamount}</span>
+            )}
+          </div>
+
+         
+          <div className="form-group mb-4">
+            <label htmlFor="visitorsCount" className="field-label">Number of Visitors</label>
             <input
               type="text"
               name="visitorsCount"
@@ -486,7 +727,7 @@ const Contact = () => {
           </div>
 
           <div className="form-group mb-4">
-            <label htmlFor="carCount">Car Count</label>
+            <label htmlFor="carCount" className="field-label">Car Count</label>
             <input
               type="text"
               name="carCount"
@@ -501,81 +742,170 @@ const Contact = () => {
             )}
           </div>
 
-          {errorMessage && (
-            <div
-              className={`${
-                errorMessage.includes("Successfully") ? "success" : "error"
-              }-message`}
-            >
-              {errorMessage}
-            </div>
-          )}
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              marginTop: "20px",
-            }}
+
+    <div>
+      <div className="form-group mb-4" style={{ display: "flex", alignItems: "center" }}>
+        <label htmlFor="paymentMode" style={{ marginRight: "15px" }} className="field-label">Payment Mode</label>
+        <div style={{ display: "flex", alignItems: "center", marginLeft: "auto" }}>
+          <input
+            type="radio"
+            id="online"
+            name="paymentMode"
+            value="online"
+            checked={formData.paymentMode === "online"}
+            onChange={handlePaymentModeChange}
+            style={{ marginRight: "10px", transform: "scale(2)", color: formData.paymentMode === "online" ? "blue" : "initial" }}
+          />
+          <label htmlFor="online" style={{ marginRight: "35px" }} className="field-label">Online</label>
+
+          <input
+            type="radio"
+            id="cash"
+            name="paymentMode"
+            value="cash"
+            checked={formData.paymentMode === "cash"}
+            onChange={handlePaymentModeChange}
+            style={{ marginRight: "10px", transform: "scale(2)", color: formData.paymentMode === "cash" ? "blue" : "initial" }}
+          />
+          <label htmlFor="cash" style={{ marginRight: "15px" }} className="field-label">Cash</label>
+        </div>
+      </div>
+
+      {showCashCollectedByField && (
+        <div className="form-group mb-4">
+          <label htmlFor="cashcollectedby" className="field-label">Cash Collected by</label>
+          <select
+            name="cashcollectedby"
+            id="cashcollectedby"
+            value={formData.cashcollectedby}
+            onChange={handleDropdownChange12}
+            style={{ height: "30px", width: "calc(100% - 20px)" }}
           >
-            <button
-              type="submit"
-              onClick={handleSubmit}
-              style={{
-                backgroundColor: "blue",
-                color: "white",
-                borderRadius: "10px",
-                padding: "10px 20px",
-                border: "none",
-              }}
-            >
-              Submit
-            </button>
-            <button
-              type="button"
-              onClick={handleCancel}
-              style={{
-                backgroundColor: "blue",
-                color: "white",
-                borderRadius: "10px",
-                padding: "10px 20px",
-                border: "none",
-              }}
-            >
-              Clear
-            </button>
-          </div>
-          {isSubmitted && (
-            <div
-              className="success-message"
-              style={{
-                backgroundColor: "lightgreen",
-                color: "black",
-                padding: "20px",
-                borderRadius: "10px",
-                textAlign: "center",
-                marginTop: "20px",
-              }}
-            >
-              ✅ Successfully submitted your data Your application ID is 1501
-            </div>
+            <option value="" disabled>Please Select</option>
+            <option value="Rahul">🔶 Rahul</option>
+            <option value="Yashodhan">🔶 Yashodhan</option>
+            <option value="Yogesh">🔶 Yogesh</option>
+            <option value="Umesh">🔶 Umesh</option>
+            <option value="Yogita">🔶 Yogita</option>
+            <option value="Ashwini">🔶 Ashwini</option>
+          </select>
+          {errors.cashcollectedby && (
+            <span className="text-red-500">{errors.cashcollectedby}</span>
           )}
         </div>
+      )}
+    </div>
+
+    <div className="form-group mb-4">
+            <label style={{ display: "flex", alignItems: "center" }}>
+              <input
+                type="checkbox"
+                checked={formData.agreeTerms}
+                onChange={handleCheckboxChange}
+                style={{ marginRight: "10px", height: "20px", width: "20px" }}
+              />
+              <span style={{ fontSize: "16px" }} className="field-label">
+                I agree to the terms and conditions
+              </span>
+            </label>
+            {errors.agreeTerms && (
+              <span className="text-red-500">{errors.agreeTerms}</span>
+            )}
+          </div>
+
+
+    <div className="form-group mb-4">
+      <label htmlFor="signature" className="field-label">Signature of Customer</label>
+      <div style={{ position: "relative", width: "100%", height: "200px" }}>
+        <canvas ref={canvasRef} width={300} height={150} />
+        <div>
+          <button onClick={clearSignature}>Clear</button>
+          <button onClick={saveSignature}>Save</button>
+        </div>
+      </div>
+      {signatureData && (
+        <div>
+          <img src={signatureData} alt="Signature" />
+        </div>
+      )}
+    </div>
+    
+
+    {errorMessage && (
+  <div
+    className={`${
+      errorMessage.includes("Successfully") ? "success" : "error"
+    }-message`}
+  >
+    {errorMessage}
+  </div>
+)}
+<div
+  style={{
+    display: "flex",
+    justifyContent: "space-between",
+    marginTop: "20px",
+  }}
+>
+  <button
+    type="submit"
+    onClick={handleSubmit}
+    style={{
+      backgroundColor: "blue",
+      color: "white",
+      borderRadius: "10px",
+      padding: "10px 20px",
+      border: "none",
+    }}
+  >
+    Submit
+  </button>
+  <button
+    type="button"
+    onClick={handleCancel}
+    style={{
+      backgroundColor: "blue",
+      color: "white",
+      borderRadius: "10px",
+      padding: "10px 20px",
+      border: "none",
+    }}
+  >
+    Clear
+  </button>
+</div>
+{isSubmitted  && responseData && (
+  <div
+    className="success-message"
+    style={{
+      backgroundColor: "lightgreen",
+      color: "black",
+      padding: "20px",
+      borderRadius: "10px",
+      textAlign: "center",
+      marginTop: "20px",
+    }}
+  >
+    ✅ Successfully submitted your data. Your Booking ID is {responseData.bookingId}
+  </div>
+          )}
+        </div>
+
 
         <div className="image-container">
           <img className=" rounded-lg " src={img} alt="" />
           <br></br>
           <p className="text-container">
-            We'd love to hear from you💗! Whether you have questions, feedback, or
-            need assistance with your shoot, please don't hesitate to reach out.
-            Our team is here to assist you every step of the way. Simply fill
-            out the form below and we'll be in touch shortly 🤝.
+            We'd love to hear from you💗! Whether you have questions, feedback,
+            or need assistance with your shoot, please don't hesitate to reach
+            out. Our team is here to assist you every step of the way. Simply
+            fill out the form below and we'll be in touch shortly 🤝.
           </p>
         </div>
       </div>
       <br></br>
       <Footer />
     </div>
-   
   );
 };
 

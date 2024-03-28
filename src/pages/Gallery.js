@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import "./Gallery.css";
 
 import img1 from "../assets/img/5.jpg";
@@ -26,60 +26,36 @@ import img18 from "../assets/img/42.jpg";
 
 const Gallery = () => {
   const allImages = [
-    img1,
-    img2,
-    img3,
-    img4,
-    img5,
-    img6,
-    img7,
-    img8,
-    img9,
-    img19,
-    img20,
-    img21,
-    img17,
-    img18,
-    img16,
-    img10,
-    img11,
-    img12,
-    img13,
-    img14,
-    img15,
-   
-  
+    img1, img2, img3, img4, img5, img6, img7, img8, img9, img19, img20, img21, 
+    img17, img18, img16, img10, img11, img12, img13, img14, img15
   ];
 
-  const itemsPerPage = 3;
-  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerGroup = 3;
+  const [currentGroupIndex, setCurrentGroupIndex] = useState(0);
 
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const totalGroups = Math.ceil(allImages.length / itemsPerGroup);
+      setCurrentGroupIndex((prevIndex) => (prevIndex + 1) % totalGroups);
+    }, 4000); // Change image every 4 seconds
+
+    return () => clearInterval(interval);
+  }, [allImages.length]);
+
+  const startIndex = currentGroupIndex * itemsPerGroup;
+  const endIndex = startIndex + itemsPerGroup;
   const currentImages = allImages.slice(startIndex, endIndex);
-
-  const handleNext = () => {
-    const totalPages = Math.ceil(allImages.length / itemsPerPage);
-    setCurrentPage((prevPage) => (prevPage < totalPages ? prevPage + 1 : 1));
-  };
-
-  const handlePrevious = () => {
-    const totalPages = Math.ceil(allImages.length / itemsPerPage);
-    setCurrentPage((prevPage) => (prevPage > 1 ? prevPage - 1 : totalPages));
-  };
 
   return (
     <div>
       <div className="gallery-container">
-        <button className="gallery-arrow prev" onClick={handlePrevious}>⬅️</button>
         {currentImages.map((image, index) => (
           <div key={index} className="gallery-item">
             <img src={image} alt={`Image ${startIndex + index + 1}`} className="gallery-image" />
           </div>
         ))}
-        <button className="gallery-arrow next" onClick={handleNext}>➡️</button>
       </div>
-      <br></br>
+      <br />
     </div>
   );
 };

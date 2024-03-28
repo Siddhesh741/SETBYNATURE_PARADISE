@@ -76,7 +76,7 @@
   text-align: center; /* Move the title to the center */
 }
 
-/* Water drop animation */
+/* Water drop animation
 @keyframes waterDrop {
   0% {
     transform: translateY(-50%);

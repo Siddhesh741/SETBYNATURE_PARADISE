@@ -1,9 +1,11 @@
 .container {
-    background-color: #b19f9f;
-    padding: 20px;
-    margin: 20px auto;
-    max-width: 800px;
-  }
+  background-color: #b19f9f;
+  padding: 5px;
+  margin: 20px auto;
+  max-width: 800px; /* Increase this value */
+
+}
+
   
   .form-container {
     background-color: #fff;

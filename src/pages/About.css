@@ -5,6 +5,7 @@
     align-items: center;
     /* margin-left: 2%; */
     font-size: larger;
+    width: 100%;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     height: 100vh; /* Set the height to the full viewport height */
     opacity: 0; /* Initial opacity */
@@ -102,20 +103,29 @@
 }
 
 /* Media Queries for Responsive Design */
-@media only screen and (max-width: 576px) {
+@media only screen and (max-width: 786px) {
     .about-container {
+        margin-top: 0px;
+        font-size: 14px;
         flex-direction: column; /* Stack items vertically */
         justify-content: center; /* Center items vertically */
         align-items: center; /* Center items horizontally */
     }
+    .about-title{
+        margin-right: 30px;
+    }
     .about-content {
+        text-align: center;
         width: 90%; /* Adjust width for small devices like phones */
     }
     .contact-button {
-        margin-top: 10px; /* Reduce margin for smaller screens */
-        margin-bottom: 15%;
+        margin-top: 20px; /* Reduce margin for smaller screens */
+        margin-bottom: 30%;
     }
     .about-image {
-        width: 80%; /* Increase image size on small devices */
+        justify-content: center;
+        margin-left: 15px;
+        margin-bottom: 25px;
+        width: 60%; /* Increase image size on small devices */
     }
 }

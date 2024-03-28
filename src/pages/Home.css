@@ -1,0 +1,39 @@
+.whatsapp-icon {
+    position: fixed;
+    bottom: 55px;
+    right: 100px; /* Adjust as needed */
+    background-color: #25d366; /* WhatsApp brand color */
+    color: #fff;
+    padding: 10px;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    z-index: 9999; /* Ensure it's above other content */
+  }
+  
+  .chat-text-container {
+    position: fixed;
+    bottom: 10px; /* Adjust as needed */
+    right: 20px; /* Adjust as needed */
+    background-color: #080f72; /* WhatsApp brand color */
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    z-index: 9999; /* Ensure it's above other content */
+    animation: rollInOut 4s infinite alternate ease-in-out;
+  }
+  @keyframes rollInOut {
+    0%, 100% {
+        transform: scaleX(1);
+    }
+    50% {
+        transform: scaleX(0);
+    }
+}
+  .chat-text {
+    font-size: 16px;
+    color: #fff; /* Change color as needed */
+  }
+  

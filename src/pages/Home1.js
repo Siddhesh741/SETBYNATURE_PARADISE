@@ -1,9 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import "./Home1.css";
 import img from "../assets/img/Hero1.jpg";
 
 const Home1 = () => {
+  const handleBookingIdClick = () => {
+    // Redirect to the Booking ID page
+    window.location.href = "./Bookingid"; // Replace "/bookingid" with the actual URL of your Booking ID page
+  };
+
   return (
     <div className="home-container">
       <div className="content-container">
@@ -12,13 +16,13 @@ const Home1 = () => {
             Visit the best place for Prewedding & many more💞
           </h1>
           <div className="button-container">
-            <Link to="/contact" className="book-now-button">
+            <a href="/contact" className="book-now-button">
               Book Now
-            </Link>
+            </a>
             <div style={{ width: "10px" }}></div>
-            <Link to="/customer-id" className="book-now-button">
+            <button onClick={handleBookingIdClick} className="book-now-button"> {/* Updated button */}
               Booking ID
-            </Link>
+            </button>
           </div>
           <p className="paragraph">
             Beautiful and best place near Pune. If you are looking to shoot in
