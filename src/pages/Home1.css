@@ -83,8 +83,10 @@
   }
 
   .title {
-    margin-left: 2%;
-    margin-top: 1%; /* Remove left margin on title for center alignment */
+    font-size: 35px;
+    margin-left:2px;
+    margin-right:2px;
+    margin-top: 0%; /* Remove left margin on title for center alignment */
   }
 
   .book-now-button {
@@ -92,7 +94,7 @@
     margin-bottom: 20px; /* Add some space below the button */
   }
   .paragraph{
-    margin-left: 2%;
+    text-align: center;
     font-size: 0.7rem;
   }
 }

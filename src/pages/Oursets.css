@@ -2,10 +2,12 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* 3 images per row */
     gap: 20px; /* Adjust the gap between images */
+    transition: transform 1s ease; /* Adjust transition speed */
   }
   
   .image-container1 {
     text-align: center;
+    animation: fadeIn 2s ease forwards; /* Adjust animation speed */
   }
   
   .image-container1 img {
@@ -27,6 +29,67 @@
     display: none;
   }
 
+  .book-slot-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px; /* Adjust as needed */
+  }
+  
+  .book-slot-button {
+    /* Add your button styles here */
+    padding: 22px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 25px;
+    position: relative;
+    overflow: hidden;
+    outline: none;
+    margin-bottom: 40px;
+    transition: all 0.3s ease;
+  }
+  
+  .book-slot-button:hover {
+    transform: scale(1.1);
+  }
+  
+  .book-slot-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    transition: all 0.5s ease;
+    margin-bottom: 20px;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+  }
+  
+  .book-slot-button:hover::before {
+    width: 0;
+    height: 0;
+  }
+  
+  .book-slot-button span {
+    position: relative;
+    z-index: 1;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(100px); /* Adjust initial position */
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
   
   @media screen and (max-width: 768px) {
     .image-grid {

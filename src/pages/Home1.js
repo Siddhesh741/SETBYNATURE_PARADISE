@@ -5,7 +5,7 @@ import img from "../assets/img/Hero1.jpg";
 const Home1 = () => {
   const handleBookingIdClick = () => {
     // Redirect to the Booking ID page
-    window.location.href = "./Bookingid"; // Replace "/bookingid" with the actual URL of your Booking ID page
+    window.location.href = '/bookingid'; // Redirect to the bookingid page
   };
 
   return (
@@ -20,16 +20,21 @@ const Home1 = () => {
               Book Now
             </a>
             <div style={{ width: "10px" }}></div>
-            <button onClick={handleBookingIdClick} className="book-now-button"> {/* Updated button */}
+            <button onClick={handleBookingIdClick} className="book-now-button">
               Booking ID
             </button>
           </div>
-          <p className="paragraph">
-            Beautiful and best place near Pune. If you are looking to shoot in
-            outdoor<br></br> nature & backwater destinations that we have to
-            offer. "Your dream<br></br> prewedding shoot awaits..& we're here
-            to make it a reality".
-          </p>
+          <div className="paragraph-container">
+            <p className="paragraph">
+              Beautiful and best place near Pune. If you are looking to shoot in
+            </p>
+            <p className="paragraph">
+                 outdoor nature & backwater destinations that we have to offer.
+            </p>
+            <p className="paragraph">
+              "Your dream prewedding shoot awaits..& we're here to make it a reality".
+            </p>
+          </div>
         </div>
         <img src={img} alt="img" className="image" />
       </div>

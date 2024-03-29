@@ -1,6 +1,7 @@
 import './Home.css';
 import React from 'react';
 import Home1 from './Home1';
+import Bookingid from './Bookingid';
 import Location from './Location'; // Assuming Location.js is in the same directory as Home.js
 import Gallery from './Gallery';
 import Review from './Review';
@@ -28,10 +29,9 @@ const Home = () => {
     <div>
 
       <Home1 />
+      <Bookingid />
       <Location />
       <Gallery />
-
-      {/* <About /> */}
       <Design />
       <Infocount />
       <TermsConditions />

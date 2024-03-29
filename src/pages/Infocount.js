@@ -4,6 +4,7 @@ import './Infocount.css'; // Import CSS file for styling
 const Info = () => {
   const [totalSets, setTotalSets] = useState(0);
   const [shootOptions, setShootOptions] = useState(0);
+  const [props, setprops] = useState(0);
   const [bookingMandatory, setBookingMandatory] = useState(0);
   const [happyCustomers, setHappyCustomers] = useState(0);
   const [serviceAvailable, setServiceAvailable] = useState(0);
@@ -15,6 +16,7 @@ const Info = () => {
       // Increment counts until they reach their respective targets
       if (totalSets < 25) setTotalSets(totalSets + 1);
       if (shootOptions < 50) setShootOptions(shootOptions + 1);
+      if (props < 40) setprops(props + 1);
       if (bookingMandatory < 100) setBookingMandatory(bookingMandatory + 1);
       if (happyCustomers < 1300) setHappyCustomers(happyCustomers + 10); // Increment by 10
       if (serviceAvailable < 24) setServiceAvailable(serviceAvailable + 1);
@@ -27,6 +29,7 @@ const Info = () => {
   }, [
     totalSets,
     shootOptions,
+    props,
     bookingMandatory,
     happyCustomers,
     serviceAvailable,
@@ -53,6 +56,11 @@ const Info = () => {
       <div className="info-item">
         <div className="number">{naturalSets}+</div>
         <div className="text">Natural Sets</div>
+      </div>
+
+      <div className="info-item">
+        <div className="number">{props}+</div>
+        <div className="text">Props Options</div>
       </div>
       
       <div className="info-item">

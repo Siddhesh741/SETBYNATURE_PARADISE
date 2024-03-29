@@ -1,6 +1,8 @@
 import React from 'react';
 import Footer from "./Footer";
 import './Oursets.css'; // Import CSS file for styling
+import { Link } from 'react-router-dom';
+
 
 import img1 from "../assets/img/55.jpg";
 import img2 from "../assets/img/67.jpg";
@@ -35,8 +37,9 @@ import img22 from "../assets/img/1.jpg";
 import img23 from "../assets/img/62.jpg";
 import img24 from "../assets/img/2.jpg";
 const Oursets = () => {
+ 
   return (
-    <div>
+<div>
     <div className="image-grid">
        <div className="image-container1">
         <img src={img7} alt="img7" />
@@ -90,9 +93,6 @@ const Oursets = () => {
         <p>Boat</p>
       </div>
 
-
-   
-
       <div className="image-container1">
         <img src={img8} alt="img8" />
         <p>Chunariya</p>
@@ -120,7 +120,6 @@ const Oursets = () => {
         <p>Love of Tunnel</p>
       </div>
 
-     
     
       <div className="image-container1">
         <img src={img19} alt="img19" />
@@ -153,10 +152,16 @@ const Oursets = () => {
       <div id="scroll-to-top">
       <a href="#top" class="scroll-to-top-link">&#8593;</a>
       </div>
-   
-    </div>
-      <Footer />
+
+     
+      <div className="book-slot-button-container">
+        <Link to="/contact">
+          <button className="book-slot-button">👉Book Your Slot👈</button>
+        </Link>
       </div>
+    </div>
+    <Footer />
+     </div>
   );
 }
 
