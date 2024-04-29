@@ -204,7 +204,7 @@ function ExpensesPage() {
       {currentStep === 0 && (
         <div className="category-selection">
           <button onClick={() => handleCategorySelect("Expenses")}>
-            Add
+            Add+
           </button>
         </div>
       )}

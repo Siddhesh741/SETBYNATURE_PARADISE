@@ -43,16 +43,33 @@
 
 .features-text {
   text-align: center;
-  margin-bottom: 20px;
+  font-size: 22px;
+  margin-bottom: 40px;
 }
 
 .features-title {
-  font-family: "Roboto", sans-serif;
+  margin-top: 30px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   font-size: 2rem;
   font-weight: bold;
   line-height: 1.5;
   color: rgb(172, 66, 66);
+  opacity: 0; /* Initially hide the title */
+  transform: translateY(-50px); /* Move the title up */
+  animation: waterfall 3s ease forwards; /* Apply the waterfall animation */
 }
+
+@keyframes waterfall {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px); /* Start position above */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0); /* End position normal */
+  }
+}
+
 
 .features-img {
   max-width: 100%;
@@ -62,6 +79,16 @@
   box-shadow: 0 30px 100px rgba(223, 39, 202, 0.6);
   animation: zoomInOut 5s infinite alternate; /* Apply animation */
 
+}
+.video-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.video-container iframe {
+  width: 100%;
+  max-width: 1000px; /* Optional: Limit the maximum width of the video */
 }
 @keyframes zoomInOut {
   0% {
@@ -121,8 +148,12 @@
   }
   .features-img {
     margin-top: 60px;
-    width:80%;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block; /* Ensure the image behaves as a block element */
   }
+  
   .features-details{
     margin-top: 40px;
     margin-bottom: 20px;
@@ -131,6 +162,20 @@
   .feature-description {
     justify-content: center;
     font-size: 15px;
+    margin-right: 20px;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .features-img {
+    margin-top: 60px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block; /* Ensure the image behaves as a block element */
+  }
+  .feature-description {
+    justify-content: center;
+    font-size: 22px;
     margin-right: 20px;
   }
 }

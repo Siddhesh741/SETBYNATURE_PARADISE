@@ -9,16 +9,16 @@ const About = () => {
       <div className="about-container with-background">
         <div className="about-content">
           <h1 className="about-title">
-            At Taranginii agro Farm, we are ready to provide you with the best
+            At Set By Nature Paradise, we are ready to provide you with the best
             prewedding experience in your life!
           </h1>
 
           <p className="about-text" style={{ color: "#000000" }}>
             "Your dream prewedding shoot awaits..and we're here to make it a
-            reality" <br /> 20+ Variety of Sets at one location set by natural
-            paradise At VEER DAM backwater
+            reality" <br /> 30+ Variety of Sets at one location set by natural
+            paradise At VEER DAM backwater.
           </p>
-
+          <br></br>
           {/* Adding Contact Now button */}
           <RouterLink to="/contact" className="contact-button">
             Contact Now
@@ -31,6 +31,22 @@ const About = () => {
 
         <br></br>
       </div>
+                {/* Additional content with attractive points */}
+      <div className="attractive-box">
+        <h2 className="attractive-box-title">What we provide..</h2>
+        <ul className="attractive-points">
+          <li>Boasting over 30+ meticulously crafted themes.</li>
+          <li>Surround yourself with nature's beauty in our 25+ natural set locations, perfect for capturing unforgettable moments.</li>
+          <li>Enjoy the convenience of our changing rooms, ensuring you look your best for every shot.</li>
+          <li>Our dedicated support team is here to assist you throughout your photoshoot experience.</li>
+          <li>Indulge in delicious snacks to keep your energy levels up during your session.</li>
+          <li>Choose from a stunning array of dresses and costumes provided for couples, adding flair and style to your photos.</li>
+          <li>With our 24-hour service, your dream photoshoot is just a call away.</li>
+          <li>Located conveniently within a 50 km radius from Pune, our venue offers easy access for couples seeking the perfect backdrop.</li>
+          <li>Nestled near Veer Dam, our location provides a picturesque setting for your pre-wedding photoshoot, surrounded by natural beauty.</li>
+        </ul>
+      </div>
+
       <Footer />
     </div>
   );

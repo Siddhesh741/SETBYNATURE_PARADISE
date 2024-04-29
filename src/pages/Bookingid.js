@@ -1,96 +1,61 @@
 import React, { useState } from 'react';
+import config from "../config";
+import './Bookingid.css'; // Import CSS file
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
-const SearchForm = ({ onSearch, onClear }) => {
+const SearchForm = ({ onSearch, onClear, errorMessage, successMessage }) => {
   const [bookingId, setBookingId] = useState('');
-  const [error, setError] = useState('');
 
   const handleSearch = (e) => {
     e.preventDefault();
-    if (validateBookingId(bookingId)) {
-      setError('');
-      onSearch(bookingId);
-    } else {
-      setError('Booking ID must be exactly 6 digits long.');
-    }
+    onSearch(bookingId);
   };
 
   const handleClear = () => {
     setBookingId('');
-    setError('');
     onClear();
   };
 
-  const validateBookingId = (id) => {
-    return /^\d{6}$/.test(id);
+  const handleChange = (e) => {
+    setBookingId(e.target.value);
   };
 
-  const handleChange = (e) => {
-    const input = e.target.value;
-    if (!/^\d{0,6}$/.test(input)) {
-      setError('Booking ID must be exactly 6 digits long.');
-    } else {
-      setBookingId(input);
-      setError('');
-    }
-  };
   return (
-    <div style={{ display: 'flex', justifyContent: 'center' }}>
-      <form onSubmit={handleSearch} style={{ marginBottom: '20px', display: 'flex', alignItems: 'center' }}>
+    <div>
+      <form onSubmit={handleSearch} className="form-container">
         <input
           type="text"
-          placeholder="Enter Booking ID"
+          placeholder="Enter BookingID"
           value={bookingId}
           onChange={handleChange}
-          style={{
-            padding: '8px',
-            fontSize: '16px',
-            borderRadius: '4px',
-            border: error ? '1px solid red' : '1px solid #ccc',
-            width: '130px',
-          }}
+          className="input-field"
         />
         <button
           type="submit"
-          style={{
-            marginLeft: '10px',
-            padding: '8px 16px',
-            fontSize: '16px',
-            backgroundColor: '#007bff',
-            color: '#fff',
-            border: 'none',
-            borderRadius: '4px',
-            cursor: 'pointer',
-          }}
+          className="search-button"
         >
           Search
         </button>
         <button
           type="button"
           onClick={handleClear}
-          style={{
-            marginLeft: '10px',
-            padding: '8px 16px',
-            fontSize: '16px',
-            backgroundColor: '#dc3545',
-            color: '#fff',
-            border: 'none',
-            borderRadius: '4px',
-            cursor: 'pointer',
-          }}
+          className="clear-button"
         >
           Clear
         </button>
-        {error && <div style={{ color: 'red', marginLeft: '10px' }}>{error}</div>}
       </form>
+      {errorMessage && <div className="error-message">{errorMessage}</div>}
+      {successMessage && <div className="success-message">{successMessage}</div>}
     </div>
   );
 };
 
 const BookingDetails = ({ bookingData }) => {
   return (
-    <div style={{ textAlign: 'center' }}>
-      <h2>Booking Details</h2>
-      <table style={{ margin: '0 auto' }}>
+    <div>
+      <h2>Your Booking Details</h2>
+      <table className="booking-details-table">
         <tbody>
           {Object.entries(bookingData).map(([key, value]) => (
             <tr key={key}>
@@ -104,15 +69,15 @@ const BookingDetails = ({ bookingData }) => {
   );
 };
 
-
-const Bookingid = () => {
+const Bookingid = ({ onClose }) => { // Pass onClose function as a prop
   const [bookingData, setBookingData] = useState(null);
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
 
   const handleSearch = async (bookingId) => {
     try {
-      const response = await fetch(`http://localhost:8080/api/clients/bybookingId/${bookingId}`);
+      const response = await fetch(`${config.apiUrl}/clients/bybookingId/${bookingId}`);
+      
       if (!response.ok) {
         throw new Error('Failed to fetch data');
       }
@@ -124,7 +89,7 @@ const Bookingid = () => {
       } else {
         setBookingData(data);
         setErrorMessage('');
-        setSuccessMessage('✅Congratulation Logged in Successfully !');
+        setSuccessMessage('✅ Congratulation! Logged in Successfully.');
       }
     } catch (error) {
       console.error('Error:', error.message);
@@ -133,20 +98,40 @@ const Bookingid = () => {
       setSuccessMessage('');
     }
   };
+
   const handleClear = () => {
     setBookingData(null);
     setErrorMessage('');
     setSuccessMessage('');
   };
 
+  const handleGoBack = () => {
+    onClose(); // Call the onClose function passed from the parent component
+  };
+
   return (
-    <div style={{ padding: '20px' }}>
-      <h1 style={{ textAlign: 'center' }}>Search Booking</h1>
-      <SearchForm onSearch={handleSearch} onClear={handleClear} />
-      {successMessage && <div style={{ color: 'green', marginTop: '10px', fontSize: '20px', textAlign: 'center' }}>{successMessage}</div>}
-      {successMessage && <div style={{ marginTop: '5px', fontSize: '20px', textAlign: 'center' }}>If you want to make some changes in this, you can contact the admin Rahul Samgir</div>}
-      {errorMessage && <div style={{ color: 'red', marginTop: '10px', textAlign: 'center' }}>{errorMessage}</div>}
-      {bookingData && <BookingDetails bookingData={bookingData} />}
+    <div className="booking-container">
+      {successMessage && (
+        <div className="success-message-container">
+          {successMessage}
+        </div>
+      )}
+       <div className="back-button-container" onClick={handleGoBack}>
+    <button className="back-button" >
+      <FontAwesomeIcon icon={faArrowLeft} /> {/* Icon for back button */}
+      Back
+    </button>
+  </div>
+      <div style={{ textAlign: 'center', fontSize: '25px', width: '100%' }}>
+        <h1>Search Booking</h1>
+        <SearchForm 
+          onSearch={handleSearch} 
+          onClear={handleClear} 
+          errorMessage={errorMessage}
+          successMessage={successMessage}
+        />
+        {bookingData && <BookingDetails bookingData={bookingData} />}
+      </div>
     </div>
   );
 };

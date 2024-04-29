@@ -3,15 +3,20 @@
   display: flex;
   width: 100%;
   justify-content: center;
+  background-image: url('../assets/img/521.jpg');
   align-items: center;
-  height: 100vh; /* Set the height to full viewport height */
+  height: 120vh; /* Set the height to 80% of the viewport height */
   margin: 0; /* Remove any default margin */
   padding: 0; /* Remove any default padding */
+  background-size: cover; /* Ensure the background image covers the entire container */
+  background-repeat: no-repeat; /* Prevent the background image from repeating */
+  background-position: center; /* Center the background image */
 }
 
 
 .admin-login-container {
-  background-color: #cd8daf;
+  background-color: #8c65cf;
+  margin-top: 80px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 20px;
@@ -26,6 +31,7 @@
   text-align: center;
   margin-bottom: 20px;
   font-size: larger;
+  font-weight:50px;
 }
 
 .admin-login-container input {
@@ -46,7 +52,7 @@
 .admin-login-container button {
   width: 100%;
   padding: 10px;
-  background-color: #007bff;
+  background-color: #f05623;
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -55,7 +61,7 @@
 }
 
 .admin-login-container button:hover {
-  background-color: #0056b3; /* Change background color on hover */
+  background-color: #75253d; /* Change background color on hover */
 }
 
 .welcome-message {
@@ -87,25 +93,13 @@
   /* display: block; Ensure the button takes full width */
   transition: background-color 0.3s ease; /* Add transition for button hover effect */
 }
-
-
-.logout-button:hover {
-  background-color: #202051;
-}
-
-/* Responsive styles */
-@media screen and (max-width: 600px) {
-  .admin-login-container {
-    width: 90%; /* Adjust width for smaller screens */
-  }
-}
-
 .category-buttons {
   display: flex;
   flex-wrap: wrap;
   justify-content: center; /* Center horizontally */
   align-items: center; /* Center vertically */
   gap: 5px;
+  
 }
 
 .category-button {
@@ -116,16 +110,61 @@
   background-color: #f0f0f0;
   cursor: pointer;
   background-color: #4CAF50; /* Green */
+  
+}
+
+.logout-button:hover {
+  background-color: #202051;
+}
+.extra-height {
+  height: 500px;
+}
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+  .admin-login-wrapper {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    background-image: url('../assets/img/new.png');
+    align-items: center;
+    height: 100vh; /* Set the height to 80% of the viewport height */
+    margin: 0; /* Remove any default margin */
+    padding: 0; /* Remove any default padding */
+    background-size: cover; /* Ensure the background image covers the entire container */
+    background-repeat: no-repeat; /* Prevent the background image from repeating */
+    background-position: center; /* Center the background image */
+  }
+  .admin-login-container {
+    margin-top: 50px;
+    width: 90%; /* Adjust width for smaller screens */
+  
+  }
+}
+.extra-height{
+  height: 10px;
+}
+.category-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  gap: 8px;
+  margin-left: 10px;
+  margin-right: 20px;
+  margin-bottom: 80px;
+  
+}
+
+.category-button {
+  flex: 1;
+  padding: 8px;
+  background-color: #f0f0f0;
+  cursor: pointer;
+  background-color: #4CAF50; /* Green */
+  
 }
 
 .category-button.active {
   background-color: #9376bd; /* Darker Green */
 }
 
-/* Media Query for Responsive Design */
-@media screen and (max-width: 600px) {
-  .category-buttons {
-    flex-direction: column;
-    align-items: center;
-  }
-}

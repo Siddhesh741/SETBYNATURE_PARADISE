@@ -27,9 +27,10 @@
   max-width: 60%;
   height: auto;
   border-radius: 10px;
-  margin-bottom: 5%;
+  margin: 5% auto; /* Center horizontally with auto left and right margins */
   box-shadow: 0 30px 100px rgba(100, 205, 212, 0.947); /* Add border shadow */
 }
+
 
 .features-text {
   text-align: center;
@@ -51,7 +52,9 @@
 
 /* Apply the wave animation to the .about-title */
 .features-title1 {
-  color: #ae3232; 
+  margin-top: 20px;
+  color: #7232ae; 
+  font-size: 30px;
   animation: wave 2s ease-in-out infinite; /* Adjust the animation duration and timing function as needed */
 }
 
@@ -97,7 +100,7 @@
 }
 
 /* Apply water drop animation to all paragraphs */
-.feature-description p {
+.feature-description p{
   animation: waterDrop 4s ease infinite; /* Adjust animation duration */
 }
 
@@ -119,6 +122,13 @@
   }
 
   .features-title1 {
-    font-size: 1.5rem; /* Adjust title font size for mobile view */
+    font-size: 2rem; /* Adjust title font size for mobile view */
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .feature-description p {
+    margin-left: 2%;
+    margin-right: 2%;
+    font-size: 25px; /* Decrease font size for mobile view */
   }
 }

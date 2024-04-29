@@ -19,7 +19,7 @@ function Admin() {
   const [selectedCategory, setSelectedCategory] = useState("");
 
   const validCredentials = [
-    { username: "", password: "", name: "Rahul Samgir" },
+    { username: "r", password: "p1", name: "Rahul Samgir" },
     { username: "u", password: "p2", name: "Umesh Samgir" },
     { username: "y", password: "p3", name: "Yogesh Samgir" },
     { username: "w", password: "p4", name: "Yashodhan Wadkar" },
@@ -113,7 +113,8 @@ function Admin() {
                 Calendar
               </button>
             </div>
-            <div style={{ height: "500px" }}></div>
+            <div style={{ height: "400px" }}></div>
+            {/* <div className="extra-height"></div> */}
           {/* <Footer /> */}
           </div>
           {selectedCategory === "Expenses" && <ExpensesPage />}
@@ -145,7 +146,7 @@ function Admin() {
             {error && <div className="error-message">{error}</div>}
             <button onClick={handleLogin}>Login</button>
           </div>
-          
+          {/* <img src={admin} alt="Admin" className="admin"/> */}
         </div>
         
       )}

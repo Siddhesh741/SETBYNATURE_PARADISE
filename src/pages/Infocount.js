@@ -4,7 +4,7 @@ import './Infocount.css'; // Import CSS file for styling
 const Info = () => {
   const [totalSets, setTotalSets] = useState(0);
   const [shootOptions, setShootOptions] = useState(0);
-  const [props, setprops] = useState(0);
+  const [propsCount, setPropsCount] = useState(0);
   const [bookingMandatory, setBookingMandatory] = useState(0);
   const [happyCustomers, setHappyCustomers] = useState(0);
   const [serviceAvailable, setServiceAvailable] = useState(0);
@@ -14,32 +14,36 @@ const Info = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       // Increment counts until they reach their respective targets
-      if (totalSets < 25) setTotalSets(totalSets + 1);
-      if (shootOptions < 50) setShootOptions(shootOptions + 1);
-      if (props < 40) setprops(props + 1);
-      if (bookingMandatory < 100) setBookingMandatory(bookingMandatory + 1);
-      if (happyCustomers < 1300) setHappyCustomers(happyCustomers + 10); // Increment by 10
-      if (serviceAvailable < 24) setServiceAvailable(serviceAvailable + 1);
-      if (naturalSets < 15) setNaturalSets(naturalSets + 1);
-      if (friendlyEnvironment < 100) setFriendlyEnvironment(friendlyEnvironment + 1);
+      setTotalSets(prevTotalSets => (prevTotalSets < 25 ? prevTotalSets + 1 : prevTotalSets));
+      setShootOptions(prevShootOptions => (prevShootOptions < 50 ? prevShootOptions + 1 : prevShootOptions));
+      setPropsCount(prevPropsCount => (prevPropsCount < 40 ? prevPropsCount + 1 : prevPropsCount));
+      setBookingMandatory(prevBookingMandatory => (prevBookingMandatory < 100 ? prevBookingMandatory + 1 : prevBookingMandatory));
+      setHappyCustomers(prevHappyCustomers => (prevHappyCustomers < 1300 ? prevHappyCustomers + 10 : prevHappyCustomers));
+      setServiceAvailable(prevServiceAvailable => (prevServiceAvailable < 24 ? prevServiceAvailable + 1 : prevServiceAvailable));
+      setNaturalSets(prevNaturalSets => (prevNaturalSets < 15 ? prevNaturalSets + 1 : prevNaturalSets));
+      setFriendlyEnvironment(prevFriendlyEnvironment => (prevFriendlyEnvironment < 100 ? prevFriendlyEnvironment + 1 : prevFriendlyEnvironment));
     }, 15); // Adjust the interval for the speed of counting
 
     // Clean up the interval on component unmount
     return () => clearInterval(interval);
-  }, [
-    totalSets,
-    shootOptions,
-    props,
-    bookingMandatory,
-    happyCustomers,
-    serviceAvailable,
-    naturalSets,
-    friendlyEnvironment,
-  ]);
+  }, []); // Removed dependency array
 
+  // Reset counts after a delay
+  useEffect(() => {
+    const resetTimeout = setTimeout(() => {
+      setTotalSets(0);
+      setShootOptions(0);
+      setPropsCount(0);
+      setBookingMandatory(0);
+      setHappyCustomers(0);
+      setServiceAvailable(0);
+      setNaturalSets(0);
+      setFriendlyEnvironment(0);
+    }, 15000); // Reset counts after 20 seconds
 
-
-
+    // Clean up the timeout on component unmount
+    return () => clearTimeout(resetTimeout);
+  }, [totalSets]); // Watch totalSets to trigger the reset
 
   return (
     <div className="info-container">
@@ -59,7 +63,7 @@ const Info = () => {
       </div>
 
       <div className="info-item">
-        <div className="number">{props}+</div>
+        <div className="number">{propsCount}+</div>
         <div className="text">Props Options</div>
       </div>
       

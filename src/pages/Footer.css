@@ -51,6 +51,7 @@
 
 .footer-social {
   display: flex;
+  row-gap: 15px;
   flex-direction: column;
   align-items: flex-end; /* Align icons to the right */
 }
@@ -115,5 +116,23 @@
   .footer-links1 a:hover,
   .footer-links a:hover {
     color: rgb(62, 160, 213); /* Change text color on hover */
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .footer-info{
+    margin-bottom: 10px;
+    margin-left: 20px;
+    font-size: 20px;
+  }
+  .footer-links1,
+  .footer-links {
+    margin-left: 20px;
+    font-size: 20px;
+    margin-top: 5%;
+    display: flex;
+    flex-direction: column;
+  }
+  .footer-copyright{
+    font-size: 20px;
   }
 }

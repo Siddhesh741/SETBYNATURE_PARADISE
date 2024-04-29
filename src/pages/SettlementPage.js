@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./SettlementPage.css"; // Import your CSS file
-import html2pdf from "html2pdf.js";
+//import html2pdf from "html2pdf.js";
 
 const SettlementPage = ({ loggedInAdmin }) => {
   const [rahulValue, setRahulValue] = useState("");
   const [taranginiiValue, setTaranginiiValue] = useState("");
   const [total, setTotal] = useState(0);
   const [halfTotal, setHalfTotal] = useState(0);
-  const [extraPayment, setExtraPayment] = useState(0);
+  //const [extraPayment, setExtraPayment] = useState(0);
   const [message, setMessage] = useState("");
   const [paymentOption, setPaymentOption] = useState("");
   const [transactionId, setTransactionId] = useState("");
@@ -21,7 +21,7 @@ const SettlementPage = ({ loggedInAdmin }) => {
     setTotal(newTotal);
     setHalfTotal(newTotal / 2);
     const newExtraPayment = Math.abs(newTotal / 2 - rahul);
-    setExtraPayment(newExtraPayment);
+    //setExtraPayment(newExtraPayment);
 
     if (rahul > taranginii) {
       setMessage(`Taranginii needs to pay Rahul ${newExtraPayment} rupees.`);
@@ -110,7 +110,7 @@ const SettlementPage = ({ loggedInAdmin }) => {
     element.innerHTML = content;
 
     // Generate PDF from the HTML element
-    html2pdf(element);
+   /* html2pdf(element);*/
   };
 
   const handleGooglePay = () => {

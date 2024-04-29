@@ -212,6 +212,7 @@
   padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
+  
 }
 
 .back-button {
@@ -220,6 +221,7 @@
 }
 
 .submit-button {
+margin-right: 5px;
   background-color: #007bff; /* Submit button background color */
   color: #fff; /* Submit button text color */
 }

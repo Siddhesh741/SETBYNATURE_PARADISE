@@ -3,23 +3,30 @@ import React from "react";
 import "./Footer.css";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import { BsInstagram, BsFacebook, BsWhatsapp } from "react-icons/bs";
-//import styled from 'styled-components';
+import { Link as RouterLink } from "react-router-dom"; 
 
 
 
 const Footer = () => {
+  
+    const scrollToTop = () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    };
   return (
     <footer className="footer">
       <div className="footer-content">
         <div className="footer-info">
-          <p> With Sets by nature Paradise you can experience new  </p><p>sets
+          <p> With a Sets by nature Paradise you can experience new  </p><p>sets
            
-           around you We  provide the best prewedding </p>destinations
+           around you. We  provide the best prewedding </p>destinations
           
-            that we have to offer physically managed by {" "}
+            that we have to offer you. Physically managed by {" "}
             <a
               href="https://www.instagram.com/samgirrahul?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
-              target="_blank"
+              target="Instagram"
               style={{ color: 'yellow' }}
             >
               Rahul Samgir
@@ -27,20 +34,20 @@ const Footer = () => {
         
         </div>
         <div className="footer-links1">
-          <a href="/Destinations">Backwater Set</a>
-          <br />
-          <a href="/Destinations">Night-Light Sets</a>
-          <br />
-          <a href="/Destinations">All Sets Package</a>
-        </div>
-        
-        <div className="footer-links">
-          <a href="/about">About</a>
-          <br />
-          <a href="/contact">Contact</a>
-          <br />
-          <a href="/destinations">Destination</a>
-        </div>
+        <RouterLink to="/Destinations" onClick={scrollToTop}>Backwater Set</RouterLink>
+        <br />
+        <RouterLink to="/Destinations" onClick={scrollToTop}>Night-Light Sets</RouterLink>
+        <br />
+        <RouterLink to="/Destinations" onClick={scrollToTop}>All Sets Package</RouterLink>
+      </div>
+
+      <div className="footer-links">
+        <RouterLink to="/about" onClick={scrollToTop}>About</RouterLink>
+        <br />
+        <RouterLink to="/contact" onClick={scrollToTop}>Contact</RouterLink>
+        <br />
+        <RouterLink to="/destinations" onClick={scrollToTop}>Destination</RouterLink>
+      </div>
        
       
         <div className="footer-social">
@@ -53,7 +60,7 @@ const Footer = () => {
             
           </a>
           <a
-            href="https://wa.me/8888542133"
+            href="https://wa.me/9049059045"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -70,13 +77,13 @@ const Footer = () => {
       </div>
 
       <div className="footer-copyright">
-        <p>&copy; 2024 Design & developed by {""}
+        <p>&copy;2024 Design & developed by {""}
         <a
-              href="https://www.instagram.com/taranginiiagrofarms?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
-              target="_blank"
+              href="https://www.dnextgentechnologies.com/"
+              target="website"
               style={{ color: 'yellow' }}
             >
-              Taranginii Agro Farm !!
+              dNextgen Technologies private limited !!
             </a></p>
       </div>
     </footer>

@@ -37,7 +37,7 @@ const Gallery = () => {
     const interval = setInterval(() => {
       const totalGroups = Math.ceil(allImages.length / itemsPerGroup);
       setCurrentGroupIndex((prevIndex) => (prevIndex + 1) % totalGroups);
-    }, 4000); // Change image every 4 seconds
+    }, 6000); // Change image every 4 seconds
 
     return () => clearInterval(interval);
   }, [allImages.length]);

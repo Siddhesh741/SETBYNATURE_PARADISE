@@ -41,7 +41,7 @@ body {
     justify-content: space-around;
     padding: 20px;
     overflow-x: hidden;
-    overflow-y: hidden; /* Enable horizontal scrolling */
+    overflow-y: hidden; 
   }
   
   .gallery-item {
@@ -62,13 +62,31 @@ body {
   }
   
   /* Responsive Styles */
-  @media (max-width: 768px) {
-    .gallery-container {
-      flex-wrap: wrap;
+/* Gallery.css */
+
+/* Your existing CSS */
+
+@media (max-width: 768px) {
+  .gallery-container {
+    flex-wrap: wrap;
+    margin-right: 10px;
+    animation: slideFromLeft 5s linear infinite;
+  }
+  .gallery-image {
+    width: 100%;
+    height: auto;
+  }
+  .gallery-item {
+    flex: 0 0 100%; /* Full width in mobile view */
+  }
+  @keyframes slideFromLeft {
+    0%{
+      transform: translateX(-100%);
     }
-  
-    .gallery-item {
-      flex: 0 0 100%; /* Full width in mobile view */
+    100% {
+      transform: translateX(0);
     }
   }
+}
+
   

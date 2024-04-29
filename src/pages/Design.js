@@ -15,6 +15,7 @@ const Design = () => {
         <h1>Photoshoot</h1>
         <p>Make your moments unforgettable</p>
       </div>
+      
     </div>
   );
 };

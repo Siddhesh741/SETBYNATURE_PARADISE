@@ -11,6 +11,7 @@ import Contact from "../src/pages/Contact";
 import Admin from "../src/pages/Admin";
 import Bookingid from "./pages/Bookingid";
 
+
 //import '../src/components/Style.css'
 import "tailwindcss/tailwind.css";
 

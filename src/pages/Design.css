@@ -54,4 +54,10 @@
       margin: 0vh auto 20vh;/* Add equal margins on top and bottom, and center horizontally */
     }
   }
-  
+  /* Media query for tablet devices */
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .video-background {
+    width: 70%;
+    margin: 0vh auto 20vh;/* Add equal margins on top and bottom, and center horizontally */
+  }
+}

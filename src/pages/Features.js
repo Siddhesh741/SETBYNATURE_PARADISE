@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./Features.css"; // Import CSS file for styling
 import img from "../assets/img/feature11.jpg";
 import pic1 from "../assets/img/service.png";
 import pic2 from "../assets/img/user.png";
-import pic3 from "../assets/img/wallet.png";
-import pic4 from "../assets/img/user1.png";
-
+import pic3 from "../assets/img/service.png";
+import pic4 from "../assets/img/user.png";
+import Bubble from "./Bubble";
 import Footer from "./Footer";
 const Features = () => {
 
@@ -14,7 +14,7 @@ const Features = () => {
     <div className="features-container">
       <div className="features-content">
         <div className="features-text">
-          <h1 className="features-title">Get Ready to grab opportunity, Get Ready to Experience !!!</h1>
+          <h1 className="features-title">"From the Heart of Nature to the Heart of Your Memories."</h1>
           <br></br>
           <p>
             Discover the Best Prewedding Experiences with set by nature paradise! We're
@@ -90,7 +90,24 @@ const Features = () => {
               We provide to our customer excellent Facilities like the changing room, snacks, washroom with hygiene.
             </p>
           </div>
-        </div>
+         </div>
+        <br></br>
+        <Bubble />
+      </div>
+      
+      
+      <br></br>
+      <div className="video-container">
+        <iframe
+          width="100%"
+          height="400"
+          src="http://www.youtube.com/embed/s_4bO2tz5Ys?si=rnm_wpza4IHy_EtG&amp;start=45"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe>
       </div>
       <br></br>
     <Footer />

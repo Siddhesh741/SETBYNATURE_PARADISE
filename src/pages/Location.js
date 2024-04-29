@@ -11,14 +11,15 @@ function Location() {
         <h2 style={{ fontSize: "28px" }}>👇Location Details👇</h2>
         <p style={{ fontSize: "20px" }}className="location-text">
           <strong>
-            📍 At post Veer Samgirwadi, Taluka-Purandar, Dist-Pune, Taranginii
-            Farms & Set by nature paradise, behind ZP school.{" "}
+            📍 At post Veer Samgirwadi, Taluka-Purandar, Dist-Pune, Set by nature paradise & Taranginii
+            Farms behind ZP school.{" "}
           </strong>
         </p>
       </div>
       <div style={{ margin: "auto", width: "100%" }}>
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d93718.19038769953!2d74.05962116545066!3d18.135547763431305!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2f94fd6d09a07%3A0xc94caf885abb7570!2sTarangini%20Agro%20Farms!5e0!3m2!1sen!2sin!4v1709014038961!5m2!1sen!2sin"
+       
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d18009.484091698905!2d74.0634604270652!3d18.142234923309292!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2f90041ba2c61%3A0xde1582d0bb10dc48!2sSet%20By%20Nature%20Paradise!5e1!3m2!1sen!2sin!4v1713801548423!5m2!1sen!2sin" 
           width="100%"
           height="300"
           style={{ border: 0 }}
@@ -49,7 +50,7 @@ function Location() {
       </div>
 
       <br></br>
-      <div className="instagram-link text-center">
+      <div className="instagram-link">
         <p
           style={{ fontSize: "24px", fontWeight: "bold", marginBottom: "10px" }}
         >

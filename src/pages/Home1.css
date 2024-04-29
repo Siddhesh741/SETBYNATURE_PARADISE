@@ -14,8 +14,8 @@
 }
 
 .book-now-button {
-  background-color: #929229;
-  color: #fff;
+  background-color: #bccb1d;
+  color: #000000;
   padding: 15px 30px; /* Increased padding for larger size */
   border: none;
   border-radius: 8px; /* Slightly increased border radius for smoother edges */
@@ -46,7 +46,7 @@
 .title {
   font-weight: bold;
   font-size: 2.8rem; /* Change the font size as needed */
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; /* Change the font family */
+  font-family:'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
   margin-top: 1%;
   margin-bottom: 10%;
   margin-left: 4%;
@@ -60,7 +60,9 @@
   opacity: 1; /* Set opacity to 1 to make text fully visible */
   margin-left: 4%;
 }
-
+.para{
+  display: none;
+}
 
 .image {
   max-width: 33%;
@@ -68,6 +70,14 @@
   box-shadow: 0 30px 100px rgba(53, 59, 231, 0.6);
   margin-right: 5px;
 }
+.booking-id-container {
+  position: fixed;
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%); /* Centering trick */
+  z-index: 999; /* Ensure it's above other content */
+}
+
 
 /* Media query for mobile devices */
 @media only screen and (max-width: 768px) {
@@ -82,19 +92,93 @@
     margin: 3% 3% 3% 3%; /* Center the image and add margin below it */
   }
 
-  .title {
-    font-size: 35px;
-    margin-left:2px;
-    margin-right:2px;
-    margin-top: 0%; /* Remove left margin on title for center alignment */
+.title {
+  overflow: hidden;
+  font-size: 30px;
+  white-space: nowrap;
+  margin-right: 10px;
+}
+
+.title span {
+  display: block;
+  animation: waterfall 2.5s ease forwards;
+  opacity: 0;
+}
+
+@keyframes waterfall {
+  0% {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
   }
 
+}
   .book-now-button {
-    margin: 2% 2% 2% 2%; /* Center align the button */
+    padding: 10px 5px;
+    font-size: 18px;
+    color: black;
+    width: 140px; /* Set the width of the button */
+    height: 48px; /* Set the height of the button */
+    margin: 5% 10% 5% 10%; /* Center align the button */
     margin-bottom: 20px; /* Add some space below the button */
   }
   .paragraph{
     text-align: center;
-    font-size: 0.7rem;
+    font-size: 11px;
+    display: none;
+    margin-right: 10px;
+  }
+  .para{
+    display: block;
+    font-weight: 300;
+    font-size: 14px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
   }
 }
+/* Media query for tablet devices */
+@media only screen and (min-width: 768px)  and (max-width: 1024px) {
+  .content-container {
+    flex-direction: column; /* Stack items vertically on smaller screens */
+    text-align: center; /* Center align text on smaller screens */
+    margin-left: 0%;
+  }
+
+  .image {
+    max-width: 60%; /* Make the image take up more width on smaller screens */
+    margin: 3% 3% 3% 3%; /* Center the image and add margin below it */
+  }
+
+.title {
+  overflow: hidden;
+  font-size: 50px;
+  white-space: nowrap;
+  margin-right: 10px;
+}
+
+  
+  .book-now-button {
+    width: 120px; /* Adjust button width */
+    height: 50px; /* Adjust button height */
+    margin: 0; /* Reset margin */
+  }
+
+  .paragraph {
+    text-align: left; /* Align paragraph text left */
+    font-size: 1.2rem; /* Adjust paragraph font size */
+    display: block; /* Ensure paragraph is visible */
+    margin-right: 0; /* Reset margin */
+  }
+
+  .para {
+    display: none; /* Hide .para in tablet view */
+  }
+}/*
+@media only screen and (min-width: 820px){
+  .image {
+    max-width: 20%; 
+    margin: 3% 3% 3% 3%; 
+  }
+}*/

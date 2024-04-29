@@ -1,12 +1,9 @@
 import './Home.css';
 import React from 'react';
 import Home1 from './Home1';
-import Bookingid from './Bookingid';
 import Location from './Location'; // Assuming Location.js is in the same directory as Home.js
 import Gallery from './Gallery';
 import Review from './Review';
-//import About from './About';
-//import DestinationItem './DestinationItem';
 import TermsConditions from './TermsConditions';
 import Design from './Design';
 import Infocount from './Infocount';
@@ -20,27 +17,34 @@ const Home = () => {
       behavior: "smooth"
     });
   };
-
   const openWhatsAppChat = () => {
-    window.open('https://wa.me/8888542133', '_blank');
+    // Phone number with country code
+    const phoneNumber = '919049059045';
+    // Message to be sent
+    const message = encodeURIComponent('Hii..');
+    // WhatsApp API link
+    const whatsappLink = `https://wa.me/${phoneNumber}?text=${message}`;
+  
+    // Open WhatsApp chat window
+    window.open(whatsappLink, '_blank');
   };
-
+  
   return (
     <div>
 
       <Home1 />
-      <Bookingid />
       <Location />
+      <Infocount />
       <Gallery />
       <Design />
-      <Infocount />
       <TermsConditions />
       <Review />
       <br></br>
       <Footer />
-      <div style={{ textAlign: 'center', marginTop: '20px' }}>
-        <FaArrowCircleUp onClick={scrollToTop} style={{ fontSize: '30px', cursor: 'pointer' }} />
+      <div style={{ textAlign: 'center', marginTop: '12px', marginBottom:'25px',display: 'flex', justifyContent: 'center' }}>
+      <FaArrowCircleUp onClick={scrollToTop} style={{ fontSize: '30px', cursor: 'pointer' }} />
       </div>
+
 
       {/* Chat with us text */}
       <div className="chat-text-container" onClick={openWhatsAppChat}>

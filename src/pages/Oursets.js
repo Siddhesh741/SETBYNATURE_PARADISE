@@ -1,7 +1,8 @@
 import React from 'react';
 import Footer from "./Footer";
 import './Oursets.css'; // Import CSS file for styling
-import { Link } from 'react-router-dom';
+
+import { Link as RouterLink } from "react-router-dom";
 
 
 import img1 from "../assets/img/55.jpg";
@@ -36,8 +37,19 @@ import img21 from "../assets/img/7.jpg";
 import img22 from "../assets/img/1.jpg";
 import img23 from "../assets/img/62.jpg";
 import img24 from "../assets/img/2.jpg";
+
+
+import img25 from "../assets/img/76.jpg";
+import img26 from "../assets/img/77.jpg";
+import img27 from "../assets/img/78.jpg";
 const Oursets = () => {
- 
+  
+    const scrollToTop = () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    };
   return (
 <div>
     <div className="image-grid">
@@ -147,6 +159,20 @@ const Oursets = () => {
         <p>The Tilt</p>
       </div>
 
+
+      <div className="image-container1">
+        <img src={img25} alt="img25" />
+        <p>Shoot with chair</p>
+      </div>
+      <div className="image-container1">
+        <img src={img26} alt="img26" />
+        <p>The Prayer flag</p>
+      </div>
+      <div className="image-container1">
+        <img src={img27} alt="img27" />
+        <p>Walk with waves</p>
+      </div>
+
       <br></br>
 
       <div id="scroll-to-top">
@@ -155,9 +181,9 @@ const Oursets = () => {
 
      
       <div className="book-slot-button-container">
-        <Link to="/contact">
-          <button className="book-slot-button">👉Book Your Slot👈</button>
-        </Link>
+        <RouterLink to="/contact">
+          <button className="book-slot-button" onClick={scrollToTop}>👉Book Your Slot👈</button>
+        </RouterLink>
       </div>
     </div>
     <Footer />

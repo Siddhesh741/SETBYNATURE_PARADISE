@@ -1,8 +1,9 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 import "./Contact.css"; // Import your CSS file for styling
 import img from "../assets/img/9.jpg";
 import Footer from "./Footer";
-import img1 from "../assets/img/pen.png";
+import config from "../config";
+
 const Contact = () => {
   const initialFormData = {
     clientName: "",
@@ -43,10 +44,11 @@ const Contact = () => {
     carCount: "",
   });
 
-  const [responseData, setResponseData] = useState(null); // Initialize responseData state
+  const [responseData] = useState(null);
   const [errorMessage, setErrorMessage] = useState(""); // State variable for error message
   const [isSubmitted, setIsSubmitted] = useState(false);
 
+  //Client Name -
   const handleInputChange = (e) => {
     const { name, value } = e.target;
 
@@ -62,6 +64,7 @@ const Contact = () => {
     }
   };
 
+  //Client phonenumber
   const handleNumberChange = (e) => {
     const value = e.target.value;
 
@@ -77,6 +80,7 @@ const Contact = () => {
     }
   };
 
+  //Photographer Name
   const handleInputChange1 = (e) => {
     const { name, value } = e.target;
 
@@ -92,6 +96,7 @@ const Contact = () => {
     }
   };
 
+  //Photographer phonenumber
   const handleNumberChange2 = (e) => {
     const value = e.target.value;
 
@@ -107,6 +112,7 @@ const Contact = () => {
     }
   };
 
+  //Date
   const handleDateChange = (e) => {
     const selectDate = new Date(e.target.value);
     const currentDate = new Date();
@@ -122,6 +128,7 @@ const Contact = () => {
     }
   };
 
+  //KnowAbout Location
   const handleDropdownChange = (e) => {
     const value = e.target.value;
     console.log("Selected value:", value);
@@ -137,6 +144,7 @@ const Contact = () => {
     }
   };
 
+  //City
   const handleCityChange = (e) => {
     const { name, value } = e.target;
 
@@ -152,6 +160,7 @@ const Contact = () => {
     }
   };
 
+  //Select package
   const handlepackage = (e) => {
     const value = e.target.value;
     if (/^\d*$/.test(value) && value.length <= 10) {
@@ -161,12 +170,13 @@ const Contact = () => {
     }
   };
 
+  //Advance amount
   const handleAdvanceAmount = (e) => {
     const value = e.target.value;
     const selectedPackagePrice = {
-      option1: 2500,
-      option2: 2500,
-      option3: 4000,
+      oriversideSets: 2500,
+      nightSets: 2500,
+      comboRiverNight: 4000,
       // Add more options as needed
     };
 
@@ -200,6 +210,7 @@ const Contact = () => {
     }
   };
 
+  //Pending Amount
   const handlePendingAmount = (e) => {
     const value = e.target.value;
 
@@ -214,6 +225,7 @@ const Contact = () => {
     }
   };
 
+  //Paid Amount
   const handleNumber = (e) => {
     const value = e.target.value;
     console.log("Input value:", value);
@@ -229,6 +241,7 @@ const Contact = () => {
     }
   };
 
+  //Check box
   const handleCheckboxChange = (e) => {
     const checked = e.target.checked;
     console.log("Checkbox checked:", checked);
@@ -237,6 +250,7 @@ const Contact = () => {
     setFormData({ ...formData, agreeTerms: checked });
   };
 
+  //Visitor Count
   const handleNumberChange3 = (e) => {
     const value = e.target.value;
 
@@ -251,6 +265,7 @@ const Contact = () => {
     }
   };
 
+  //Car count
   const handleNumberChange4 = (e) => {
     const value = e.target.value;
     console.log("Input value:", value);
@@ -266,13 +281,15 @@ const Contact = () => {
     }
   };
 
+  //payment mode
   const [errors1, setErrors1] = useState({});
-  const [showCashCollectedByField, setShowCashCollectedByField] = useState(false);
+  const [showCashCollectedByField, setShowCashCollectedByField] =
+    useState(false);
 
   const handlePaymentModeChange = (e) => {
     const { value } = e.target;
-    if (value === 'cash') {
-      setFormData({ ...formData, paymentMode: value, cashcollectedby: '' });
+    if (value === "cash") {
+      setFormData({ ...formData, paymentMode: value, cashcollectedby: "" });
       setShowCashCollectedByField(true);
     } else {
       setFormData({ ...formData, paymentMode: value });
@@ -280,6 +297,7 @@ const Contact = () => {
     }
   };
 
+  //Cash Collected by
   const handleDropdownChange12 = (e) => {
     const value = e.target.value;
     console.log("Selected value:", value);
@@ -295,13 +313,7 @@ const Contact = () => {
     }
   };
 
-
-
-
-
-
-
-  
+  /*
   const [isDrawing, setIsDrawing] = useState(false);
   const [signatureData, setSignatureData] = useState("");
   const canvasRef = useRef(null);
@@ -362,80 +374,65 @@ const Contact = () => {
     setSignatureData(canvas.toDataURL()); // Convert canvas to data URL
   };
  
-
-  /*const [searchedbookingId, setSearchedbookingId] = useState('');
-  const [searchedClient, setSearchedClient] = useState(null);
-
-  const handleSearch = async () => {
-    try {
-      const response = await fetch(`http://localhost:8080/api/clients/byUniqueId/${searchedbookingId}`);
-      if (!response.ok) {
-        throw new Error('Failed to fetch data');
-      }
-      const data = await response.json();
-      setSearchedClient(data);
-    } catch (error) {
-      console.error('Error:', error.message);
-    }
-  };
 */
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  const requiredFields = [
-    "clientName",
-    "phoneNumber",
-    "photographerName",
-    "photographerPhoneNo",
-    "selectDate",
-    "selectedOption",
-    "advanceAmount",
-    "pendingAmount",
-    "visitorsCount",
-    "carCount",
-  ];
+    const requiredFields = [
+      "clientName",
+      "phoneNumber",
+      "photographerName",
+      "photographerPhoneNo",
+      "selectDate",
+      "selectedOption",
+      "advanceAmount",
+      "pendingAmount",
+      "visitorsCount",
+      "carCount",
+    ];
 
-  const missingFields = requiredFields.filter((field) => !formData[field]);
+    const missingFields = requiredFields.filter((field) => !formData[field]);
 
-  if (missingFields.length > 0) {
-    setErrorMessage("Please fill all data in required fields.");
-    return;
-  }
+    if (missingFields.length > 0) {
+      setErrorMessage("Please fill all data in required fields.");
+      return;
+    }
 
-  const url = "http://localhost:8080/api/clients/createClient";
-  const options = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(formData),
+    //const url = "http://localhost:8080/api/clients/createClient";
+    const url = `${config.apiUrl}/clients/createClient`;
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    };
+    try {
+      const response = await fetch(url, options);
+      if (!response.ok) {
+        throw new Error("Failed to submit data");
+      }
+      const responseData = await response.json();
+      if (responseData && responseData.bookingId) {
+        // Show popup with success message
+        const confirmation = window.confirm(
+          `✅ Congratulations!!  Successfully submitted your data. Your Booking ID is SBNP - ${responseData.bookingId}`
+        );
+        if (confirmation) {
+          setIsSubmitted(true);
+          setFormData(initialFormData);
+          setErrorMessage("");
+          console.log("Congratulations! Form submitted!");
+        }
+      } else {
+        throw new Error("Booking ID not found in response");
+      }
+    } catch (error) {
+      console.error("Error:", error.message);
+      setErrorMessage("Failed to submit data. Please try again.");
+    }
   };
-  try {
-    const response = await fetch(url, options);
-    if (!response.ok) {
-      throw new Error("Failed to submit data");
-    }
-    const responseData = await response.json();
-    if (responseData && responseData.bookingId) {
-      setIsSubmitted(true);
-      setFormData(initialFormData);
-      setErrorMessage(`✅ Congratulations! Successfully submitted your data. Your Booking ID is SBNP - ${responseData.bookingId}`);
-      setTimeout(() => {
-        setErrorMessage("");
-      }, 10000);
-      console.log("Congratulations! Form submitted!");
-    } else {
-      throw new Error("Booking ID not found in response");
-    }
-  } catch (error) {
-    console.error("Error:", error.message);
-    setErrorMessage("Failed to submit data. Please try again.");
-  }
-};
-
-
-  
 
   const handleCancel = () => {
     setFormData(initialFormData);
@@ -448,28 +445,8 @@ const handleSubmit = async (e) => {
       <div className="contact-container">
         <div className="form-container">
           <h2 className="form-title">Book your photoshoot slot now</h2>
-
-
-
-    {/* <div>
-      <input
-        type="text"
-        value={searchedbookingId}
-        onChange={(e) => setSearchedbookingId(e.target.value)}
-      />
-      <button onClick={handleSearch}>Search</button>
-      {searchedClient && (
-        <div>
-          <h2>Searched Client Details</h2>
-          <p>ID: {searchedClient.id}</p>
-          <p>Client Name: {searchedClient.clientName}</p>
-          <p>Client Phonenumber: {searchedClient.phoneNumber}</p>
-          <p>cityName: {searchedClient.cityName}</p>
-          
-        </div>
-      )}
-    </div> */}
-
+          {/* Errormessagereturn */}
+          <div className="message">{errorMessage}</div>
 
           <div className="form-group mb-4">
             <label htmlFor="clientName" className="field-label">
@@ -486,15 +463,12 @@ const handleSubmit = async (e) => {
               value={formData.clientName}
               onChange={handleInputChange}
               required
-              style={{ height: "20px", width: "calc(100% - 20px)" }}
+              style={{ height: "32px", width: "calc(100% - 5px)" }}
             />
             {errors.clientName && (
               <span className="text-red-500">{errors.clientName}</span>
             )}
           </div>
-
-
-
 
           <div className="form-group mb-4">
             <label htmlFor="phoneNumber" className="field-label">
@@ -511,7 +485,7 @@ const handleSubmit = async (e) => {
               value={formData.phoneNumber}
               onChange={handleNumberChange}
               required
-              style={{ height: "20px", width: "calc(100% - 20px)" }}
+              style={{ height: "32px", width: "calc(100% - 5px)" }}
             />
             {errors.phoneNumber && (
               <span className="text-red-500">{errors.phoneNumber}</span>
@@ -530,7 +504,7 @@ const handleSubmit = async (e) => {
               value={formData.photographerName}
               onChange={handleInputChange1}
               required
-              style={{ height: "20px", width: "calc(100% - 20px)" }}
+              style={{ height: "32px", width: "calc(100% - 5px)" }}
             />
             {errors.photographerName && (
               <span className="text-red-500">{errors.photographerName}</span>
@@ -552,7 +526,7 @@ const handleSubmit = async (e) => {
               value={formData.photographerPhoneNo}
               onChange={handleNumberChange2}
               required
-              style={{ height: "20px", width: "calc(100% - 20px)" }}
+              style={{ height: "32px", width: "calc(100% - 5px)" }}
             />
             {errors.photographerPhoneNo && (
               <span className="text-red-500">{errors.photographerPhoneNo}</span>
@@ -574,7 +548,7 @@ const handleSubmit = async (e) => {
               onChange={handleDateChange}
               min={new Date().toISOString().split("T")[0]} // Set min attribute to today
               required
-              style={{ height: "20px", width: "calc(100% - 20px)" }}
+              style={{ height: "32px", width: "calc(100% - 5px)" }}
             />
           </div>
 
@@ -587,7 +561,7 @@ const handleSubmit = async (e) => {
               id="knowaboutlocation"
               value={formData.knowaboutlocation}
               onChange={handleDropdownChange}
-              style={{ height: "30px", width: "calc(100% - 20px)" }}
+              style={{ height: "30px", width: "calc(100% - 5px)" }}
             >
               <option value="" disabled selected>
                 please Select
@@ -606,7 +580,12 @@ const handleSubmit = async (e) => {
           </div>
 
           <div className="form-group mb-4">
-            <label htmlFor="cityName" className="field-label">City Name</label>
+            <label htmlFor="cityName" className="field-label">
+              City Name{" "}
+              <span className="text-red-500" style={{ fontSize: "1.2em" }}>
+                *
+              </span>
+            </label>
             <input
               type="text"
               name="cityName"
@@ -614,7 +593,7 @@ const handleSubmit = async (e) => {
               placeholder="Enter city name"
               value={formData.cityName}
               onChange={handleCityChange}
-              style={{ height: "20px", width: "calc(100% - 20px)" }}
+              style={{ height: "32px", width: "calc(100% - 5px)" }}
             />
             {errors.cityName && (
               <span className="text-red-500">{errors.cityName}</span>
@@ -639,9 +618,9 @@ const handleSubmit = async (e) => {
               <option value="" disabled selected>
                 Please Select
               </option>
-              <option value="option1">Riverside Sets - 2500 RS </option>
-              <option value="option2">Night Sets - 2500 RS</option>
-              <option value="option3">
+              <option value="riversideSets">Riverside Sets - 2500 RS </option>
+              <option value="nightSets">Night Sets - 2500 RS</option>
+              <option value="comboRiverNight">
                 Combo Package(Riverside Sets + Night Sets) - 4000 RS
               </option>
             </select>
@@ -666,7 +645,7 @@ const handleSubmit = async (e) => {
               value={formData.advanceAmount}
               onChange={handleAdvanceAmount}
               required
-              style={{ height: "20px", width: "calc(100% - 20px)" }}
+              style={{ height: "32px", width: "calc(100% - 5px)" }}
             />
             {errors.advanceAmount && (
               <span className="text-red-500">{errors.advanceAmount}</span>
@@ -687,14 +666,19 @@ const handleSubmit = async (e) => {
               placeholder="Enter pending Amount"
               value={formData.pendingAmount}
               onChange={handlePendingAmount}
-              style={{ height: "20px", width: "calc(100% - 20px)" }}
+              style={{ height: "32px", width: "calc(100% - 5px)" }}
               readOnly
               required
             />
           </div>
 
           <div className="form-group mb-4">
-            <label htmlFor="paidamount" className="field-label">Payment Amount Paid</label>
+            <label htmlFor="paidamount" className="field-label">
+              Payment Amount Paid{" "}
+              <span className="text-red-500" style={{ fontSize: "1.2em" }}>
+                *
+              </span>
+            </label>
             <input
               type="text"
               name="paidamount"
@@ -702,16 +686,20 @@ const handleSubmit = async (e) => {
               placeholder="Enter Payment Amount "
               value={formData.paidamount}
               onChange={handleNumber}
-              style={{ height: "20px", width: "calc(100% - 20px)" }}
+              style={{ height: "32px", width: "calc(100% - 5px)" }}
             />
             {errors.carCount && (
               <span className="text-red-500">{errors.paidamount}</span>
             )}
           </div>
 
-         
           <div className="form-group mb-4">
-            <label htmlFor="visitorsCount" className="field-label">Number of Visitors</label>
+            <label htmlFor="visitorsCount" className="field-label">
+              Number of Visitors{" "}
+              <span className="text-red-500" style={{ fontSize: "1.2em" }}>
+                *
+              </span>
+            </label>
             <input
               type="text"
               name="visitorsCount"
@@ -719,7 +707,7 @@ const handleSubmit = async (e) => {
               placeholder="Enter Visitors Count"
               value={formData.visitorsCount}
               onChange={handleNumberChange3}
-              style={{ height: "20px", width: "calc(100% - 20px)" }}
+              style={{ height: "32px", width: "calc(100% - 5px)" }}
             />
             {errors.visitorsCount && (
               <span className="text-red-500">{errors.visitorsCount}</span>
@@ -727,7 +715,12 @@ const handleSubmit = async (e) => {
           </div>
 
           <div className="form-group mb-4">
-            <label htmlFor="carCount" className="field-label">Car Count</label>
+            <label htmlFor="carCount" className="field-label">
+              Car Count{" "}
+              <span className="text-red-500" style={{ fontSize: "1.2em" }}>
+                *
+              </span>
+            </label>
             <input
               type="text"
               name="carCount"
@@ -735,77 +728,128 @@ const handleSubmit = async (e) => {
               placeholder="Enter Car Count"
               value={formData.carCount}
               onChange={handleNumberChange4}
-              style={{ height: "20px", width: "calc(100% - 20px)" }}
+              style={{ height: "32px", width: "calc(100% - 5px)" }}
             />
             {errors.carCount && (
               <span className="text-red-500">{errors.carCount}</span>
             )}
           </div>
 
+          <div>
+            <div
+              className="form-group mb-4"
+              style={{ display: "flex", alignItems: "center" }}
+            >
+              <label
+                htmlFor="paymentMode"
+                style={{ marginRight: "15px" }}
+                className="field-label"
+              >
+                Payment Mode:{" "}
+                <span className="text-red-500" style={{ fontSize: "1.2em" }}>
+                  *
+                </span>
+              </label>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  marginLeft: "auto",
+                }}
+              >
+                <input
+                  type="radio"
+                  id="online"
+                  name="paymentMode"
+                  value="online"
+                  checked={formData.paymentMode === "online"}
+                  onChange={handlePaymentModeChange}
+                  style={{
+                    marginRight: "10px",
+                    transform: "scale(2)",
+                    color:
+                      formData.paymentMode === "online" ? "blue" : "initial",
+                  }}
+                />
+                <label
+                  htmlFor="online"
+                  style={{ marginRight: "35px" }}
+                  className="field-label"
+                >
+                  Online
+                </label>
 
-    <div>
-      <div className="form-group mb-4" style={{ display: "flex", alignItems: "center" }}>
-        <label htmlFor="paymentMode" style={{ marginRight: "15px" }} className="field-label">Payment Mode</label>
-        <div style={{ display: "flex", alignItems: "center", marginLeft: "auto" }}>
-          <input
-            type="radio"
-            id="online"
-            name="paymentMode"
-            value="online"
-            checked={formData.paymentMode === "online"}
-            onChange={handlePaymentModeChange}
-            style={{ marginRight: "10px", transform: "scale(2)", color: formData.paymentMode === "online" ? "blue" : "initial" }}
-          />
-          <label htmlFor="online" style={{ marginRight: "35px" }} className="field-label">Online</label>
+                <input
+                  type="radio"
+                  id="cash"
+                  name="paymentMode"
+                  value="cash"
+                  checked={formData.paymentMode === "cash"}
+                  onChange={handlePaymentModeChange}
+                  style={{
+                    marginRight: "10px",
+                    transform: "scale(2)",
+                    color: formData.paymentMode === "cash" ? "blue" : "initial",
+                  }}
+                />
+                <label
+                  htmlFor="cash"
+                  style={{ marginRight: "15px" }}
+                  className="field-label"
+                >
+                  Cash
+                </label>
+              </div>
+            </div>
 
-          <input
-            type="radio"
-            id="cash"
-            name="paymentMode"
-            value="cash"
-            checked={formData.paymentMode === "cash"}
-            onChange={handlePaymentModeChange}
-            style={{ marginRight: "10px", transform: "scale(2)", color: formData.paymentMode === "cash" ? "blue" : "initial" }}
-          />
-          <label htmlFor="cash" style={{ marginRight: "15px" }} className="field-label">Cash</label>
-        </div>
-      </div>
+            {showCashCollectedByField && (
+              <div className="form-group mb-4">
+                <label htmlFor="cashcollectedby" className="field-label">
+                  Cash Collected by{" "}
+                  <span className="text-red-500" style={{ fontSize: "1.2em" }}>
+                    *
+                  </span>
+                </label>
+                <select
+                  name="cashcollectedby"
+                  id="cashcollectedby"
+                  value={formData.cashcollectedby}
+                  onChange={handleDropdownChange12}
+                  style={{ height: "30px", width: "calc(100% - 5px)" }}
+                >
+                  <option value="" disabled>
+                    Please Select{" "}
+                    <span
+                      className="text-red-500"
+                      style={{ fontSize: "1.2em" }}
+                    >
+                      *
+                    </span>
+                  </option>
+                  <option value="Rahul">🔶 Rahul</option>
+                  <option value="Yashodhan">🔶 Yashodhan</option>
+                  <option value="Yogesh">🔶 Yogesh</option>
+                  <option value="Umesh">🔶 Umesh</option>
+                  <option value="Yogita">🔶 Yogita</option>
+                  <option value="Ashwini">🔶 Ashwini</option>
+                </select>
+                {errors.cashcollectedby && (
+                  <span className="text-red-500">{errors.cashcollectedby}</span>
+                )}
+              </div>
+            )}
+          </div>
 
-      {showCashCollectedByField && (
-        <div className="form-group mb-4">
-          <label htmlFor="cashcollectedby" className="field-label">Cash Collected by</label>
-          <select
-            name="cashcollectedby"
-            id="cashcollectedby"
-            value={formData.cashcollectedby}
-            onChange={handleDropdownChange12}
-            style={{ height: "30px", width: "calc(100% - 20px)" }}
-          >
-            <option value="" disabled>Please Select</option>
-            <option value="Rahul">🔶 Rahul</option>
-            <option value="Yashodhan">🔶 Yashodhan</option>
-            <option value="Yogesh">🔶 Yogesh</option>
-            <option value="Umesh">🔶 Umesh</option>
-            <option value="Yogita">🔶 Yogita</option>
-            <option value="Ashwini">🔶 Ashwini</option>
-          </select>
-          {errors.cashcollectedby && (
-            <span className="text-red-500">{errors.cashcollectedby}</span>
-          )}
-        </div>
-      )}
-    </div>
-
-    <div className="form-group mb-4">
+          <div className="form-group mb-4">
             <label style={{ display: "flex", alignItems: "center" }}>
               <input
                 type="checkbox"
                 checked={formData.agreeTerms}
                 onChange={handleCheckboxChange}
-                style={{ marginRight: "10px", height: "20px", width: "20px" }}
+                style={{ marginRight: "10px", height: "32px", width: "20px" }}
               />
               <span style={{ fontSize: "16px" }} className="field-label">
-                I agree to the terms and conditions
+                I agree to the terms and conditions.
               </span>
             </label>
             {errors.agreeTerms && (
@@ -813,8 +857,7 @@ const handleSubmit = async (e) => {
             )}
           </div>
 
-
-    <div className="form-group mb-4">
+          {/* <div className="form-group mb-4">
       <label htmlFor="signature" className="field-label">Signature of Customer</label>
       <div style={{ position: "relative", width: "100%", height: "200px" }}>
         <canvas ref={canvasRef} width={300} height={150} />
@@ -828,79 +871,85 @@ const handleSubmit = async (e) => {
           <img src={signatureData} alt="Signature" />
         </div>
       )}
-    </div>
-    
+    </div> */}
 
-    {errorMessage && (
-  <div
-    className={`${
-      errorMessage.includes("Successfully") ? "success" : "error"
-    }-message`}
-  >
-    {errorMessage}
-  </div>
-)}
-<div
-  style={{
-    display: "flex",
-    justifyContent: "space-between",
-    marginTop: "20px",
-  }}
->
-  <button
-    type="submit"
-    onClick={handleSubmit}
-    style={{
-      backgroundColor: "blue",
-      color: "white",
-      borderRadius: "10px",
-      padding: "10px 20px",
-      border: "none",
-    }}
-  >
-    Submit
-  </button>
-  <button
-    type="button"
-    onClick={handleCancel}
-    style={{
-      backgroundColor: "blue",
-      color: "white",
-      borderRadius: "10px",
-      padding: "10px 20px",
-      border: "none",
-    }}
-  >
-    Clear
-  </button>
-</div>
-{isSubmitted  && responseData && (
-  <div
-    className="success-message"
-    style={{
-      backgroundColor: "lightgreen",
-      color: "black",
-      padding: "20px",
-      borderRadius: "10px",
-      textAlign: "center",
-      marginTop: "20px",
-    }}
-  >
-    ✅ Successfully submitted your data. Your Booking ID is {responseData.bookingId}
-  </div>
+          {errorMessage && (
+            <div
+              className={`${
+                errorMessage.includes("Successfully") ? "success" : "error"
+              }-message`}
+            >
+              {errorMessage}
+            </div>
+          )}
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              marginTop: "20px",
+            }}
+          >
+            <button
+              type="submit"
+              onClick={handleSubmit}
+              style={{
+                backgroundColor: "blue",
+                color: "white",
+                borderRadius: "10px",
+                padding: "10px 20px",
+                border: "none",
+              }}
+            >
+              Submit
+            </button>
+            <button
+              type="button"
+              onClick={handleCancel}
+              style={{
+                backgroundColor: "blue",
+                color: "white",
+                borderRadius: "10px",
+                padding: "10px 20px",
+                border: "none",
+              }}
+            >
+              Clear
+            </button>
+          </div>
+          {isSubmitted && responseData && (
+            <div
+              className="success-message"
+              style={{
+                backgroundColor: "lightgreen",
+                color: "black",
+                padding: "20px",
+                borderRadius: "10px",
+                textAlign: "center",
+                marginTop: "20px",
+              }}
+            >
+              ✅ Successfully submitted your data. Your Booking ID is{" "}
+              {responseData.bookingId}
+            </div>
           )}
         </div>
-
 
         <div className="image-container">
           <img className=" rounded-lg " src={img} alt="" />
           <br></br>
           <p className="text-container">
-            We'd love to hear from you💗! Whether you have questions, feedback,
+            We'd love to hear from you 💗! Whether you have questions, feedback,
             or need assistance with your shoot, please don't hesitate to reach
-            out. Our team is here to assist you every step of the way. Simply
-            fill out the form below and we'll be in touch shortly 🤝.
+            out. Our team is here to assist you every step of the way. From
+            selecting the perfect location to ensuring every detail is just
+            right, we're dedicated to making your pre-wedding experience
+            unforgettable. Feel free to contact us for personalized
+            recommendations, scheduling inquiries, or any special requests you
+            may have. Your satisfaction is our priority, and we're committed to
+            exceeding your expectations. Let's create magical memories
+            together!"
           </p>
+          <p style={{ fontSize: '1.2rem',marginTop:'2rem',fontFamily:'initial'}}>Email us at:- <a href="mailto:ysamgir@gmail.com">ysamgir@gmail.com</a></p>
         </div>
       </div>
       <br></br>

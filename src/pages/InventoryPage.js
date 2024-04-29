@@ -2,7 +2,7 @@ import React from 'react'
 
 const InventoryPage = () => {
   return (
-    <div>InventoryPage</div>
+    <div>This page is under developemment.</div>
   )
 }
 
