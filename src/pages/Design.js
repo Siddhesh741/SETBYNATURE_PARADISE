@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import video from "../assets/img/6.mp4";
 import "./Design.css"; // Import the CSS file for styling
 
@@ -15,7 +15,6 @@ const Design = () => {
         <h1>Photoshoot</h1>
         <p>Make your moments unforgettable</p>
       </div>
-      
     </div>
   );
 };

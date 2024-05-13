@@ -3,63 +3,88 @@
   color: rgb(118, 18, 55);
   margin: 5px;
   margin-bottom: 20px;
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* Styles for video container */
 .video-container {
-    display: flex;
-    justify-content: center; /* Align the videos with space between them */
-    background-color: #000000fc; /* Transparent black background */
-    padding: 30px;/* Allow the videos to wrap to the next line if needed */
+  display: flex;
+  justify-content: center; /* Align the videos with space between them */
+  background-color: #000000fc; /* Transparent black background */
+  padding: 30px; /* Allow the videos to wrap to the next line if needed */
+}
+
+.video-container video {
+  width: 100%; /* Adjust the width of each video, considering margins */
+  height: 350px; /* Add some space between videos */
+  transition: transform 0.3s ease; /* Smooth transition for zoom effect */
+  object-fit: contain; /* Ensure the video covers the entire container */
+  /* Set background color for the video container */
+}
+
+.video-container video:hover {
+  transform: scale(1.1); /* Zoom in effect on hover */
+}
+
+.video-left {
+  animation: slideFromLeft 1s ease-in-out;
+}
+
+.video-right {
+  animation: slideFromRight 1s ease-in-out;
+}
+
+@keyframes slideFromLeft {
+  from {
+    transform: translateX(-100%);
   }
-  
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideFromRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.instagram-link-hover:hover {
+  color: #ff0000; /* Red color for hover */
+}
+
+/* Responsive adjustments */
+@media only screen and (max-width: 768px) {
+  .location-text {
+    color: rgb(118, 18, 55);
+    margin: 25px;
+    margin-bottom: 20px;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .video-container {
+    flex-direction: column;
+    align-items: center;
+    height:60%;
+  }
+
   .video-container video {
-    width: 100% ;/* Adjust the width of each video, considering margins */
-    height: 350px; /* Add some space between videos */
-    transition: transform 0.3s ease; /* Smooth transition for zoom effect */
-    object-fit: contain; /* Ensure the video covers the entire container */
-     /* Set background color for the video container */
+    width: 100%;
+   
   }
-  
-  .video-container video:hover {
-    transform: scale(1.1); /* Zoom in effect on hover */
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .video-container {
+    flex-direction: column;
+    align-items: center;
   }
-  
-  .instagram-link-hover:hover {
-    color: #ff0000; /* Red color for hover */
-  }
-  
-  /* Responsive adjustments */
-  @media only screen and (max-width: 768px) {
-    .location-text {
-      color: rgb(118, 18, 55);
-      margin: 25px;
-      margin-bottom: 20px;
-      font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-    
-    .video-container {
-      flex-direction: column;
-      align-items: center;
-    }
-    
-    .video-container video {
-      width: 100%;
-      
-    }
 
+  .video-container video {
+    width: 100%;
+    margin-bottom: 20px;
+    margin-top: 20px;
   }
-  @media only screen and (min-width: 768px) and (max-width: 1024px) {
-    .video-container {
-      flex-direction: column;
-      align-items: center;
-
-    }
-    
-    .video-container video {
-      width: 100%;
-      margin-bottom: 20px;
-      margin-top: 20px;
-    }
-  }
+}

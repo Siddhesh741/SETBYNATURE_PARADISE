@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import "./Home1.css";
-import img from "../assets/img/Hero1.jpg";
+import img from "../assets/img/Hero1.png";
 import { Link as RouterLink } from "react-router-dom";
 import Bookingid from "./Bookingid"; // Import the Booking ID page component
-
 
 const Home1 = () => {
   const [isBookingIdOpen, setIsBookingIdOpen] = useState(false); // State to control the visibility of the Booking ID page

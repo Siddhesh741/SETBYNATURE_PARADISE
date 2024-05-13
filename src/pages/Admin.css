@@ -3,7 +3,7 @@
   display: flex;
   width: 100%;
   justify-content: center;
-  background-image: url('../assets/img/521.jpg');
+  background-image: url("../assets/img/521.jpg");
   align-items: center;
   height: 120vh; /* Set the height to 80% of the viewport height */
   margin: 0; /* Remove any default margin */
@@ -12,7 +12,6 @@
   background-repeat: no-repeat; /* Prevent the background image from repeating */
   background-position: center; /* Center the background image */
 }
-
 
 .admin-login-container {
   background-color: #8c65cf;
@@ -31,7 +30,7 @@
   text-align: center;
   margin-bottom: 20px;
   font-size: larger;
-  font-weight:50px;
+  font-weight: 50px;
 }
 
 .admin-login-container input {
@@ -78,7 +77,6 @@
   margin-right: 10px; /* Add margin to separate the button */
 }
 
-
 .logout-button {
   background-color: #e43f3f;
   color: #fff;
@@ -99,7 +97,6 @@
   justify-content: center; /* Center horizontally */
   align-items: center; /* Center vertically */
   gap: 5px;
-  
 }
 
 .category-button {
@@ -109,8 +106,7 @@
   margin-left: 1%;
   background-color: #f0f0f0;
   cursor: pointer;
-  background-color: #4CAF50; /* Green */
-  
+  background-color: #4caf50; /* Green */
 }
 
 .logout-button:hover {
@@ -125,7 +121,7 @@
     display: flex;
     width: 100%;
     justify-content: center;
-    background-image: url('../assets/img/new.png');
+    background-image: url("../assets/img/new.png");
     align-items: center;
     height: 100vh; /* Set the height to 80% of the viewport height */
     margin: 0; /* Remove any default margin */
@@ -137,10 +133,9 @@
   .admin-login-container {
     margin-top: 50px;
     width: 90%; /* Adjust width for smaller screens */
-  
   }
 }
-.extra-height{
+.extra-height {
   height: 10px;
 }
 .category-buttons {
@@ -152,7 +147,6 @@
   margin-left: 10px;
   margin-right: 20px;
   margin-bottom: 80px;
-  
 }
 
 .category-button {
@@ -160,11 +154,9 @@
   padding: 8px;
   background-color: #f0f0f0;
   cursor: pointer;
-  background-color: #4CAF50; /* Green */
-  
+  background-color: #4caf50; /* Green */
 }
 
 .category-button.active {
   background-color: #9376bd; /* Darker Green */
 }
-

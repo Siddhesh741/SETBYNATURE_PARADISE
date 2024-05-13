@@ -13,7 +13,7 @@ function ExpensesPage() {
     reportModule: "", // Changed from transactionId to reportModule
     paidBy: "",
     date: "",
-    createdBy: ""
+    createdBy: "",
   });
 
   const [submittedData, setSubmittedData] = useState([]);
@@ -24,7 +24,7 @@ function ExpensesPage() {
     category: "",
     date: "",
     paidBy: "",
-    itemName: ""
+    itemName: "",
   });
   const [filteredTotalPrice, setFilteredTotalPrice] = useState(0);
 
@@ -41,10 +41,11 @@ function ExpensesPage() {
   useEffect(() => {
     // Set the default value of paidBy based on logged in user
     const loggedInUser = sessionStorage.getItem("loggedInUser");
-    const defaultPaidBy = loggedInUser === "Rahul Samgir" ? "Rahul Samgir" : "Taranginii";
-    setFormData(prevFormData => ({
+    const defaultPaidBy =
+      loggedInUser === "Rahul Samgir" ? "Rahul Samgir" : "Taranginii";
+    setFormData((prevFormData) => ({
       ...prevFormData,
-      paidBy: defaultPaidBy
+      paidBy: defaultPaidBy,
     }));
   }, []);
 
@@ -55,7 +56,7 @@ function ExpensesPage() {
     "Yashodhan Wadkar",
     "Prachi Wadkar",
     "Yogita Samgir",
-    "Ashwini Samgir"
+    "Ashwini Samgir",
   ];
 
   const handleCategorySelect = (category) => {
@@ -74,7 +75,7 @@ function ExpensesPage() {
     const newData = {
       ...formData,
       date: formattedDate,
-      createdBy: sessionStorage.getItem("loggedInUser")
+      createdBy: sessionStorage.getItem("loggedInUser"),
     };
 
     if (editIndex !== null) {
@@ -100,7 +101,7 @@ function ExpensesPage() {
       reportModule: "", // Reset reportModule field
       paidBy: "",
       date: "",
-      createdBy: ""
+      createdBy: "",
     });
     setEditIndex(null);
     setCurrentStep(0);
@@ -124,13 +125,18 @@ function ExpensesPage() {
   };
 
   const calculateFilteredTotalPrice = (filteredData) => {
-    return filteredData.reduce((total, item) => total + parseFloat(item.price), 0);
+    return filteredData.reduce(
+      (total, item) => total + parseFloat(item.price),
+      0
+    );
   };
 
   const handlePaymentMethodChange = (e) => {
     const { value } = e.target;
     const loggedInUser = sessionStorage.getItem("loggedInUser");
-    const defaultPaidBy = adminUsers.includes(loggedInUser) ? loggedInUser : "Taranginii";
+    const defaultPaidBy = adminUsers.includes(loggedInUser)
+      ? loggedInUser
+      : "Taranginii";
     if (value === "cash") {
       setFormData({ ...formData, paymentMethod: value, paidBy: defaultPaidBy });
     } else {
@@ -146,25 +152,32 @@ function ExpensesPage() {
 
   const formatDate = (dateString) => {
     const dateObj = new Date(dateString);
-    const dd = String(dateObj.getDate()).padStart(2, '0');
-    const mm = String(dateObj.getMonth() + 1).padStart(2, '0');
+    const dd = String(dateObj.getDate()).padStart(2, "0");
+    const mm = String(dateObj.getMonth() + 1).padStart(2, "0");
     const yy = String(dateObj.getFullYear()).slice(-2);
     return `${dd}-${mm}-${yy}`;
   };
 
   const applyFilters = (data) => {
     return data.filter((item) => {
-      const isDateMatch = !searchFilters.date || item.date.includes(searchFilters.date);
-      const isPaidByMatch = !searchFilters.paidBy || item.paidBy.includes(searchFilters.paidBy);
-      const isCategoryMatch = !searchFilters.category || searchFilters.category === item.category;
-      const isItemNameMatch = !searchFilters.itemName || item.itemName.toLowerCase().includes(searchFilters.itemName.toLowerCase());
+      const isDateMatch =
+        !searchFilters.date || item.date.includes(searchFilters.date);
+      const isPaidByMatch =
+        !searchFilters.paidBy || item.paidBy.includes(searchFilters.paidBy);
+      const isCategoryMatch =
+        !searchFilters.category || searchFilters.category === item.category;
+      const isItemNameMatch =
+        !searchFilters.itemName ||
+        item.itemName
+          .toLowerCase()
+          .includes(searchFilters.itemName.toLowerCase());
       return isDateMatch && isPaidByMatch && isCategoryMatch && isItemNameMatch;
     });
   };
 
   return (
     <div className="container">
-      <h1 style={{ textAlign: 'center', fontWeight: 'bold' }}>Expenses Page</h1>
+      <h1 style={{ textAlign: "center", fontWeight: "bold" }}>Expenses Page</h1>
       <div className="search-bar">
         <input
           type="text"
@@ -203,9 +216,7 @@ function ExpensesPage() {
 
       {currentStep === 0 && (
         <div className="category-selection">
-          <button onClick={() => handleCategorySelect("Expenses")}>
-            Add+
-          </button>
+          <button onClick={() => handleCategorySelect("Expenses")}>Add+</button>
         </div>
       )}
       <br></br>
@@ -280,7 +291,8 @@ function ExpensesPage() {
           </div>
           {formData.paymentMethod === "online" && (
             <div className="input-group">
-              <label htmlFor="reportModule">Report Module</label> {/* Changed from Transaction ID */}
+              <label htmlFor="reportModule">Report Module</label>{" "}
+              {/* Changed from Transaction ID */}
               <input
                 type="text"
                 id="reportModule"
@@ -337,19 +349,31 @@ function ExpensesPage() {
       )}
 
       {deleteIndex !== null && (
-        <div style={{ textAlign: 'center' }}>
+        <div style={{ textAlign: "center" }}>
           <p>
             <strong>Are you sure you want to delete this entry?</strong>
           </p>
-          <div style={{ margin: '20px 0' }}>
-            <FaTrash style={{ marginRight: '20px', fontSize: '26px', cursor: 'pointer' }} onClick={confirmDelete} />
-            <FaTimes className="cancel-icon" onClick={() => setCurrentStep(0)} style={{ fontSize: "28px", marginLeft: "30px" }} /> {/* Cancel Icon */}
+          <div style={{ margin: "20px 0" }}>
+            <FaTrash
+              style={{
+                marginRight: "20px",
+                fontSize: "26px",
+                cursor: "pointer",
+              }}
+              onClick={confirmDelete}
+            />
+            <FaTimes
+              className="cancel-icon"
+              onClick={() => setCurrentStep(0)}
+              style={{ fontSize: "28px", marginLeft: "30px" }}
+            />{" "}
+            {/* Cancel Icon */}
           </div>
         </div>
       )}
       <br />
 
-      <div style={{ textAlign: 'center', marginBottom: '10px' }}>
+      <div style={{ textAlign: "center", marginBottom: "10px" }}>
         <strong>Total Price for Filtered Data: {filteredTotalPrice}</strong>
       </div>
 
@@ -372,26 +396,35 @@ function ExpensesPage() {
             </tr>
           </thead>
           <tbody>
-            {applyFilters(submittedData).sort((a, b) => new Date(b.date) - new Date(a.date)).map((data, index) => (
-              <tr key={index}>
-                <td>{index + 1}</td>
-                <td>{data.category}</td>
-                <td>{data.date}</td>
-                <td>{data.paidBy}</td>
-                <td>{data.price}</td>
-                <td>{data.paymentMethod}</td>
-                <td>{data.reportModule}</td> {/* Changed from Transaction ID */}
-                <td>{data.itemName}</td>
-                <td>{data.comment}</td>
-                <td>{data.createdBy}</td>
-                <td>
-                  <FaEdit style={{ cursor: 'pointer' }} onClick={() => handleEdit(index, data)} />
-                </td>
-                <td>
-                  <FaTrash style={{ cursor: 'pointer' }} onClick={() => handleDelete(index)} />
-                </td>
-              </tr>
-            ))}
+            {applyFilters(submittedData)
+              .sort((a, b) => new Date(b.date) - new Date(a.date))
+              .map((data, index) => (
+                <tr key={index}>
+                  <td>{index + 1}</td>
+                  <td>{data.category}</td>
+                  <td>{data.date}</td>
+                  <td>{data.paidBy}</td>
+                  <td>{data.price}</td>
+                  <td>{data.paymentMethod}</td>
+                  <td>{data.reportModule}</td>{" "}
+                  {/* Changed from Transaction ID */}
+                  <td>{data.itemName}</td>
+                  <td>{data.comment}</td>
+                  <td>{data.createdBy}</td>
+                  <td>
+                    <FaEdit
+                      style={{ cursor: "pointer" }}
+                      onClick={() => handleEdit(index, data)}
+                    />
+                  </td>
+                  <td>
+                    <FaTrash
+                      style={{ cursor: "pointer" }}
+                      onClick={() => handleDelete(index)}
+                    />
+                  </td>
+                </tr>
+              ))}
           </tbody>
         </table>
       </div>

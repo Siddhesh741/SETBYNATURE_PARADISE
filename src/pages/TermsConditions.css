@@ -6,9 +6,8 @@
   align-items: center;
   margin: 20px;
   min-height: 100vh;
-  background-image: url('../assets/img/47.jpg'); /* Replace 'your-background-image.jpg' with your image path */
+  background-image: url("../assets/img/47.jpg"); /* Replace 'your-background-image.jpg' with your image path */
   background-size: cover; /* Ensure the background image covers the entire container */
-
 }
 
 .features-content {
@@ -17,6 +16,19 @@
   align-items: center;
   max-width: 800px;
   flex-grow: 1;
+}
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+.centered-image {
+  animation: slideInFromLeft 1s ease-out; /* Adjust the duration and timing function as needed */
 }
 
 .centered-image {
@@ -31,11 +43,9 @@
   box-shadow: 0 30px 100px rgba(100, 205, 212, 0.947); /* Add border shadow */
 }
 
-
 .features-text {
   text-align: center;
   margin-bottom: 20px;
-  
 }
 
 @keyframes wave {
@@ -53,7 +63,7 @@
 /* Apply the wave animation to the .about-title */
 .features-title1 {
   margin-top: 20px;
-  color: #7232ae; 
+  color: #7232ae;
   font-size: 30px;
   animation: wave 2s ease-in-out infinite; /* Adjust the animation duration and timing function as needed */
 }
@@ -71,7 +81,6 @@
   color: #333; /* Darken the text color */
   font-size: 20px; /* Increase the font size */
   font-family: Arial, sans-serif;
-  
 }
 
 .feature-title2 {
@@ -100,7 +109,7 @@
 }
 
 /* Apply water drop animation to all paragraphs */
-.feature-description p{
+.feature-description p {
   animation: waterDrop 4s ease infinite; /* Adjust animation duration */
 }
 

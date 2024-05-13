@@ -9,8 +9,9 @@
   align-items: center;
   /* margin: 0 32px; */
   background-color: rgba(242, 242, 242, 0.66);
-  background-image: url('../assets/img/54.jpg'); /* Replace 'your-background-image.jpg' with your image path */
+  background-image: url("../assets/img/54.jpg"); /* Replace 'your-background-image.jpg' with your image path */
   background-size: cover; /* Ensure the background image covers the entire container */
+  /* filter: brightness(70%);  */
 }
 
 .book-now-button {
@@ -46,12 +47,12 @@
 .title {
   font-weight: bold;
   font-size: 2.8rem; /* Change the font size as needed */
-  font-family:'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
+  font-family: "Gill Sans", "Gill Sans MT", "Calibri", "Trebuchet MS",
+    sans-serif;
   margin-top: 1%;
   margin-bottom: 10%;
   margin-left: 4%;
 }
-
 
 .paragraph {
   font-size: 1.5rem;
@@ -60,7 +61,7 @@
   opacity: 1; /* Set opacity to 1 to make text fully visible */
   margin-left: 4%;
 }
-.para{
+.para {
   display: none;
 }
 
@@ -78,7 +79,6 @@
   z-index: 999; /* Ensure it's above other content */
 }
 
-
 /* Media query for mobile devices */
 @media only screen and (max-width: 768px) {
   .content-container {
@@ -92,30 +92,29 @@
     margin: 3% 3% 3% 3%; /* Center the image and add margin below it */
   }
 
-.title {
-  overflow: hidden;
-  font-size: 30px;
-  white-space: nowrap;
-  margin-right: 10px;
-}
+  .title {
+    overflow: hidden;
+    font-size: 30px;
+    white-space: nowrap;
+    margin-right: 10px;
+  }
 
-.title span {
-  display: block;
-  animation: waterfall 2.5s ease forwards;
-  opacity: 0;
-}
-
-@keyframes waterfall {
-  0% {
-    transform: translateY(-50px);
+  .title span {
+    display: block;
+    animation: waterfall 2.5s ease forwards;
     opacity: 0;
   }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
 
-}
+  @keyframes waterfall {
+    0% {
+      transform: translateY(-50px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
   .book-now-button {
     padding: 10px 5px;
     font-size: 18px;
@@ -125,21 +124,21 @@
     margin: 5% 10% 5% 10%; /* Center align the button */
     margin-bottom: 20px; /* Add some space below the button */
   }
-  .paragraph{
+  .paragraph {
     text-align: center;
     font-size: 11px;
     display: none;
     margin-right: 10px;
   }
-  .para{
+  .para {
     display: block;
     font-weight: 300;
     font-size: 14px;
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
   }
 }
 /* Media query for tablet devices */
-@media only screen and (min-width: 768px)  and (max-width: 1024px) {
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
   .content-container {
     flex-direction: column; /* Stack items vertically on smaller screens */
     text-align: center; /* Center align text on smaller screens */
@@ -151,14 +150,13 @@
     margin: 3% 3% 3% 3%; /* Center the image and add margin below it */
   }
 
-.title {
-  overflow: hidden;
-  font-size: 50px;
-  white-space: nowrap;
-  margin-right: 10px;
-}
+  .title {
+    overflow: hidden;
+    font-size: 50px;
+    white-space: nowrap;
+    margin-right: 10px;
+  }
 
-  
   .book-now-button {
     width: 120px; /* Adjust button width */
     height: 50px; /* Adjust button height */
@@ -175,7 +173,7 @@
   .para {
     display: none; /* Hide .para in tablet view */
   }
-}/*
+} /*
 @media only screen and (min-width: 820px){
   .image {
     max-width: 20%; 

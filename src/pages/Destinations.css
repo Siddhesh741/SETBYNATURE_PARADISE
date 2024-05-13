@@ -1,36 +1,31 @@
-
 .destinations-container {
-    padding-top: 20px;
-    background-image: url('../assets/img/22.jpg'); /* Add the URL of your background image */
-    background-size: cover; /* Cover the entire container */
-    background-position: center; /* Center the background image */
-    background-repeat: no-repeat; /* Do not repeat the background image */
-  }
-  
+  padding-top: 20px;
+  background-image: url("../assets/img/22.jpg"); /* Add the URL of your background image */
+  background-size: cover; /* Cover the entire container */
+  background-position: center; /* Center the background image */
+  background-repeat: no-repeat; /* Do not repeat the background image */
+}
 
 .destination-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center; /* Center content horizontally and vertically */
-    text-align: center; /* Align text content center */
-    height: 100%; /* Ensure each item takes full height */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Center content horizontally and vertically */
+  text-align: center; /* Align text content center */
+  height: 100%; /* Ensure each item takes full height */
+}
 
-  }
-  
-  .destination-image {
-    max-width: 100%;
-    max-height: 250px;
-    width: auto;
-    height: auto;
-    border-radius: 10px;
-  }
-  
-  
-  .destination-info {
-    flex: 1;
-  }
-  
+.destination-image {
+  max-width: 100%;
+  max-height: 250px;
+  width: auto;
+  height: auto;
+  border-radius: 10px;
+}
+
+.destination-info {
+  flex: 1;
+}
 
 /* Apply the flip animation to the .destinations-title */
 .destinations-title {
@@ -43,15 +38,15 @@
   font-family: Verdana, Geneva, Tahoma, sans-serif; /* Add your desired font family */
   animation: flip 10s linear infinite; /* Adjust the animation duration and timing function as needed */
 }
-  .destination-description {
-    font-size: 1.3rem;
-    margin-bottom: 30px;
-    opacity: 0; /* Initially hide the description */
-    transform: translateY(-10px); /* Move the description up */
-    animation: dropIn 0.9s forwards; 
-    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    /* Apply the dropIn animation */
-    color: #1d211a;
+.destination-description {
+  font-size: 1.3rem;
+  margin-bottom: 30px;
+  opacity: 0; /* Initially hide the description */
+  transform: translateY(-10px); /* Move the description up */
+  animation: dropIn 0.9s forwards;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  /* Apply the dropIn animation */
+  color: #1d211a;
 }
 
 @keyframes dropIn {
@@ -65,31 +60,31 @@
   }
 }
 .destination-button {
-    padding: 10px 20px;
-    font-size: 1rem;
-    background-color: #106e94b9;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 10px;
-    
-  }
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #106e94b9;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
 
-  .destination-button:hover {
-    background-color: #10a3ff;
-    animation:none;
-  }
-  .video-container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  }
-  
-  .video-container iframe {
-    width: 100%;
-    max-width: 1000px; /* Optional: Limit the maximum width of the video */
-  }
+.destination-button:hover {
+  background-color: #10a3ff;
+  animation: none;
+}
+.video-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.video-container iframe {
+  width: 100%;
+  max-width: 1000px; /* Optional: Limit the maximum width of the video */
+  margin: auto;
+}
 
 /* Add animation keyframes for waterfall effect */
 @keyframes waterfall {
@@ -131,7 +126,7 @@
   opacity: 0; /* Initially hide the description */
   transform: translateY(-10px); /* Move the description up */
   animation: dropIn 0.9s forwards; /* Apply the dropIn animation */
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
   color: #1d211a;
 }
 
@@ -172,40 +167,38 @@
   animation-delay: 1.6s;
 }
 
+/* Media queries for tablet devices */
+@media (max-width: 768px) {
+  .destination-item {
+    width: calc(50% - 20px); /* Adjust width as per your requirement */
+  }
+}
+.destinations-title {
+  font-weight: bold;
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  margin-top: 20px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.destination-image {
+  max-width: 90%;
+  max-height: 250px;
+  margin-left: 25px;
+  margin-right: 25px;
+  border-radius: 10px;
+}
+.destination-description {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+/* Media queries for mobile devices */
+@media (max-width: 480px) {
+  .destination-item {
+    width: 100%; /* Display items in a single column */
+  }
+}
 
-
-  /* Media queries for tablet devices */
-  @media (max-width: 768px) {
-    .destination-item {
-      width: calc(50% - 20px); /* Adjust width as per your requirement */
-    }
-  }
-  .destinations-title {
-    font-weight: bold;
-    font-size: 1.8rem;
-    margin-bottom: 10px;
-    margin-top: 20px;
-    margin-left: 5px;
-    margin-right: 5px;
-  }
-  .destination-image {
-    max-width: 90%;
-    max-height: 250px;
-    margin-left: 25px;
-    margin-right: 25px;
-    border-radius: 10px;
-  }
-  .destination-description {
-    margin-left: 20px;
-    margin-right:20px;
-  }
-  /* Media queries for mobile devices */
-  @media (max-width: 480px) {
-    .destination-item {
-      width: 100%; /* Display items in a single column */
-    }
-  }
-  
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
   .destination-item {
     width: 100%; /* Display items in a single column */

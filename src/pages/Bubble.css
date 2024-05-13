@@ -179,34 +179,32 @@
     transform: translate(0, 0);
   }
 }
-  @media only screen and (max-width: 768px) {
-
-    .big-bubble-container {
-      margin-top: 20px;
-      width: 90%; /* Adjust width of the container for mobile */
-      max-width: 400px; /* Set maximum width to prevent container from becoming too wide */
-      height: 500px; /* Allow height to adjust based on content */
-      margin: 0 auto; /* Center the container horizontally */
-      padding: 10px; /* Add padding for spacing */
-      display: flex;
-      margin-right: 25px;
-      justify-content: center;
-      align-items: center;
-    }
-  
-    .big-bubble {
-      width: 100px; /* Adjust size of the big bubble for mobile */
-      height: 100px; /* Adjust size of the big bubble for mobile */
-      font-size: 16px; /* Adjust font size for mobile */
-    }
-  
-    .big-bubble-1,
-    .big-bubble-2,
-    .big-bubble-3,
-    .big-bubble-4,
-    .big-bubble-5,
-    .big-bubble-7 {
-      animation-duration: 20s; /* Adjust animation duration for mobile */
-    }
+@media only screen and (max-width: 768px) {
+  .big-bubble-container {
+    margin-top: 20px;
+    width: 90%; /* Adjust width of the container for mobile */
+    max-width: 400px; /* Set maximum width to prevent container from becoming too wide */
+    height: 500px; /* Allow height to adjust based on content */
+    margin: 0 auto; /* Center the container horizontally */
+    padding: 10px; /* Add padding for spacing */
+    display: flex;
+    margin-right: 25px;
+    justify-content: center;
+    align-items: center;
   }
-  
+
+  .big-bubble {
+    width: 100px; /* Adjust size of the big bubble for mobile */
+    height: 100px; /* Adjust size of the big bubble for mobile */
+    font-size: 16px; /* Adjust font size for mobile */
+  }
+
+  .big-bubble-1,
+  .big-bubble-2,
+  .big-bubble-3,
+  .big-bubble-4,
+  .big-bubble-5,
+  .big-bubble-7 {
+    animation-duration: 20s; /* Adjust animation duration for mobile */
+  }
+}

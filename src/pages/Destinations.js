@@ -1,17 +1,16 @@
 import React from "react";
 import DestinationItem from "./DestinationItem"; // Import your DestinationItem component
 import "./Destinations.css"; // Import your CSS file
+import ReactPlayer from "react-player";
 import img1 from "../assets/img/dest11.jpg";
 import img2 from "../assets/img/dest22.jpg";
 import img3 from "../assets/img/dest3333.jpg";
-import Footer from "./Footer";
+import Footer from "../components/Footer";
 
 const Destinations = () => {
   return (
     <div className="destinations-container">
-      <h1 className="destinations-title">
-        Most Popular Sets
-      </h1>
+      <h1 className="destinations-title">Most Popular Sets</h1>
       <br></br>
       <div className="destinations-list">
         <DestinationItem
@@ -38,17 +37,13 @@ const Destinations = () => {
       </div>
       <br></br>
       <div className="video-container">
-        <iframe
-          width="100%"
-          height="400"
-          src="http://www.youtube.com/embed/le48udYlfsA?si=rD6saJQKLfYsmi3a" 
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin"
-          allowfullscreen
-        ></iframe>
-      </div>
+      <ReactPlayer
+        url="https://www.youtube.com/watch?v=le48udYlfsA"
+        controls={true}
+        width="100%"
+        height="400px"
+      />
+    </div>
       <br></br>
       <Footer />
     </div>

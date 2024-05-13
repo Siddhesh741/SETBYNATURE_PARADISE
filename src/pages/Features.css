@@ -2,9 +2,9 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  margin: 0; 
+  margin: 0;
   padding: 0;
-  background-image: url('../assets/img/52.jpg'); /* Replace 'your-background-image.jpg' with your image path */
+  background-image: url("../assets/img/52.jpg"); /* Replace 'your-background-image.jpg' with your image path */
   background-size: cover; /* Ensure the background image covers the entire container */
 
   /* width: 100%; */
@@ -24,16 +24,15 @@
   z-index: -1; /* Ensure the pseudo-element is behind the content */
 }
 .features-content {
-  
   flex-grow: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  
+
   max-width: 800px;
-  margin: 0 auto; 
-  padding: 0 20px; 
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
 .features-image {
@@ -49,7 +48,7 @@
 
 .features-title {
   margin-top: 30px;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
   font-size: 2rem;
   font-weight: bold;
   line-height: 1.5;
@@ -70,7 +69,6 @@
   }
 }
 
-
 .features-img {
   max-width: 100%;
   height: auto;
@@ -78,7 +76,6 @@
   border-radius: 10px;
   box-shadow: 0 30px 100px rgba(223, 39, 202, 0.6);
   animation: zoomInOut 5s infinite alternate; /* Apply animation */
-
 }
 .video-container {
   width: 100%;
@@ -89,16 +86,18 @@
 .video-container iframe {
   width: 100%;
   max-width: 1000px; /* Optional: Limit the maximum width of the video */
+  margin: auto; /* Center horizontally */
 }
+
 @keyframes zoomInOut {
   0% {
-      transform: scale(0.5); /* Initial scale */
+    transform: scale(0.5); /* Initial scale */
   }
   50% {
-      transform: scale(0.5); /* Zoom in */
+    transform: scale(0.5); /* Zoom in */
   }
   100% {
-      transform: scale(0.5); /* Zoom out */
+    transform: scale(0.5); /* Zoom out */
   }
 }
 
@@ -131,7 +130,8 @@
 .feature-title {
   font-size: 1.2rem;
   font-weight: bold;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
 }
 
 .feature-description {
@@ -153,8 +153,8 @@
     margin-right: auto;
     display: block; /* Ensure the image behaves as a block element */
   }
-  
-  .features-details{
+
+  .features-details {
     margin-top: 40px;
     margin-bottom: 20px;
     margin-left: 15px;

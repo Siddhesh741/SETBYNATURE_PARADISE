@@ -34,7 +34,9 @@ const SettlementPage = ({ loggedInAdmin }) => {
     // Automatically populate the "Paid by Admin Name" field based on the selected payment option
     if (paymentOption === "cash") {
       // If the logged-in admin is Rahul Samgir, set the paidByAdmin state to "Rahul Samgir", otherwise set it to "Taranginii"
-      setPaidByAdmin(loggedInAdmin === "Rahul Samgir" ? "Rahul Samgir" : "Taranginii");
+      setPaidByAdmin(
+        loggedInAdmin === "Rahul Samgir" ? "Rahul Samgir" : "Taranginii"
+      );
     } else {
       // If the payment option is not cash, default the paidByAdmin state to an empty string
       setPaidByAdmin("");
@@ -110,7 +112,7 @@ const SettlementPage = ({ loggedInAdmin }) => {
     element.innerHTML = content;
 
     // Generate PDF from the HTML element
-   /* html2pdf(element);*/
+    /* html2pdf(element);*/
   };
 
   const handleGooglePay = () => {
@@ -213,7 +215,7 @@ const SettlementPage = ({ loggedInAdmin }) => {
           </div>
         )}
       </div>
-      
+
       <div className="download-pdf-container">
         <button onClick={handlePrint}>Download PDF</button>
       </div>

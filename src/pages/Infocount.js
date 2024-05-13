@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import './Infocount.css'; // Import CSS file for styling
+import React, { useState, useEffect } from "react";
+import "./Infocount.css"; // Import CSS file for styling
 
 const Info = () => {
   const [totalSets, setTotalSets] = useState(0);
@@ -14,14 +14,36 @@ const Info = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       // Increment counts until they reach their respective targets
-      setTotalSets(prevTotalSets => (prevTotalSets < 25 ? prevTotalSets + 1 : prevTotalSets));
-      setShootOptions(prevShootOptions => (prevShootOptions < 50 ? prevShootOptions + 1 : prevShootOptions));
-      setPropsCount(prevPropsCount => (prevPropsCount < 40 ? prevPropsCount + 1 : prevPropsCount));
-      setBookingMandatory(prevBookingMandatory => (prevBookingMandatory < 100 ? prevBookingMandatory + 1 : prevBookingMandatory));
-      setHappyCustomers(prevHappyCustomers => (prevHappyCustomers < 1300 ? prevHappyCustomers + 10 : prevHappyCustomers));
-      setServiceAvailable(prevServiceAvailable => (prevServiceAvailable < 24 ? prevServiceAvailable + 1 : prevServiceAvailable));
-      setNaturalSets(prevNaturalSets => (prevNaturalSets < 15 ? prevNaturalSets + 1 : prevNaturalSets));
-      setFriendlyEnvironment(prevFriendlyEnvironment => (prevFriendlyEnvironment < 100 ? prevFriendlyEnvironment + 1 : prevFriendlyEnvironment));
+      setTotalSets((prevTotalSets) =>
+        prevTotalSets < 25 ? prevTotalSets + 1 : prevTotalSets
+      );
+      setShootOptions((prevShootOptions) =>
+        prevShootOptions < 50 ? prevShootOptions + 1 : prevShootOptions
+      );
+      setPropsCount((prevPropsCount) =>
+        prevPropsCount < 40 ? prevPropsCount + 1 : prevPropsCount
+      );
+      setBookingMandatory((prevBookingMandatory) =>
+        prevBookingMandatory < 100
+          ? prevBookingMandatory + 1
+          : prevBookingMandatory
+      );
+      setHappyCustomers((prevHappyCustomers) =>
+        prevHappyCustomers < 1300 ? prevHappyCustomers + 10 : prevHappyCustomers
+      );
+      setServiceAvailable((prevServiceAvailable) =>
+        prevServiceAvailable < 24
+          ? prevServiceAvailable + 1
+          : prevServiceAvailable
+      );
+      setNaturalSets((prevNaturalSets) =>
+        prevNaturalSets < 15 ? prevNaturalSets + 1 : prevNaturalSets
+      );
+      setFriendlyEnvironment((prevFriendlyEnvironment) =>
+        prevFriendlyEnvironment < 100
+          ? prevFriendlyEnvironment + 1
+          : prevFriendlyEnvironment
+      );
     }, 15); // Adjust the interval for the speed of counting
 
     // Clean up the interval on component unmount
@@ -66,7 +88,7 @@ const Info = () => {
         <div className="number">{propsCount}+</div>
         <div className="text">Props Options</div>
       </div>
-      
+
       <div className="info-item">
         <div className="number">{bookingMandatory}%</div>
         <div className="text">Booking Mandatory</div>
@@ -88,6 +110,6 @@ const Info = () => {
       </div>
     </div>
   );
-}
+};
 
 export default Info;

@@ -4,14 +4,13 @@ import React, { useEffect } from "react";
 import "./Bubble.css";
 
 const Bubble = () => {
- 
   useEffect(() => {
     const moveBubbles = () => {
       const container = document.querySelector(".big-bubble-container");
       if (!container) return; // Ensure container exists
 
       const bubbles = container.querySelectorAll(".big-bubble");
-      bubbles.forEach(bubble => {
+      bubbles.forEach((bubble) => {
         let x, y;
         do {
           x = Math.random() * (container.offsetWidth - bubble.offsetWidth);
@@ -51,8 +50,7 @@ const Bubble = () => {
     <div className="big-bubble-container">
       {/* Big bubbles */}
       <div className="big-bubble big-bubble-1">
-        <span>
-          Multiple Sets</span>
+        <span>Multiple Sets</span>
       </div>
       <div className="big-bubble big-bubble-2">
         <span>Memorable Experience</span>
@@ -66,11 +64,10 @@ const Bubble = () => {
       <div className="big-bubble big-bubble-5">
         <span>Scenic Backdrops</span>
       </div>
-    
+
       <div className="big-bubble big-bubble-7">
         <span>Comfort and Convenience</span>
       </div>
-      
     </div>
   );
 };

@@ -3,11 +3,20 @@
 .contact-container {
   display: flex;
   flex-direction: column;
+  border-radius: 12%;
+
   /* margin: 2%; */
 }
 .message {
-  font-size: 20px; /* Adjust the font size as needed */
-  color: #cd0b1f;
+  
+  color: red;
+  font-weight: bold;
+  font-size: 15px;
+  /* margin-top: 20px; */
+  /* margin-bottom: 20px; */
+  /* background-color: #ffe5e5; */
+  padding: 10px;
+  border-radius: 5px;
 }
 
 .form-container {
@@ -19,7 +28,7 @@
     #74c3c2
   ); /* Example gradient colors */
   padding: 20px;
-  border-radius: 10px;
+  border-radius: 2%;
   margin-left: 2%;
   margin-top: 2%;
   box-shadow: 0 0 10px rgba(160, 157, 157, 0.1); /* Example shadow effect */
@@ -28,7 +37,7 @@
 .form-title {
   text-align: center;
   margin-left: 0%;
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-size: 20px;
   margin-bottom: 10px;
   margin-top: 1%;
@@ -42,7 +51,7 @@
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
   font-size: 16px; /* Adjust the font size as needed */
-  font-weight: bold; 
+  font-weight: bold;
 }
 
 @keyframes waterdrop {
@@ -85,10 +94,15 @@
   border-radius: 5px;
 }
 
-.error {
-  color: rgb(255, 3, 3);
-  font-size: 1rem;
-  margin-top: 0.2rem;
+.error-message {
+  color: red;
+  font-weight: bold;
+  font-size: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: #ffe5e5;
+  padding: 10px;
+  border-radius: 5px;
 }
 
 .image-container {
@@ -100,7 +114,7 @@
   position: relative; /* Added */
   margin-right: 2%;
   margin-top: 2%;
-  border-radius: 10px !important; /* Adjust the border-radius value as needed */
+  /* Adjust the border-radius value as needed */
   /* background-image: url('../assets/img/49.jpg');*/
   background-size: cover; /* Ensure the background image covers the entire container */
 }
@@ -113,6 +127,7 @@
   left: 0;
   width: 100%;
   height: 100%;
+  border-radius: 1%;
   background-color: rgba(158, 200, 53, 0.236);
   z-index: -1;
   transition: background-color 0.3s ease;
@@ -131,6 +146,7 @@
   max-width: 70%;
   max-height: 400px;
   height: auto;
+  border-radius: 5%;
 }
 
 .text-red-500 {
@@ -138,6 +154,9 @@
 }
 .text-container {
   font-size: 20px;
+}
+.link-button {
+  color: rgb(133, 54, 118);
 }
 
 @media screen and (min-width: 680px) {

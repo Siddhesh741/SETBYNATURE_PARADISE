@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import "./Contact.css"; // Import your CSS file for styling
 import img from "../assets/img/9.jpg";
-import Footer from "./Footer";
+import Footer from "../components/Footer";
+import TermsModal from "./TermsModal";
 import config from "../config";
 
 const Contact = () => {
@@ -17,11 +18,9 @@ const Contact = () => {
     pendingAmount: "",
     cashcollectedby: "",
     paymentMode: "",
-    paidamount: "",
     knowaboutlocation: "",
     agreeTerms: "",
     visitorsCount: "",
-    carCount: "",
   };
 
   const [formData, setFormData] = useState(initialFormData);
@@ -37,16 +36,16 @@ const Contact = () => {
     pendingAmount: "",
     cashcollectedby: "",
     paymentMode: "",
-    paidamount: "",
     knowaboutlocation: "",
     agreeTerms: "",
     visitorsCount: "",
-    carCount: "",
   });
 
   const [responseData] = useState(null);
   const [errorMessage, setErrorMessage] = useState(""); // State variable for error message
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  
 
   //Client Name -
   const handleInputChange = (e) => {
@@ -118,12 +117,18 @@ const Contact = () => {
     const currentDate = new Date();
 
     if (selectDate >= currentDate) {
-      setFormData({ ...formData, selectDate: e.target.value });
+      const day = String(selectDate.getDate()).padStart(2, "0");
+      const month = String(selectDate.getMonth() + 1).padStart(2, "0");
+      const year = selectDate.getFullYear();
+
+      const formattedDate = `${day}/${month}/${year}`;
+
+      setFormData({ ...formData, selectDate: formattedDate });
       setErrors({ ...errors, selectDate: "" }); // Clear any previous errors
     } else {
       setErrors({
         ...errors,
-        selectDate: "Please select a date from today or Onwards.",
+        selectDate: "Please select a date from today or onwards.",
       });
     }
   };
@@ -160,6 +165,8 @@ const Contact = () => {
     }
   };
 
+  // Define selectedPackagePrice outside of the functions
+  
   //Select package
   const handlepackage = (e) => {
     const value = e.target.value;
@@ -174,7 +181,7 @@ const Contact = () => {
   const handleAdvanceAmount = (e) => {
     const value = e.target.value;
     const selectedPackagePrice = {
-      oriversideSets: 2500,
+      riversideSets: 2500,
       nightSets: 2500,
       comboRiverNight: 4000,
       // Add more options as needed
@@ -224,24 +231,74 @@ const Contact = () => {
       setErrors({ characterError: "Character not allowed." });
     }
   };
+  /* const selectedPackagePrice = {
+    riversideSets: 2500,
+    nightSets: 2500,
+    comboRiverNight: 4000,
+    // Add more options as needed
+  };
 
-  //Paid Amount
-  const handleNumber = (e) => {
+  // Select package
+  const handlepackage = (e) => {
     const value = e.target.value;
-    console.log("Input value:", value);
+    if (value === "") {
+      setErrors({ selectOption: "Please select a package." });
+    } else {
+      setFormData({ ...formData, selectOption: value });
+      setErrors({});
+    }
+  };
 
-    if (/^\d*$/.test(value) && value.length <= 10) {
-      setErrors({ ...errors, paidamount: "" });
-      setFormData({ ...formData, paidamount: value });
+  // Advance amount
+  const handleAdvanceAmount = (e) => {
+    const value = e.target.value;
+
+    if (formData.selectOption === "") {
+      setErrors({ advanceAmount: "Please select a package first." });
+    } else if (value === "") {
+      // If the advance amount is cleared, reset the pending amount
+      setFormData({ ...formData, advanceAmount: "", pendingAmount: "" });
+    } else if (/^\d*$/.test(value) && value.length <= 10) {
+      const packagePrice = selectedPackagePrice[formData.selectOption];
+      if (parseInt(value) > packagePrice) {
+        setErrors({
+          advanceAmount:
+            "Advance amount cannot be greater than the package price.",
+        });
+      } else {
+        const pending = packagePrice - value;
+        setFormData({
+          ...formData,
+          advanceAmount: value,
+          pendingAmount: pending >= 0 ? pending : 0,
+        });
+        setErrors({});
+      }
     } else {
       setErrors({
-        ...errors,
-        paidamount: "Amount Paid should not negative & not contain Character.",
+        advanceAmount:
+          "Character not allowed. Advance Amount should have to pay 50% of package.",
       });
     }
   };
 
-  //Check box
+  // Pending Amount
+  const handlePendingAmount = (e) => {
+    const value = e.target.value;
+
+    if (formData.selectOption === "") {
+      setErrors({ pendingAmount: "Please select a package first." });
+    } else if (/^\d*$/.test(value) && value.length <= 10) {
+      const packagePrice = selectedPackagePrice[formData.selectOption];
+      const pending = packagePrice - value;
+      setFormData({ ...formData, pendingAmount: pending >= 0 ? pending : 0 });
+      setErrors({});
+    } else {
+      setErrors({ pendingAmount: "Character not allowed." });
+    }
+  };
+ */
+  //Check box agree terms and condition
   const handleCheckboxChange = (e) => {
     const checked = e.target.checked;
     console.log("Checkbox checked:", checked);
@@ -261,22 +318,6 @@ const Contact = () => {
       setErrors({
         ...errors,
         visitorsCount: "Visitors Count should not contain Character.",
-      });
-    }
-  };
-
-  //Car count
-  const handleNumberChange4 = (e) => {
-    const value = e.target.value;
-    console.log("Input value:", value);
-
-    if (/^\d*$/.test(value) && value.length <= 10) {
-      setErrors({ ...errors, carCount: "" });
-      setFormData({ ...formData, carCount: value });
-    } else {
-      setErrors({
-        ...errors,
-        carCount: "Car Count should not contain Character.",
       });
     }
   };
@@ -313,69 +354,6 @@ const Contact = () => {
     }
   };
 
-  /*
-  const [isDrawing, setIsDrawing] = useState(false);
-  const [signatureData, setSignatureData] = useState("");
-  const canvasRef = useRef(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext("2d");
-    ctx.fillStyle = "white";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.lineWidth = 2;
-    ctx.lineCap = "round";
-    ctx.strokeStyle = "black";
-
-    const handleTouchStart = (event) => {
-      setIsDrawing(true);
-      const rect = canvas.getBoundingClientRect();
-      const touch = event.touches[0];
-      const offsetX = touch.clientX - rect.left;
-      const offsetY = touch.clientY - rect.top;
-      ctx.beginPath();
-      ctx.moveTo(offsetX, offsetY);
-    };
-
-    const handleTouchMove = (event) => {
-      if (!isDrawing) return;
-      const rect = canvas.getBoundingClientRect();
-      const touch = event.touches[0];
-      const offsetX = touch.clientX - rect.left;
-      const offsetY = touch.clientY - rect.top;
-      ctx.lineTo(offsetX, offsetY);
-      ctx.stroke();
-    };
-
-    const handleTouchEnd = () => {
-      setIsDrawing(false);
-    };
-
-    canvas.addEventListener("touchstart", handleTouchStart);
-    canvas.addEventListener("touchmove", handleTouchMove);
-    canvas.addEventListener("touchend", handleTouchEnd);
-
-    return () => {
-      canvas.removeEventListener("touchstart", handleTouchStart);
-      canvas.removeEventListener("touchmove", handleTouchMove);
-      canvas.removeEventListener("touchend", handleTouchEnd);
-    };
-  }, [isDrawing]);
-
-  const clearSignature = () => {
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext("2d");
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    setSignatureData("");
-  };
-
-  const saveSignature = () => {
-    const canvas = canvasRef.current;
-    setSignatureData(canvas.toDataURL()); // Convert canvas to data URL
-  };
- 
-*/
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -385,11 +363,13 @@ const Contact = () => {
       "photographerName",
       "photographerPhoneNo",
       "selectDate",
+      "cityName",
       "selectedOption",
       "advanceAmount",
       "pendingAmount",
       "visitorsCount",
-      "carCount",
+      "paymentMode",
+      "cashcollectedby",
     ];
 
     const missingFields = requiredFields.filter((field) => !formData[field]);
@@ -417,7 +397,7 @@ const Contact = () => {
       if (responseData && responseData.bookingId) {
         // Show popup with success message
         const confirmation = window.confirm(
-          `✅ Congratulations!!  Successfully submitted your data. Your Booking ID is SBNP - ${responseData.bookingId}`
+          `✅ Congratulations!!  Successfully submitted your form. Your Booking ID is SBNP - ${responseData.bookingId}`
         );
         if (confirmation) {
           setIsSubmitted(true);
@@ -554,8 +534,9 @@ const Contact = () => {
 
           <div className="form-group mb-4">
             <label htmlFor="knowaboutlocation" className="field-label">
-              How do you know about "The Natural Paradise Photo shoot" location?
+              How did you know about us?
             </label>
+
             <select
               name="knowaboutlocation"
               id="knowaboutlocation"
@@ -564,12 +545,13 @@ const Contact = () => {
               style={{ height: "30px", width: "calc(100% - 5px)" }}
             >
               <option value="" disabled selected>
-                please Select
+                Please Select
               </option>
               <option value="Instagram">🔶 Instagram</option>
               <option value="Photographer">🔶 Photographer</option>
               <option value="Whatsapp">🔶 Whatsapp</option>
               <option value="Relatives or friends">
+                
                 🔶 Relatives or Friends
               </option>
               <option value="Other">🔶 Other</option>
@@ -581,7 +563,7 @@ const Contact = () => {
 
           <div className="form-group mb-4">
             <label htmlFor="cityName" className="field-label">
-              City Name{" "}
+              Customer City or village{" "}
               <span className="text-red-500" style={{ fontSize: "1.2em" }}>
                 *
               </span>
@@ -624,7 +606,6 @@ const Contact = () => {
                 Combo Package(Riverside Sets + Night Sets) - 4000 RS
               </option>
             </select>
-            {/* Add more options as needed */}
             {errors.package && (
               <span className="text-red-500">{errors.selectOption}</span>
             )}
@@ -673,29 +654,8 @@ const Contact = () => {
           </div>
 
           <div className="form-group mb-4">
-            <label htmlFor="paidamount" className="field-label">
-              Payment Amount Paid{" "}
-              <span className="text-red-500" style={{ fontSize: "1.2em" }}>
-                *
-              </span>
-            </label>
-            <input
-              type="text"
-              name="paidamount"
-              id="paidamount"
-              placeholder="Enter Payment Amount "
-              value={formData.paidamount}
-              onChange={handleNumber}
-              style={{ height: "32px", width: "calc(100% - 5px)" }}
-            />
-            {errors.carCount && (
-              <span className="text-red-500">{errors.paidamount}</span>
-            )}
-          </div>
-
-          <div className="form-group mb-4">
             <label htmlFor="visitorsCount" className="field-label">
-              Number of Visitors{" "}
+              Total People Arrived{" "}
               <span className="text-red-500" style={{ fontSize: "1.2em" }}>
                 *
               </span>
@@ -711,27 +671,6 @@ const Contact = () => {
             />
             {errors.visitorsCount && (
               <span className="text-red-500">{errors.visitorsCount}</span>
-            )}
-          </div>
-
-          <div className="form-group mb-4">
-            <label htmlFor="carCount" className="field-label">
-              Car Count{" "}
-              <span className="text-red-500" style={{ fontSize: "1.2em" }}>
-                *
-              </span>
-            </label>
-            <input
-              type="text"
-              name="carCount"
-              id="carCount"
-              placeholder="Enter Car Count"
-              value={formData.carCount}
-              onChange={handleNumberChange4}
-              style={{ height: "32px", width: "calc(100% - 5px)" }}
-            />
-            {errors.carCount && (
-              <span className="text-red-500">{errors.carCount}</span>
             )}
           </div>
 
@@ -807,9 +746,10 @@ const Contact = () => {
                 <label htmlFor="cashcollectedby" className="field-label">
                   Cash Collected by{" "}
                   <span className="text-red-500" style={{ fontSize: "1.2em" }}>
-                    *
-                  </span>
+                  *
+                </span>
                 </label>
+               
                 <select
                   name="cashcollectedby"
                   id="cashcollectedby"
@@ -840,38 +780,34 @@ const Contact = () => {
             )}
           </div>
 
-          <div className="form-group mb-4">
-            <label style={{ display: "flex", alignItems: "center" }}>
-              <input
-                type="checkbox"
-                checked={formData.agreeTerms}
-                onChange={handleCheckboxChange}
-                style={{ marginRight: "10px", height: "32px", width: "20px" }}
+          <div>
+            <div className="form-group mb-4">
+              <label style={{ display: "flex", alignItems: "center" }}>
+                <input
+                  type="checkbox"
+                  checked={formData.agreeTerms}
+                  onChange={handleCheckboxChange}
+                  style={{ marginRight: "10px", height: "32px", width: "45px" }}
+                />
+                <span style={{ fontSize: "16px" }} className="field-label">
+                  I agree to the terms and conditions.{" "}
+                  <button
+                    onClick={() => setShowModal(true)}
+                    className="link-button"
+                  >
+                    Click to View Terms and Conditions
+                  </button>
+                </span>
+              </label>
+            </div>
+
+            {showModal && (
+              <TermsModal
+                onClose={() => setShowModal(false)}
+                onAccept={() => setFormData({ ...formData, agreeTerms: true })}
               />
-              <span style={{ fontSize: "16px" }} className="field-label">
-                I agree to the terms and conditions.
-              </span>
-            </label>
-            {errors.agreeTerms && (
-              <span className="text-red-500">{errors.agreeTerms}</span>
             )}
           </div>
-
-          {/* <div className="form-group mb-4">
-      <label htmlFor="signature" className="field-label">Signature of Customer</label>
-      <div style={{ position: "relative", width: "100%", height: "200px" }}>
-        <canvas ref={canvasRef} width={300} height={150} />
-        <div>
-          <button onClick={clearSignature}>Clear</button>
-          <button onClick={saveSignature}>Save</button>
-        </div>
-      </div>
-      {signatureData && (
-        <div>
-          <img src={signatureData} alt="Signature" />
-        </div>
-      )}
-    </div> */}
 
           {errorMessage && (
             <div
@@ -949,7 +885,16 @@ const Contact = () => {
             exceeding your expectations. Let's create magical memories
             together!"
           </p>
-          <p style={{ fontSize: '1.2rem',marginTop:'2rem',fontFamily:'initial'}}>Email us at:- <a href="mailto:ysamgir@gmail.com">ysamgir@gmail.com</a></p>
+          <p
+            style={{
+              fontSize: "1.2rem",
+              marginTop: "2rem",
+              fontFamily: "initial",
+            }}
+          >
+            Email us at:-{" "}
+            <a href="mailto:ysamgir@gmail.com">ysamgir@gmail.com</a>
+          </p>
         </div>
       </div>
       <br></br>

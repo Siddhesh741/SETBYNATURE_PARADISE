@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import "./Gallery.css";
 
 import img1 from "../assets/img/5.jpg";
@@ -26,8 +26,27 @@ import img18 from "../assets/img/42.jpg";
 
 const Gallery = () => {
   const allImages = [
-    img1, img2, img3, img4, img5, img6, img7, img8, img9, img19, img20, img21, 
-    img17, img18, img16, img10, img11, img12, img13, img14, img15
+    img1,
+    img2,
+    img3,
+    img4,
+    img5,
+    img6,
+    img7,
+    img8,
+    img9,
+    img19,
+    img20,
+    img21,
+    img17,
+    img18,
+    img16,
+    img10,
+    img11,
+    img12,
+    img13,
+    img14,
+    img15,
   ];
 
   const itemsPerGroup = 3;
@@ -51,7 +70,11 @@ const Gallery = () => {
       <div className="gallery-container">
         {currentImages.map((image, index) => (
           <div key={index} className="gallery-item">
-            <img src={image} alt={`Image ${startIndex + index + 1}`} className="gallery-image" />
+            <img
+              src={image}
+              alt={`Imagee ${startIndex + index + 1}`}
+              className="gallery-image"
+            />
           </div>
         ))}
       </div>

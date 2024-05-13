@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
-import img from "../assets/img/Logo.jpg";
+import img from "../assets/img/Logo.png";
 import "./Navbar.css";
 
 const Navbar = () => {
@@ -20,8 +20,8 @@ const Navbar = () => {
         <div className="brand">
           <img src={img} alt="Logo" style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '10px' }} />
           <div style={{ display: 'inline-block', verticalAlign: 'middle' }}>
-            <h4 className="name" style={{ marginBottom: '0' }}>Taranginii Agro Farms & </h4>
-            <h4 className="subtitle">Set By Nature Paradise</h4>
+            <h4 className="name" style={{ marginBottom: '0' }}>Tarangini Agro Farms & </h4>
+            <h4 className="subtitle">Sets By Nature Paradise</h4>
           </div>
         </div>{" "}
       </div>
@@ -39,7 +39,7 @@ const Navbar = () => {
           <NavItem to="/Oursets" onClick={toggleMenu}>Our Sets</NavItem>
           <NavItem to="/contact" onClick={toggleMenu}>Contact</NavItem>
           <NavItem to="/destinations" onClick={toggleMenu}>Destinations</NavItem>
-          <NavItem to="/admin" onClick={toggleMenu}>Admin</NavItem>
+          <NavItem to="/admin" onClick={toggleMenu}>Login</NavItem>
         </ul>
       </div>
     </nav>

@@ -1,8 +1,9 @@
 // Admin.js
 
 import React, { useState } from "react";
-import Footer from "./Footer";
+import Footer from "../components/Footer";
 import "./Admin.css"; // Import CSS for styling (create this file)
+import BookingTable from "./BookingTable";
 import ExpensesPage from "./ExpensesPage"; // Import the ExpensesPage component
 import FoodPage from "./FoodPage"; // Import the FoodPage component
 import SettlementPage from "./SettlementPage";
@@ -19,7 +20,7 @@ function Admin() {
   const [selectedCategory, setSelectedCategory] = useState("");
 
   const validCredentials = [
-    { username: "r", password: "p1", name: "Rahul Samgir" },
+    { username: "", password: "", name: "Rahul Samgir" },
     { username: "u", password: "p2", name: "Umesh Samgir" },
     { username: "y", password: "p3", name: "Yogesh Samgir" },
     { username: "w", password: "p4", name: "Yashodhan Wadkar" },
@@ -55,23 +56,27 @@ function Admin() {
     <div>
       {loggedIn ? (
         <div>
-          
           <div className="welcome-container">
             <div className="welcome-message">
               <h2>
-                Welcome, <span className="admin-name">{loggedInAdmin}</span>! 
-             
-
-              <button className="logout-button" onClick={handleLogout}>
-              {" "}
-              <FaSignOutAlt style={{ marginRight: "5px" }} /> 
-              
-            </button>
-            </h2>
+                Welcome, <span className="admin-name">{loggedInAdmin}</span>!
+                <button className="logout-button" onClick={handleLogout}>
+                  {" "}
+                  <FaSignOutAlt style={{ marginRight: "5px" }} />
+                </button>
+              </h2>
             </div>
-            
+
             {/* Global category selection buttons */}
             <div className="category-buttons">
+            <button
+                onClick={() => handleCategorySelect("BookingTable")}
+                className={`category-button ${
+                  selectedCategory === "BookingTable" ? "active" : ""
+                }`}
+              >
+                Customer Booking
+              </button>
               <button
                 onClick={() => handleCategorySelect("Expenses")}
                 className={`category-button ${
@@ -115,8 +120,9 @@ function Admin() {
             </div>
             <div style={{ height: "400px" }}></div>
             {/* <div className="extra-height"></div> */}
-          {/* <Footer /> */}
+            {/* <Footer /> */}
           </div>
+          {selectedCategory === "BookingTable" && <BookingTable />}
           {selectedCategory === "Expenses" && <ExpensesPage />}
           {selectedCategory === "Settlement" && <SettlementPage />}
           {selectedCategory === "Food" && <FoodPage />}
@@ -124,12 +130,12 @@ function Admin() {
           {selectedCategory === "Calendar" && <CalendarPage />}
           {/* Add more conditions for other categories */}
         </div>
-         ) : (
+      ) : (
         <div className="admin-login-wrapper">
           {" "}
           {/* Wrapper for centering */}
           <div className="admin-login-container">
-            <h2>Admin Login</h2>
+            <h2>Login</h2>
             <input
               type="text"
               placeholder="Username"
@@ -148,7 +154,6 @@ function Admin() {
           </div>
           {/* <img src={admin} alt="Admin" className="admin"/> */}
         </div>
-        
       )}
       <Footer />
     </div>
